@@ -31,11 +31,11 @@
 
 namespace	VFS
 {
-  namespace	Cache
+	namespace	Cache
     {
-      namespace	API
+    	namespace	API
 		{
-		  class	ICache
+			class	ICache
 		    {
 		      /*
 		       *	TODO:

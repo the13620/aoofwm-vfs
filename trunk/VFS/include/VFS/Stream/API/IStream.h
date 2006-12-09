@@ -31,11 +31,11 @@
 
 namespace	VFS
 {
-  namespace	Stream
+	namespace	Stream
     {
-      namespace	API
+    	namespace	API
 		{
-		  class	IStream
+			class	IStream
 		    {
 
 		    };

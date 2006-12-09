@@ -31,11 +31,11 @@
 
 namespace	VFS
 {
-  namespace	Filter
+	namespace	Filter
     {
-      namespace	API
+    	namespace	API
 		{
-		  class	IFilter
+			class	IFilter
 		    {
 		    	/*
 		    	 * TODO:

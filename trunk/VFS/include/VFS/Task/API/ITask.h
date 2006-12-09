@@ -31,11 +31,11 @@
 
 namespace	VFS
 {
-  namespace	Task
+	namespace	Task
     {
-      namespace	API
+    	namespace	API
 		{
-		  class	ITask
+			class	ITask
 		    {
 		      /*
 		       * TODO:

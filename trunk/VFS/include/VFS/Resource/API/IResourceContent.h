@@ -34,11 +34,11 @@
 
 namespace	VFS
 {
-  namespace	Resource
+	namespace	Resource
     {
-      namespace	API
+    	namespace	API
 		{
-		  class	IResourceContent
+			class	IResourceContent
 	    	{
 	      	public:
 		      	virtual const VFS::Resource::API::IResource*			GetResource(void) const	= 0;

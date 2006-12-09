@@ -31,11 +31,11 @@
 
 namespace	VFS
 {
-  namespace	Event
+	namespace	Event
     {
-      namespace	API
+    	namespace	API
 		{
-		  class	IEvent
+			class	IEvent
 		    {
 		    public:
 		    	//virtual const void	notify()		= 0;
