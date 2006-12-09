@@ -1,0 +1,146 @@
+			Aoof-Wm / VFS
+			   How To
+
+
+    Here's a very quick How-To explaining the internals of the
+                 Aoof-Wm Virtual FileSystem
+
+
+
+==========================================================================
+
+
+
++ How to embed the VFS in my project ?
+
+  if you're using the stand-alone VFS version:
+	#include <VFS/VFS.h>
+  if you're using the Aoof-Wm.VFS version:
+	#include <Aoof-Wm/VFS/VFS.h>
+
+--------------------------------------------------------------------------
+
++ How to get the VFS started ?
+
+	IManager*	pVfsMgr = VFS.getManager();
+
+--------------------------------------------------------------------------
+
++ How to access (resolve) any resource ?
+
+  The VFS works for various protocol schemes.
+
+  Let's say you want to access a remote file over the HTTP protocol,
+  here's the magic line:
+	IResource*	pRes = pVfsMgr->Resource("http://domain.com/path/to/file");
+
+  Now let's say you want to access a local file on a UNIX filesystem:
+	pVfsMgr->Resource("file:///path/to/file");
+  or, on a Microsoft Windows filesystem:
+	pVfsMgr->Resource("file://C:/path/to/file");
+
+  But you could also type:
+	pVfsMgr->Resource("/path/to/file");
+	pVfsMgr->Resource("C:/path/to/file");
+
+  Yep, it's as simple as that, all the resources can be accessed through
+  the same interface, with a unique naming convention, as long as it's
+  specific enough.
+
+  However, for some particular resources, you have to use ResourceType
+  specific accessors, like for DataBases' Entries for instance.
+
+  ( More on that coming later :-) )
+
+--------------------------------------------------------------------------
+
++ How to use a resolved resource ?
+
+  Once you've resolved a resource like presented above, you may want
+  to manipulate it.
+
+  If your file already exists, you can try to copy or move it using
+	pRes->Copy(...) or pRes->Move(...)
+
+  But if it doesn't already exist, you may want to create it first
+    pRes->Create();
+
+  Yes, this means that you can manipulate a Resouce even if it doesn't
+  exist yet. it may be useful to prepare its future attributes or to let
+  it reside in virtual memory temporarily.
+
+  Likewise, you can delete a resource very simply:
+    pRes->Delete();
+
+  ( TODO: complete this how-to for every file manipulations )
+
+--------------------------------------------------------------------------
+
++ How to modify / retrieve the content of a resource ?
+
+  That's easy.
+  In the VFS, everything is a Resource, wether it is a File, a Directory,
+  a DataBase, a Database Table, a Row, an Entry, a List, an Archive...
+
+  As a unified mean to access the content of a Resource, use this:
+    IResourceContent	*pContent = pRes->GetContent();
+
+  You now have a pointer to the generic interface for the ResourceContent
+  object of your Resource, which may allow you to manipulate it, by using
+  Streams.
+
+  You may also want to cast it to a more specific ResourceContentType
+  (like, for instance, GridContentType) to gain access to more specific
+  content manipulation routines/methods.
+
+--------------------------------------------------------------------------
+
++ What protocols are currently supported by the Aoof-WM / VFS ?
+
+Honestly, the question is more about what protocols are currently being
+worked on to be supported, as it's still under development.
+
+Aoof-Wm.VFS is aimed to support the following (non-exhaustive) list of
+protocols, and we sincerely hope that many more will follow:
+-local native filesystem
+-HTTP
+-FTP
+-ZIP-likes
+-...
+
+--------------------------------------------------------------------------
+
++ Why Aoof-Wm.VFS ?
+
+  If you wonder why we need a VFS, it's actually quite simple.
+  Aoof-Wm is an multiplatform framework that helps you to develop portable
+  and interoperable applications.
+  By adding VFS capabilities to Aoof-Wm, we want to give you the
+  opportunity to use such interoperability with any filesystems, wether
+  they're local or remote, plain or compressed/encrypted, and so on...
+
+--------------------------------------------------------------------------
+
++ Which projects inspired Aoof-Wm.VFS ?
+
+  The Aoof-Wm.VFS was inspired mostly by:
+  	-GnomeVFS
+  		(mostly for the general features)
+  	-Jakarta's Commons VFS
+  		(mostly for the structure)
+
+  It was also designed by studying many other actual or theoretical VFS
+  designs, which we can't really remember.
+
+--------------------------------------------------------------------------
+
++ Where can I learn more about Aoof-Wm.VFS ?
+
+  Aoof-Wm.VFS is a part of the
+  Advanced Object Oriented Framework for Window Managers (Aoof-Wm),
+  itself being a part of the Toy'd Window Manager Project.
+
+  Toy'd is a next-generation multiplatform Window Manager.
+
+  Please, visit http://www.toyd.org/ for more informations.
+
