@@ -1,0 +1,9 @@
+
+This document lists the packages / libraries that are required for the
+Virtual FileSystem to work properly.
+
+You can either grab a version of the VFS bundled with those libraries,
+or you can get them by yourself.
+
+===========================================================================
+

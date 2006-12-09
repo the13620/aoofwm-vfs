@@ -1,0 +1,24 @@
+This is the very first public disclosure of the VFS.
+
+As of now, the VFS is still under development and therefore we're not too
+big on releasing its full source code, as it's still way too messy, and
+changes a hell of a lot very frequently.
+
+
+However, as the main goals of Aoof-Wm and thus the VFS are portability and
+interoperability, we would be glad to hear your comments on the path
+we're currently going down for the development.
+That's why you'll find here the core API of the VFS, plus a few documents
+and notes about its use and development.
+Feel free to tap into it and share your comments.
+
+The interfaces shouldn't move that much in a near future as they represent
+the smallest common denominator for the target protocols of the VFS.
+Protocol-specific functionalities are being designed in abstract classes
+inheriting from those interfaces, and are then being implemented according
+to each protocol's specifications.
+Therefore, those should be quite stable and are eligible to public
+consultation.
+
+Thank you and stay tuned,
+coming soon, more code is on its way to your screens :-)
