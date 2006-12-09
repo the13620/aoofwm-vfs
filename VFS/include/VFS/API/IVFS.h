@@ -31,9 +31,9 @@
 
 namespace	VFS
 {
-  namespace	API
-    {
-      class	IVFS
+	namespace	API
+	{
+		class	IVFS
 		{
 		public:
 			virtual const VFS::Manager::API::IManager*	CreateManager(void) const	= 0;

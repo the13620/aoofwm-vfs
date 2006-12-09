@@ -31,15 +31,14 @@
 
 namespace	VFS
 {
-  namespace	Provider
+	namespace	Provider
     {
-      namespace	API
-	{
-	  class	IProvider
-	    {
-	      
-	    };
-	}
+    	namespace	API
+    	{
+    		class	IProvider
+    		{
+    		};
+		}
     }
 }
 
