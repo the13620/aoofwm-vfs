@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
 
+#include "test.h"
+
 
 int	main(int ac, char **av)
 {
-	std::cout << "This a very simple test." << std::endl;
+	VFS::Util::URITestMain(ac, av);
 	return (0);	
 }

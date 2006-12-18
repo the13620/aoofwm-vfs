@@ -29,6 +29,11 @@
 #ifndef __VFS_MANAGER_API_IMANAGER_H__
 # define __VFS_MANAGER_API_IMANAGER_H__
 
+# include <string>
+
+# include "VFS/Provider/API/IProvider.h"
+# include "VFS/Resource/API/IResource.h"
+
 namespace	VFS
 {
 	namespace	Manager

@@ -38,6 +38,8 @@ namespace	VFS
     {
     	namespace	API
 		{
+			class	IResource {};
+			
 			class	IResourceContent
 	    	{
 	      	public:
@@ -49,8 +51,8 @@ namespace	VFS
 
 				virtual const bool										close(void)				= 0;
 
-				virtual const IInputStream*								getInputStream() const	= 0;
-				virtual const IOutputStream*							getOutputStream() const	= 0;
+//				virtual const IInputStream*								getInputStream() const	= 0;
+//				virtual const IOutputStream*							getOutputStream() const	= 0;
 		    };
 		}
     }

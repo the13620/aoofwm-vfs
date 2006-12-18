@@ -26,31 +26,57 @@
 **
 */
 
-#ifndef __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
-# define __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
+#include <string>
+#include <vector>
 
-# include <string>
+#include "VFS/Util/Credentials.h"
+#include "VFS/Util/Tokenizer.h"
 
-# include "VFS/Resource/API/IResource.h"
-
-namespace	VFS
+namespace AoofWm
 {
-	namespace	Resource
-    {
-    	namespace	API
+	namespace VFS
+	{
+		namespace Util
 		{
-			class	IResource;
+			CCredentials::CCredentials(void)
+			{
+				_user = std::string();
+				_passwd = std::string();
+			}
 			
-			class	IResourceContentInfo
-	    	{
-	      	public:
-		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;
+			CCredentials::CCredentials(const CCredentials& copy)
+			{
+				_user = copy.GetUser();
+				_passwd = copy.GetPassword();
+			}
+			
+			CCredentials::~CCredentials(void)
+			{
+			}
 
-				virtual const std::string&						GetEncoding(void) const	= 0;
-				virtual const std::string&						GetType(void) const	= 0;
-		    };
+			CCredentials*	CCredentials::fromString(const std::string& source)
+			{
+				std::vector<Token>	tokens;
+
+				tokens = CTokenizer::Tokenize(source, ":");
+				if (tokens.size() > 1)
+				{
+					CCredentials	credentials = CCredentials(tokens.at(0).token, tokens.at(1).token);
+					
+					return (new CCredentials(tokens.at(0).token, tokens.at(1).token));
+				}
+				return (NULL);
+			}
+
+			std::string		CCredentials::GetUser(void) const
+			{
+				return (_user);
+			}
+
+			std::string		CCredentials::GetPassword(void) const
+			{
+				return (_passwd);
+			}
 		}
-    }
+	}
 }
-
-#endif	// __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__

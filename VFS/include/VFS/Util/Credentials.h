@@ -26,31 +26,43 @@
 **
 */
 
-#ifndef __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
-# define __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
+
+#ifndef __AOOFWM_VFS_UTIL_CREDENTIALS_H__
+# define __AOOFWM_VFS_UTIL_CREDENTIALS_H__
+
 
 # include <string>
 
-# include "VFS/Resource/API/IResource.h"
+# include "VFS/Util/Tokenizer.h"
 
-namespace	VFS
+
+namespace AoofWm
 {
-	namespace	Resource
-    {
-    	namespace	API
+	namespace VFS
+	{
+		namespace Util
 		{
-			class	IResource;
-			
-			class	IResourceContentInfo
-	    	{
-	      	public:
-		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;
+			class CCredentials
+			{
+				private:
+					std::string					_user;
+					std::string					_passwd;
 
-				virtual const std::string&						GetEncoding(void) const	= 0;
-				virtual const std::string&						GetType(void) const	= 0;
-		    };
+				public:
+					CCredentials(void);
+					CCredentials(const CCredentials& copy);
+					CCredentials(const std::string& user, const std::string& passwd)
+						: _user(user), _passwd(passwd) {};
+					~CCredentials(void);
+
+					static CCredentials* fromString(const std::string& source);
+
+					std::string			GetUser(void) const;
+					std::string			GetPassword(void) const;
+			};
 		}
-    }
+	}
 }
 
-#endif	// __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
+
+#endif	// ! __AOOFWM_VFS_UTIL_CREDENTIALS_H__

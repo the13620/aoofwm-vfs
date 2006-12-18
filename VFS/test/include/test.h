@@ -26,31 +26,10 @@
 **
 */
 
-#ifndef __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
-# define __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
 
-# include <string>
+#ifndef __AOOFWM_TEST_H__
+# define __AOOFWM_TEST_H__
 
-# include "VFS/Resource/API/IResource.h"
+# include <VFS/Util/URI.test.h>
 
-namespace	VFS
-{
-	namespace	Resource
-    {
-    	namespace	API
-		{
-			class	IResource;
-			
-			class	IResourceContentInfo
-	    	{
-	      	public:
-		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;
-
-				virtual const std::string&						GetEncoding(void) const	= 0;
-				virtual const std::string&						GetType(void) const	= 0;
-		    };
-		}
-    }
-}
-
-#endif	// __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
+#endif	// __AOOFWM_TEST_H__

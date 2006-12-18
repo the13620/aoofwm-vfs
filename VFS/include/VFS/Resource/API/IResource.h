@@ -30,7 +30,7 @@
 # define __VFS_RESOURCE_API_IRESOURCE_H__
 
 # include <VFS/Resource/API/IResourceName.h>
-# include <VFS/Resource/API/IResourceContent.h>
+# include <VFS/Resource/API/IResourceType.h>
 
 namespace	VFS
 {
@@ -38,6 +38,8 @@ namespace	VFS
     {
     	namespace	API
 		{
+			class	IResourceContent;
+			
 			class	IResource
 	    	{
 	      	public:
