@@ -29,6 +29,8 @@
 #ifndef __VFS_API_IVFS_H__
 # define __VFS_API_IVFS_H__
 
+# include "VFS/Manager/API/IManager.h"
+
 namespace	VFS
 {
 	namespace	API

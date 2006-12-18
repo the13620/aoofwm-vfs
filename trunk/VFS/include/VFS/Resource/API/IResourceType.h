@@ -29,6 +29,8 @@
 #ifndef __VFS_RESOURCE_API_IRESOURCETYPE_H__
 # define __VFS_RESOURCE_API_IRESOURCETYPE_H__
 
+# include <string>
+
 # include <VFS/Resource/API/IResource.h>
 
 namespace	VFS
@@ -37,7 +39,9 @@ namespace	VFS
     {
     	namespace	API
 		{
-			class	IResourceContent
+			class	IResource;
+			
+			class	IResourceType
 	    	{
 	      	public:
 		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;

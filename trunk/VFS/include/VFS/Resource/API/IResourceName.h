@@ -29,12 +29,18 @@
 #ifndef __VFS_RESOURCE_API_IRESOURCENAME_H__
 # define __VFS_RESOURCE_API_IRESOURCENAME_H__
 
+# include <string>
+
+# include "VFS/Resource/API/IResource.h"
+
 namespace	VFS
 {
 	namespace	Resource
     {
     	namespace	API
 		{
+			class	IResource;
+			
 			class	IResourceName
 	    	{
 	      	public:

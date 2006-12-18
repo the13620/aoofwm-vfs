@@ -26,31 +26,28 @@
 **
 */
 
-#ifndef __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
-# define __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
+#include "VFS/VFS.h"
 
-# include <string>
+using namespace VFS;
 
-# include "VFS/Resource/API/IResource.h"
-
-namespace	VFS
+namespace VFS
 {
-	namespace	Resource
-    {
-    	namespace	API
-		{
-			class	IResource;
-			
-			class	IResourceContentInfo
-	    	{
-	      	public:
-		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;
-
-				virtual const std::string&						GetEncoding(void) const	= 0;
-				virtual const std::string&						GetType(void) const	= 0;
-		    };
-		}
-    }
+	CVFS::CVFS(void)
+	{
+	}
+	
+	CVFS::~CVFS(void)
+	{
+	}
+	
+	
+	const VFS::Manager::API::IManager*	CVFS::CreateManager(void) const
+	{
+		
+	}
+	
+	const VFS::Manager::API::IManager*	CVFS::GetManager(void) const
+	{
+		
+	}
 }
-
-#endif	// __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
