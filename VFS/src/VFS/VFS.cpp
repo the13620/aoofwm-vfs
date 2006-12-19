@@ -28,12 +28,13 @@
 
 #include "VFS/VFS.h"
 
-using namespace VFS;
+
 
 namespace VFS
 {
 	CVFS::CVFS(void)
 	{
+		
 	}
 	
 	CVFS::~CVFS(void)

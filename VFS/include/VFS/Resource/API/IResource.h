@@ -29,6 +29,8 @@
 #ifndef __VFS_RESOURCE_API_IRESOURCE_H__
 # define __VFS_RESOURCE_API_IRESOURCE_H__
 
+# include <string>
+
 # include <VFS/Resource/API/IResourceName.h>
 # include <VFS/Resource/API/IResourceType.h>
 
@@ -38,6 +40,8 @@ namespace	VFS
     {
     	namespace	API
 		{
+			typedef std::string	RsrcString;
+			
 			class	IResourceContent;
 			
 			class	IResource

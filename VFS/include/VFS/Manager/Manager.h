@@ -30,7 +30,10 @@
 #ifndef __VFS_MANAGER_MANAGER_H__
 # define __VFS_MANAGER_MANAGER_H__
 
+# include <string>
+
 # include <VFS/Manager/API/IManager.h>
+# include <VFS/Resource/API/IResource.h>
 
 namespace	VFS
 {
@@ -38,8 +41,11 @@ namespace	VFS
 	{
 		class	CManager : public virtual VFS::Manager::API::IManager
 		{
+		public:
 			CManager();
 			~CManager();
+			
+			const VFS::Resource::API::IResource*	Resource(const std::string& uri) const;
 		};
 	}
 }

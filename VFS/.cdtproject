@@ -6,7 +6,6 @@
 <extension id="org.eclipse.cdt.core.PE" point="org.eclipse.cdt.core.BinaryParser"/>
 <data>
 <item id="org.eclipse.cdt.core.pathentry">
-<pathentry excluding="src/" kind="src" path="test"/>
 <pathentry kind="out" path=""/>
 <pathentry kind="con" path="org.eclipse.cdt.managedbuilder.MANAGED_CONTAINER"/>
 <pathentry kind="src" path="src"/>

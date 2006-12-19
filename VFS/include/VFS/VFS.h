@@ -37,9 +37,13 @@ namespace	VFS
 {
 	class	CVFS : public virtual VFS::API::IVFS
 	{
+	private:
+		static CVFS		_vfs;
+		
+		
 	public:
-		CVFS();
-		virtual ~CVFS();
+		CVFS(void);
+		virtual ~CVFS(void);
 		
 		const VFS::Manager::API::IManager*	CreateManager(void) const;
 		const VFS::Manager::API::IManager*	GetManager(void) const;
