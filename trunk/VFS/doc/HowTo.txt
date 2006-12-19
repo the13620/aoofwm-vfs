@@ -1,4 +1,6 @@
-			Aoof-Wm / VFS
+[Last Revision: 2006.12.19 - 01:01 GMT]
+
+            Aoof-Wm.VFS
 			   How To
 
 
@@ -22,7 +24,10 @@
 
 + How to get the VFS started ?
 
-	IManager*	pVfsMgr = VFS.getManager();
+	IManager*	pVFSMgr = VFS::GetManager();
+or:
+    IVFS*       pVFS    = VFS::GetVFS();
+    IManager*	pVFSMgr = pVFS->GetManager();
 
 --------------------------------------------------------------------------
 
@@ -32,16 +37,16 @@
 
   Let's say you want to access a remote file over the HTTP protocol,
   here's the magic line:
-	IResource*	pRes = pVfsMgr->Resource("http://domain.com/path/to/file");
+	IResource*	pRes    = pVFSMgr->Resource("http://domain.com/path/to/file");
 
   Now let's say you want to access a local file on a UNIX filesystem:
-	pVfsMgr->Resource("file:///path/to/file");
+	pVFSMgr->Resource("file:///path/to/file");
   or, on a Microsoft Windows filesystem:
-	pVfsMgr->Resource("file://C:/path/to/file");
+	pVFSMgr->Resource("file://C:/path/to/file");
 
   But you could also type:
-	pVfsMgr->Resource("/path/to/file");
-	pVfsMgr->Resource("C:/path/to/file");
+	pVFSMgr->Resource("/path/to/file");
+	pVFSMgr->Resource("C:/path/to/file");
 
   Yep, it's as simple as that, all the resources can be accessed through
   the same interface, with a unique naming convention, as long as it's
@@ -83,7 +88,7 @@
   a DataBase, a Database Table, a Row, an Entry, a List, an Archive...
 
   As a unified mean to access the content of a Resource, use this:
-    IResourceContent	*pContent = pRes->GetContent();
+    IResourceContent	*pContent   = pRes->GetContent();
 
   You now have a pointer to the generic interface for the ResourceContent
   object of your Resource, which may allow you to manipulate it, by using
@@ -95,7 +100,7 @@
 
 --------------------------------------------------------------------------
 
-+ What protocols are currently supported by the Aoof-WM / VFS ?
++ What protocols are currently supported by the Aoof-WM.VFS ?
 
 Honestly, the question is more about what protocols are currently being
 worked on to be supported, as it's still under development.
@@ -143,4 +148,8 @@ protocols, and we sincerely hope that many more will follow:
   Toy'd is a next-generation multiplatform Window Manager.
 
   Please, visit http://www.toyd.org/ for more informations.
-
+  
+  See also:
+    http://code.google.com/p/toyd/
+    http://code.google.com/p/aoofwm/
+    http://code.google.com/p/aoofwm-vfs/
