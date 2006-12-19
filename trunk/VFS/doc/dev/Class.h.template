@@ -27,21 +27,21 @@
 */
 
 
-#ifndef __VFS_ _H__
-# define __VFS_ _H__
+#ifndef __VFS_VFS_H__
+# define __VFS_VFS_H__
 
 # include <VFS/API/IVFS.h>
 
 namespace	VFS
 {
-  namespace	NS
-    {
-      class	CClass : public virtual  VFS::NS::API::IClass
+	namespace	NS
 	{
-	  
-	};
-    }
+		class	CClass : public virtual VFS::API::IClass
+		{
+		
+		};
+	}
 }
 
 
-#endif	// __VFS_ _H__
+#endif	// __VFS_VFS_H__

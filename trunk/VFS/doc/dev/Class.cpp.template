@@ -28,19 +28,18 @@
 
 #include "VFS/VFS.h"
 
-using namespace VFS::NS;
-using namespace VFS::NS::API;
+using namespace VFS::API;
 
 namespace VFS
 {
-  namespace	NS
-  {
-    CClass::CClass(void)
-    {
-    }
-
-    CClass::~CClass(void)
-    {
-    }
-  }
+	namespace NS
+	{
+		CClass::CClass(void)
+		{
+		}
+		
+		CClass::~CClass(void)
+		{
+		}
+	}
 }
