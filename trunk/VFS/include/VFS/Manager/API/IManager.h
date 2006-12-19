@@ -43,17 +43,17 @@ namespace	VFS
 			class	IManager
 		    {
 			public:
-				virtual const VFS::Resource::API::IResource*	Resource(std::string fileName) const					= 0;
+				virtual const VFS::Resource::API::IResource*	Resource(const std::string& uri) const					= 0;
 
 				/*
 				 * TODO: thinking about tagging the following methods as private,
 				 * 		and the VFS being configured only automatically through
 				 * 		configuration files, and not programmatically by the developers.
 				 */
-				virtual const void								addProvider(std::string providerName)					= 0;
+				virtual const void								addProvider(const std::string& providerName)			= 0;
 				virtual const void								addProvider(VFS::Provider::API::IProvider* pProvider)	= 0;
 
-				virtual const void								removeProvider(std::string providerName)				= 0;
+				virtual const void								removeProvider(const std::string& providerName)			= 0;
 		    };
 		}
     }

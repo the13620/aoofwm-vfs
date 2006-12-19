@@ -28,7 +28,7 @@
 
 #include "VFS/Manager/Manager.h"
 
-using namespace VFS::Manager;
+
 
 namespace VFS
 {
@@ -41,5 +41,12 @@ namespace VFS
 		CManager::~CManager(void)
 		{
 		}
+		
+		
+		const VFS::Resource::API::IResource*	CManager::Resource(const std::string& uri) const
+		{
+			return (NULL);
+		}
+		
 	}
 }
