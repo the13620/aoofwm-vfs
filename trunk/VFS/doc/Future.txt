@@ -29,6 +29,18 @@
     - Behaviors
     	-> Callback System for identification / authentication credentials
     	-> Automated Background Tasks (AoofWm.VFS.Task)
+    
+    - Configuration
+    	-> Aoof-Wm.VFS runtime / launchtime configuration capabilities
+    		-define environment variables
+    		-define providers/drivers
+    		-define associated schemes/extensions/magic numbers
+    		-autodetect providers
+    		-enable/disable automatic tasks
+    		-enable/disable runtime checks and failsafe chains
+    		(-Ultimate Feature: scripting providers/drivers at
+    		 runtime. Due date: 2042...)
+    		-...
 
 --------------------------------------------------------------------------
 
