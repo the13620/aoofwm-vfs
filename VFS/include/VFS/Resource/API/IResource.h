@@ -29,7 +29,9 @@
 #ifndef __VFS_RESOURCE_API_IRESOURCE_H__
 # define __VFS_RESOURCE_API_IRESOURCE_H__
 
+# include <map>
 # include <string>
+# include <vector>
 
 # include <VFS/Resource/API/IResourceName.h>
 # include <VFS/Resource/API/IResourceType.h>
@@ -40,7 +42,8 @@ namespace	VFS
     {
     	namespace	API
 		{
-			typedef std::string	RsrcString;
+			typedef std::string				RsrcString;
+			typedef std::vector<RsrcString>	RsrcStringList;
 			
 			class	IResourceContent;
 			
@@ -51,6 +54,8 @@ namespace	VFS
 		      	virtual const IResourceName*	GetName(void) const		= 0;
 		      	virtual const IResourceType*	GetType(void) const		= 0;
 
+				virtual const bool				Exists(void) const		= 0;
+
 				virtual const bool				Open(void) const		= 0;
 				virtual const bool				Close(void) const		= 0;
 				virtual const bool				Create(void) const		= 0;
@@ -59,6 +64,13 @@ namespace	VFS
 				virtual const bool				Copy(void) const		= 0;
 				virtual const bool				Move(void) const		= 0;
 				virtual const bool				Rename(void) const		= 0;
+				
+				virtual const unsigned int		Read(char buffer[], unsigned int size) const		= 0;
+				virtual const unsigned int		Read(char buffer[], unsigned int offset, unsigned int size) const		= 0;
+				virtual const RsrcString		ReadLine(const RsrcString& delimiter = "\n") const	= 0;
+				virtual const RsrcString		ReadLine(const char delimiter = '\n') const			= 0;
+				virtual const RsrcStringList	ReadLines(const RsrcString& delimiter = "\n") const	= 0;
+				virtual const RsrcStringList	ReadLines(const char delimiter = '\n') const		= 0;
 
 				/*
 				 * TODO:	define a Selector architecture
@@ -74,8 +86,8 @@ namespace	VFS
 				/*
 				 * TODO: integrate hierarchical filesytem management within IResource
 				 */
-				//virtual const IResource*		GetChild(std::string name) const	= 0;
-				//virtual const std::map<std::string, IResource *>	GetChildren(void) const	= 0;
+				//virtual const IResource*		GetChild(RsrcString name) const	= 0;
+				//virtual const std::map<RsrcString, IResource *>	GetChildren(void) const	= 0;
 				//virtual const bool			FindChildren() const	= 0;
 		    };
 		}

@@ -26,25 +26,30 @@
 **
 */
 
+#ifndef __VFS_PROVIDER_FILEPROVIDER_H__
+# define __VFS_PROVIDER_FILEPROVIDER_H__
 
-#ifndef __VFS_PROVIDER_PROVIDERS_H__
-# define __VFS_PROVIDER_PROVIDERS_H__
-
-# include <map>
 # include <string>
 
-# include <VFS/Provider/API/IProvider.h>
-
-# include <VFS/Provider/FileProvider.h>
+# include "VFS/Provider/API/IProvider.h"
 
 namespace	VFS
 {
 	namespace	Provider
-	{
-		typedef	VFS::Provider::API::IProvider*				(*ProviderConstructor)(void);
-		typedef std::map<std::string, ProviderConstructor>	ProvidersMap;
-	}
+    {
+    	class	CFileProvider : public VFS::Provider::API::IProvider
+		{
+		public:
+			static const std::string	_scheme;
+			
+		public:
+			CFileProvider(void);
+			virtual ~CFileProvider(void);
+		
+			const std::string&						GetScheme(void) const;
+			static VFS::Provider::API::IProvider*	Construct(void);
+		};
+    }
 }
 
-
-#endif	// __VFS_PROVIDER_PROVIDERS_H__
+#endif	// __VFS_PROVIDER_FILEPROVIDER_H__
