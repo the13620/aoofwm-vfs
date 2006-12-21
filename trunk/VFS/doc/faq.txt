@@ -1,0 +1,99 @@
+[Last Revision: 2006.12.21 - 01:01 GMT]
+
+            Aoof-Wm.VFS
+	   Frequently Asked Questions
+
+
+    Everything you need to know about Aoof-Wm.VFS but are afraid to ask.
+
+
+
+==========================================================================
+
+
+
++ What is Aoof-Wm ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is Aoof-Wm.VFS ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is a Virtual FileSystem (VFS) ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is a Cache (AoofWm.VFS.Cache) ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is a Driver (AoofWm.VFS.Driver) ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is a Filter (AoofWm.VFS.Filter) ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is a Manager (AoofWm.VFS.Manager) ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is a Provider (AoofWm.VFS.Provider) ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is a Resource (AoofWm.VFS.Resource) ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ What is a Task (AoofWm.VFS.Task) ?
+
+
+  <ANSWER GOES HERE>
+
+--------------------------------------------------------------------------
+
++ Where can I learn more about Aoof-Wm.VFS ?
+
+
+  Aoof-Wm.VFS is a part of the
+  Advanced Object Oriented Framework for Window Managers (Aoof-Wm),
+  itself being a part of the Toy'd Window Manager Project.
+
+  Toy'd is a next-generation multiplatform Window Manager.
+
+  Please, visit http://www.toyd.org/ for more informations.
+  
+  See also:
+    http://code.google.com/p/toyd/
+    http://code.google.com/p/aoofwm/
+    http://code.google.com/p/aoofwm-vfs/

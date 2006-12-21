@@ -32,23 +32,48 @@
 
 namespace VFS
 {
+	CVFS*	CVFS::_pVFS	= NULL;
+	
+	
 	CVFS::CVFS(void)
 	{
-		
+		_pDefaultManager = NULL;
 	}
 	
 	CVFS::~CVFS(void)
 	{
+		if (_pDefaultManager != NULL)
+		{
+			delete _pDefaultManager;
+		}
 	}
 	
 	
-	const VFS::Manager::API::IManager*	CVFS::CreateManager(void) const
+	VFS::Manager::API::IManager*	CVFS::CreateManager(void) const
 	{
-		
+		return (NULL);
 	}
 	
-	const VFS::Manager::API::IManager*	CVFS::GetManager(void) const
+	VFS::Manager::API::IManager*	CVFS::GetManager(void) const
 	{
-		
+		return (NULL);
+	}
+	
+	CVFS*							CVFS::GetVFS(void)
+	{
+		if (CVFS::_pVFS == NULL)
+		{
+			_pVFS = new CVFS();
+		}
+		return (_pVFS);
+	}
+	
+	VFS::Manager::API::IManager*	CVFS::GetDefaultManager(void)
+	{
+		if (CVFS::GetVFS()->_pDefaultManager == NULL)
+		{
+			CVFS::GetVFS()->_pDefaultManager = new VFS::Manager::CManager();
+		}
+		return (CVFS::GetVFS()->_pDefaultManager);
 	}
 }

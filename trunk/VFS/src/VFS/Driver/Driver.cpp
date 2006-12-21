@@ -26,34 +26,19 @@
 **
 */
 
-#ifndef __VFS_RESOURCE_API_IRESOURCETYPE_H__
-# define __VFS_RESOURCE_API_IRESOURCETYPE_H__
+#include "VFS/Driver/Driver.h"
 
-# include <string>
 
-# include <VFS/Resource/API/IResource.h>
-
-namespace	VFS
+namespace VFS
 {
-	namespace	Resource
-    {
-    	namespace	API
+	namespace Driver
+	{
+		CDriver::CDriver(void)
 		{
-			class	IResource;
-			
-			class	IResourceType
-	    	{
-	      	public:
-		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;
-
-				virtual const std::string&						GetResourceTypeName(void) const		= 0;
-				virtual const std::string&						GetResourceTypeCode(void) const		= 0;
-
-				virtual const bool								HasChildren(void) const	= 0;
-				virtual const bool								HasContent(void) const	= 0;
-		    };
 		}
-    }
+		
+		CDriver::~CDriver(void)
+		{
+		}
+	}
 }
-
-#endif	// __VFS_RESOURCE_API_IRESOURCETYPE_H__

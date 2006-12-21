@@ -29,6 +29,9 @@
 #ifndef __VFS_PROVIDER_API_IPROVIDER_H__
 # define __VFS_PROVIDER_API_IPROVIDER_H__
 
+# include <string>
+
+
 namespace	VFS
 {
 	namespace	Provider
@@ -37,6 +40,8 @@ namespace	VFS
     	{
     		class	IProvider
     		{
+			public:
+				virtual const std::string&	GetScheme(void) const	= 0;
     		};
 		}
     }

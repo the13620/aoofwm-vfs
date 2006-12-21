@@ -1,10 +1,10 @@
-[Last Revision: 2006.12.19 - 01:01 GMT]
+[Last Revision: 2006.12.21 - 01:01 GMT]
 
             Aoof-Wm.VFS
 			   How To
 
 
-    Here's a very quick How-To explaining the internals of the
+    Here's a very quick How-To explaining how to get stated with the
                  Aoof-Wm Virtual FileSystem
 
 
@@ -15,6 +15,7 @@
 
 + How to embed the VFS in my project ?
 
+
   if you're using the stand-alone VFS version:
 	#include <VFS/VFS.h>
   if you're using the Aoof-Wm.VFS version:
@@ -24,14 +25,25 @@
 
 + How to get the VFS started ?
 
-	IManager*	pVFSMgr = VFS::GetManager();
-or:
+
+  First of all, you should use the VFS' namespace for easier access:
+	using namespace VFS;
+	using namespace VFS::API;
+	using namespace VFS::Manager;
+	using namespace VFS::Manager::API;
+
+  Then you have to instantiate a new VFS or directly request a new Manager
+  and let the VFS do the rest all by himself:
+
+	IManager*	pVFSMgr = VFS::GetDefaultManager();
+  or:
     IVFS*       pVFS    = VFS::GetVFS();
     IManager*	pVFSMgr = pVFS->GetManager();
 
 --------------------------------------------------------------------------
 
 + How to access (resolve) any resource ?
+
 
   The VFS works for various protocol schemes.
 
@@ -61,6 +73,7 @@ or:
 
 + How to use a resolved resource ?
 
+
   Once you've resolved a resource like presented above, you may want
   to manipulate it.
 
@@ -83,6 +96,7 @@ or:
 
 + How to modify / retrieve the content of a resource ?
 
+
   That's easy.
   In the VFS, everything is a Resource, wether it is a File, a Directory,
   a DataBase, a Database Table, a Row, an Entry, a List, an Archive...
@@ -102,20 +116,22 @@ or:
 
 + What protocols are currently supported by the Aoof-WM.VFS ?
 
-Honestly, the question is more about what protocols are currently being
-worked on to be supported, as it's still under development.
 
-Aoof-Wm.VFS is aimed to support the following (non-exhaustive) list of
-protocols, and we sincerely hope that many more will follow:
--local native filesystem
--HTTP
--FTP
--ZIP-likes
--...
+  Honestly, the question is more about what protocols are currently being
+  worked on to be supported, as it's still under development.
+
+  Aoof-Wm.VFS is aimed to support the following (non-exhaustive) list of
+  protocols, and we sincerely hope that many more will follow:
+    -local native filesystem
+    -HTTP
+    -FTP
+    -ZIP-likes
+    -...
 
 --------------------------------------------------------------------------
 
 + Why Aoof-Wm.VFS ?
+
 
   If you wonder why we need a VFS, it's actually quite simple.
   Aoof-Wm is an multiplatform framework that helps you to develop portable
@@ -127,6 +143,7 @@ protocols, and we sincerely hope that many more will follow:
 --------------------------------------------------------------------------
 
 + Which projects inspired Aoof-Wm.VFS ?
+
 
   The Aoof-Wm.VFS was inspired mostly by:
   	-GnomeVFS
@@ -140,6 +157,7 @@ protocols, and we sincerely hope that many more will follow:
 --------------------------------------------------------------------------
 
 + Where can I learn more about Aoof-Wm.VFS ?
+
 
   Aoof-Wm.VFS is a part of the
   Advanced Object Oriented Framework for Window Managers (Aoof-Wm),
