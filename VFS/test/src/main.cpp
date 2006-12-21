@@ -3,6 +3,10 @@
 
 #include "test.h"
 
+#include "VFS/VFS.h"
+#include "VFS/Manager/Manager.h"
+#include "VFS/Manager/API/IManager.h"
+
 
 int	unit(int ac, char **av)
 {
@@ -13,7 +17,8 @@ int	unit(int ac, char **av)
 
 int	vfs(int ac, char **av)
 {
-	
+	VFS::Manager::API::IManager*	pVFSMgr = VFS::CVFS::GetDefaultManager();
+
 	return (0);
 }
 

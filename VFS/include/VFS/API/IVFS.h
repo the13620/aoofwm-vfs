@@ -38,8 +38,8 @@ namespace	VFS
 		class	IVFS
 		{
 		public:
-			virtual const VFS::Manager::API::IManager*	CreateManager(void) const	= 0;
-			virtual const VFS::Manager::API::IManager*	GetManager(void) const		= 0;
+			virtual VFS::Manager::API::IManager*	CreateManager(void) const	= 0;
+			virtual VFS::Manager::API::IManager*	GetManager(void) const		= 0;
 		};
     }
 }

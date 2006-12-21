@@ -36,10 +36,13 @@ namespace	VFS
 {
 	namespace	Path
 	{
-		class	IPath
+		namespace	API
 		{
-			
-		};
+			class	IPath
+			{
+				
+			};
+		}
 	}
 }
 

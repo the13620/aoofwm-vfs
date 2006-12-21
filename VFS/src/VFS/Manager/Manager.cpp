@@ -26,7 +26,10 @@
 **
 */
 
+#include <string>
+
 #include "VFS/Manager/Manager.h"
+#include "VFS/Util/URI.h"
 
 
 
@@ -43,10 +46,38 @@ namespace VFS
 		}
 		
 		
-		const VFS::Resource::API::IResource*	CManager::Resource(const std::string& uri) const
+		VFS::Resource::API::IResource*	CManager::Resource(const std::string& uri) const
 		{
+			AoofWm::VFS::Util::CURI	rsrcURI(uri);
+			
+			/*
+			 *	TODO:
+			 * 		-select Provider from scheme.
+			 * 		-select Driver from filetype.
+			 * 		-check path existence and file existence
+			 * 			1-if file exists, get type.
+			 * 			2a-if file doesn't exist, use abstract blank type
+			 * 			   (don't know yet if the user wants a directory or
+			 *              a file in the end).
+			 * 			2b-if file doesn't exist, user has to use trailing '/' to specify
+			 * 			   a directory is targeted, otherwise we consider it a file.
+			 */
 			return (NULL);
 		}
 		
+		VFS::Provider::ProvidersMap&	CManager::GetProviders(void)
+		{
+			return (_providers);
+		}
+		
+		void							CManager::AddProvider(VFS::Provider::API::IProvider* pProvider)
+		{
+			
+		}
+		
+		void							CManager::RemoveProvider(const std::string& providerName)
+		{
+			
+		}
 	}
 }

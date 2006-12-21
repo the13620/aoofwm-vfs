@@ -32,6 +32,7 @@
 
 # include <string>
 
+# include <VFS/Provider/Providers.h>
 # include <VFS/Manager/API/IManager.h>
 # include <VFS/Resource/API/IResource.h>
 
@@ -41,11 +42,19 @@ namespace	VFS
 	{
 		class	CManager : public virtual VFS::Manager::API::IManager
 		{
+		private:
+			VFS::Provider::ProvidersMap		_providers;
+			
 		public:
 			CManager();
-			~CManager();
+			virtual ~CManager();
 			
-			const VFS::Resource::API::IResource*	Resource(const std::string& uri) const;
+			VFS::Resource::API::IResource*	Resource(const std::string& uri) const;
+			
+			VFS::Provider::ProvidersMap&	GetProviders(void);
+			
+			void							AddProvider(VFS::Provider::API::IProvider* pProvider);
+			void							RemoveProvider(const std::string& providerName);
 		};
 	}
 }

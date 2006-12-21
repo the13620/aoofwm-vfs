@@ -32,21 +32,25 @@
 
 # include <VFS/API/IVFS.h>
 # include <VFS/Manager/API/IManager.h>
+# include <VFS/Manager/Manager.h>
 
 namespace	VFS
 {
 	class	CVFS : public virtual VFS::API::IVFS
 	{
 	private:
-		static CVFS		_vfs;
-		
+		static CVFS*					_pVFS;
+		VFS::Manager::API::IManager*	_pDefaultManager;
 		
 	public:
 		CVFS(void);
 		virtual ~CVFS(void);
 		
-		const VFS::Manager::API::IManager*	CreateManager(void) const;
-		const VFS::Manager::API::IManager*	GetManager(void) const;
+		VFS::Manager::API::IManager*		CreateManager(void) const;
+		VFS::Manager::API::IManager*		GetManager(void) const;
+		
+		static CVFS*						GetVFS(void);
+		static VFS::Manager::API::IManager*	GetDefaultManager(void);
 	};
 }
 

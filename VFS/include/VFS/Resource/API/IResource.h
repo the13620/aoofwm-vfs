@@ -47,36 +47,36 @@ namespace	VFS
 			class	IResource
 	    	{
 	      	public:
-				virtual const VFS::Resource::API::IResourceContent*	GetContent(void) const	= 0;
-		      	virtual const VFS::Resource::API::IResourceName*	GetName(void) const		= 0;
-		      	virtual const VFS::Resource::API::IResourceType*	GetType(void) const		= 0;
+				virtual const IResourceContent*	GetContent(void) const	= 0;
+		      	virtual const IResourceName*	GetName(void) const		= 0;
+		      	virtual const IResourceType*	GetType(void) const		= 0;
 
-				virtual const bool									Open(void) const		= 0;
-				virtual const bool									Close(void) const		= 0;
-				virtual const bool									Create(void) const		= 0;
-				virtual const bool									Delete(void) const		= 0;
+				virtual const bool				Open(void) const		= 0;
+				virtual const bool				Close(void) const		= 0;
+				virtual const bool				Create(void) const		= 0;
+				virtual const bool				Delete(void) const		= 0;
 
-				virtual const bool									Copy(void) const		= 0;
-				virtual const bool									Move(void) const		= 0;
-				virtual const bool									Rename(void) const		= 0;
+				virtual const bool				Copy(void) const		= 0;
+				virtual const bool				Move(void) const		= 0;
+				virtual const bool				Rename(void) const		= 0;
 
 				/*
 				 * TODO:	define a Selector architecture
 				 */
 				//virtual const bool									Find(VFS::Selector::API::ISelector *pSelector, VFS::Resource::API::IResource *pSearchRoot) const		= 0;
 
-				virtual const bool									IsWritable(void) const	= 0;
-				virtual const bool									IsHidden(void) const	= 0;
-				virtual const bool									IsReadable(void) const	= 0;
-				virtual const bool									IsOpen(void) const		= 0;
+				virtual const bool				IsWritable(void) const	= 0;
+				virtual const bool				IsHidden(void) const	= 0;
+				virtual const bool				IsReadable(void) const	= 0;
+				virtual const bool				IsOpen(void) const		= 0;
 
 
 				/*
 				 * TODO: integrate hierarchical filesytem management within IResource
 				 */
-				//virtual const IResource*							GetChild(std::string name) const	= 0;
+				//virtual const IResource*		GetChild(std::string name) const	= 0;
 				//virtual const std::map<std::string, IResource *>	GetChildren(void) const	= 0;
-				//virtual const bool								FindChildren() const	= 0;
+				//virtual const bool			FindChildren() const	= 0;
 		    };
 		}
     }

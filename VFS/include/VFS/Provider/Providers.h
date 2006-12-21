@@ -26,34 +26,23 @@
 **
 */
 
-#ifndef __VFS_RESOURCE_API_IRESOURCETYPE_H__
-# define __VFS_RESOURCE_API_IRESOURCETYPE_H__
 
+#ifndef __VFS_PROVIDER_PROVIDERS_H__
+# define __VFS_PROVIDER_PROVIDERS_H__
+
+# include <map>
 # include <string>
 
-# include <VFS/Resource/API/IResource.h>
+# include <VFS/Provider/API/IProvider.h>
 
 namespace	VFS
 {
-	namespace	Resource
-    {
-    	namespace	API
-		{
-			class	IResource;
-			
-			class	IResourceType
-	    	{
-	      	public:
-		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;
-
-				virtual const std::string&						GetResourceTypeName(void) const		= 0;
-				virtual const std::string&						GetResourceTypeCode(void) const		= 0;
-
-				virtual const bool								HasChildren(void) const	= 0;
-				virtual const bool								HasContent(void) const	= 0;
-		    };
-		}
-    }
+	namespace	Provider
+	{
+		typedef	VFS::Provider::API::IProvider*				(*ProviderConstructor)(void);
+		typedef std::map<std::string, ProviderConstructor>	ProvidersMap;
+	}
 }
 
-#endif	// __VFS_RESOURCE_API_IRESOURCETYPE_H__
+
+#endif	// __VFS_PROVIDER_PROVIDERS_H__

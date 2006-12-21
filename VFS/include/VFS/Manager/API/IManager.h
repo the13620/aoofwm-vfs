@@ -31,6 +31,8 @@
 
 # include <string>
 
+# include "VFS/Provider/Providers.h"
+
 # include "VFS/Provider/API/IProvider.h"
 # include "VFS/Resource/API/IResource.h"
 
@@ -50,10 +52,13 @@ namespace	VFS
 				 * 		and the VFS being configured only automatically through
 				 * 		configuration files, and not programmatically by the developers.
 				 */
-				virtual const void								addProvider(const std::string& providerName)			= 0;
-				virtual const void								addProvider(VFS::Provider::API::IProvider* pProvider)	= 0;
 
-				virtual const void								removeProvider(const std::string& providerName)			= 0;
+				virtual VFS::Provider::ProvidersMap&			GetProviders(void) 										= 0; 
+
+				virtual void									AddProvider(VFS::Provider::API::IProvider* pProvider)	= 0;
+				virtual void									RemoveProvider(const std::string& providerName)			= 0;
+				
+				//virtual const ResourcesPool&					getResourcePool(void);
 		    };
 		}
     }
