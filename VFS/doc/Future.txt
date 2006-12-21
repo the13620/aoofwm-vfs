@@ -1,0 +1,54 @@
+[Last Revision: 2006.12.21 - 01:30 GMT]
+
+            Aoof-Wm.VFS
+	   Future Features & Random Thoughts
+
+
+    A (hopefully) short list of the few things we think it might be
+    interesting and useful to implement in Aoof-Wm.VFS in a near future,
+    like:
+    	-Features
+    	-Bug Fixes
+
+
+
+==========================================================================
+
+
+
++ Features
+
+	- FileSystem Types, Providers & Drivers -
+	    -> HTTP
+	    -> FTP
+	    -> SSH (improved security for Toy'd distributed/shared resources)
+	    -> Zip-likes
+	    -> SVN
+   	    -> ...
+   	    
+    - Behaviors
+    	-> Callback System for identification / authentication credentials
+    	-> Automated Background Tasks (AoofWm.VFS.Task)
+
+--------------------------------------------------------------------------
+
++ Bug Fixes
+
+	- Miscellaneous ambiguous test cases
+	- file/dir/archive detection errors & tricky cases
+		(unexisting file is destined to be an archive or dir but resolved
+		 without a trailing '/' and other deliciously funny things)
+	- filetype dection errors
+	    (extension, mime-type, encoding,magic numbers & headers ...)
+	- ...
+
+--------------------------------------------------------------------------
+
++ Learn more ...
+
+  ... visit http://www.toyd.org/ for more informations.
+  
+  See also:
+    http://code.google.com/p/toyd/
+    http://code.google.com/p/aoofwm/
+    http://code.google.com/p/aoofwm-vfs/

@@ -49,7 +49,7 @@ namespace	VFS
 			CManager();
 			virtual ~CManager();
 			
-			VFS::Resource::API::IResource*	Resource(const std::string& uri) const;
+			VFS::Resource::API::IResource*	Resource(const std::string& uri);
 			
 			VFS::Provider::ProvidersMap&	GetProviders(void);
 			
