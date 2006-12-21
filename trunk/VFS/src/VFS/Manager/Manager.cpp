@@ -46,7 +46,7 @@ namespace VFS
 		}
 		
 		
-		VFS::Resource::API::IResource*	CManager::Resource(const std::string& uri) const
+		VFS::Resource::API::IResource*	CManager::Resource(const std::string& uri)
 		{
 			AoofWm::VFS::Util::CURI	rsrcURI(uri);
 			

@@ -59,6 +59,9 @@
   But you could also type:
 	pVFSMgr->Resource("/path/to/file");
 	pVFSMgr->Resource("C:/path/to/file");
+	
+  What if you're already in the right directory ? Well, go for it and type:
+    pVFSMgr->Resource("file");
 
   Yep, it's as simple as that, all the resources can be accessed through
   the same interface, with a unique naming convention, as long as it's
@@ -125,6 +128,7 @@
     -local native filesystem
     -HTTP
     -FTP
+    -SSH
     -ZIP-likes
     -...
 

@@ -45,7 +45,7 @@ namespace	VFS
 			class	IManager
 		    {
 			public:
-				virtual const VFS::Resource::API::IResource*	Resource(const std::string& uri) const					= 0;
+				virtual VFS::Resource::API::IResource*	Resource(const std::string& uri) 								= 0;
 
 				/*
 				 * TODO: thinking about tagging the following methods as private,
