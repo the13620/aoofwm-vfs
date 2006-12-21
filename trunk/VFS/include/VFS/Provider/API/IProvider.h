@@ -42,6 +42,8 @@ namespace	VFS
     		{
 			public:
 				virtual const std::string&	GetScheme(void) const	= 0;
+				
+				// /*static*/ IProvider*			Construct(void);
     		};
 		}
     }

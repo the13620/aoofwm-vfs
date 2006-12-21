@@ -30,6 +30,7 @@
 
 #include "VFS/Manager/Manager.h"
 #include "VFS/Util/URI.h"
+#include "VFS/Provider/Providers.h"
 
 
 
@@ -39,6 +40,12 @@ namespace VFS
 	{
 		CManager::CManager(void)
 		{
+			/*
+			 * Available Providers List initialization.
+			 * TODO:	replace / combine with auto-detected
+			 * 			Providers' shared libraries
+			 */
+			 _providers["file"] = VFS::Provider::CFileProvider::CFileProvider::Construct;
 		}
 		
 		CManager::~CManager(void)
