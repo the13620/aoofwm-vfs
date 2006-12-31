@@ -27,35 +27,23 @@
 */
 
 
-#ifndef __VFS_VFS_H__
-# define __VFS_VFS_H__
+#ifndef __VFS_RESOURCE_ABSTRACTRESOURCE_H__
+# define __VFS_RESOURCE_ABSTRACTRESOURCE_H__
 
-# include <VFS/API/IVFS.h>
-# include <VFS/Manager/API/IManager.h>
-# include <VFS/Manager/Manager.h>
+# include <VFS/Resource/API/IResource.h>
 
 namespace	VFS
 {
-	class	CVFS : public virtual VFS::API::IVFS
+	namespace	Resource
 	{
-	private:
-		static CVFS*					_pVFS;
-		VFS::Manager::API::IManager*	_pDefaultManager;
-		
-	private:
-		CVFS(void);
-
-	public:
-		virtual ~CVFS(void);
-		
-
-		VFS::Manager::API::IManager*		CreateManager(void) const;
-		VFS::Manager::API::IManager*		GetManager(void) const;
-		
-		static CVFS*						GetVFS(void);
-		static VFS::Manager::API::IManager*	GetDefaultManager(void);
-	};
+		class	CAbstractResource : public virtual VFS::Resource::API::IResource
+		{
+		public:
+			CAbstractResource(void);
+			virtual ~CAbstractResource(void);
+		};
+	}
 }
 
 
-#endif	// __VFS_VFS_H__
+#endif	// __VFS_RESOURCE_ABSTRACTRESOURCE_H__

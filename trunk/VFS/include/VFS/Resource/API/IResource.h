@@ -36,6 +36,7 @@
 # include <VFS/Resource/API/IResourceName.h>
 # include <VFS/Resource/API/IResourceType.h>
 
+
 namespace	VFS
 {
 	namespace	Resource

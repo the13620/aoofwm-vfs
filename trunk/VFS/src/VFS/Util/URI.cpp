@@ -50,7 +50,7 @@ namespace AoofWm
 				std::cout << "\t   Scheme\t: " + _scheme << std::endl;
 				std::cout << "\t   Credentials\t: <" + _credentials.GetUser() + "> / <" + _credentials.GetPassword() + ">" << std::endl;
 				std::cout << "\t   Directories\t: [" << std::endl;
-				for (int  i = 0; i < _directories.size(); i++)
+				for (std::string::size_type i = 0; i < _directories.size(); i++)
 				{
 					std::cout << "\t              \t     " + _directories.at(i) << std::endl;
 				}
@@ -58,7 +58,7 @@ namespace AoofWm
 				std::cout << "\t   File\t\t: " + _file << std::endl;
 				std::cout << "\t   Query\t: " + _query << std::endl;
 				std::cout << "\t   QueryArgs\t: [" << std::endl;
-				for (int  i = 0; i < _queryArgs.size(); i++)
+				for (std::string::size_type i = 0; i < _queryArgs.size(); i++)
 				{
 					std::cout << "\t            \t     " + _queryArgs.at(i) << std::endl;
 				}
@@ -76,7 +76,7 @@ namespace AoofWm
 			{
 				_scheme			= ExtractScheme();
 				_directories	= ExtractDirectories();
-				//_file			= ExtractFile();
+				_file			= ExtractFile();
 				//_query			= ExtractQuery();
 			}
 
@@ -145,30 +145,62 @@ namespace AoofWm
 			std::vector<std::string>&	CURI::ExtractDirectories(void)
 			{
 				std::string::size_type	offset = 0;
+				std::vector<Token>		newTokens;
 
 				if (_tokens.size() > 0)
 				{
 					offset = _tokens.at(0).endOffset + 3;
 				}
-				_tokens.clear();
-				_tokens = CTokenizer::Tokenize(_uri, "/", offset);
-				for (int i = 0; i < _tokens.size(); i++)
+				newTokens = CTokenizer::Tokenize(_uri, "/", offset);
+				if (newTokens.size() > 0)
 				{
-					_directories.push_back(_tokens.at(i).token);
-				}
-				_credentials = ExtractCredentials();
-				if ((_credentials.GetUser() != "") && (_credentials.GetPassword() != ""))
-				{
-					const std::string::size_type	start = _tokens.at(1).endOffset + 1;
+					const std::string::size_type	offset	= newTokens.at(newTokens.size() - 1).endOffset;
 
-					_directories.at(0) = _uri.substr(start, _uri.find("/", start) - (start));
+					if (offset == _uri.length())
+					{
+						newTokens.pop_back();
+					}
+					if (newTokens.size())
+					{
+						for (unsigned int i = 0; i < newTokens.size(); i++)
+						{
+							_directories.push_back(newTokens.at(i).token);
+						}
+						_credentials = ExtractCredentials();
+						if ((_credentials.GetUser() != "") && (_credentials.GetPassword() != ""))
+						{
+							const std::string::size_type	start = newTokens.at(1).endOffset + 1;
+
+							_directories.at(0) = _uri.substr(start, _uri.find("/", start) - (start));
+						}
+						_tokens.clear();
+						_tokens = newTokens;
+					}
 				}
 				return (_directories);
 			}
 
 			std::string&				CURI::ExtractFile(void)
 			{
+				std::string::size_type	offset = 0;
+				
 				_file = std::string();
+				std::cout << "tokens: " << _tokens.size() << std::endl;
+				if (_directories.size() && (_tokens.size() > 0))
+				{
+					offset = _tokens.at(_directories.size() - 1).endOffset + 1;
+				}
+				else
+				{
+					offset = _tokens.at(0).endOffset + 3;
+				}
+				_tokens.clear();
+				std::cout << "file: " << _uri << offset << std::endl;
+				_tokens = CTokenizer::Tokenize(_uri, "/?=;", offset);
+				if (_tokens.size() > 0)
+				{
+					_file = _tokens.at(0).token;
+				}
 				return (_file);
 			}
 

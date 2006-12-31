@@ -45,7 +45,9 @@ namespace VFS
 		if (_pDefaultManager != NULL)
 		{
 			delete _pDefaultManager;
+			_pDefaultManager = NULL;
 		}
+		CVFS::_pVFS = NULL;
 	}
 	
 	
