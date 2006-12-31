@@ -185,17 +185,18 @@ namespace AoofWm
 				std::string::size_type	offset = 0;
 				
 				_file = std::string();
-				std::cout << "tokens: " << _tokens.size() << std::endl;
-				if (_directories.size() && (_tokens.size() > 0))
+				if (_tokens.size())
 				{
-					offset = _tokens.at(_directories.size() - 1).endOffset + 1;
-				}
-				else
-				{
-					offset = _tokens.at(0).endOffset + 3;
+					if (_directories.size())
+					{
+						offset = _tokens.at(_directories.size() - 1).endOffset + 1;
+					}
+					else
+					{
+						offset = _tokens.at(0).endOffset + 3;
+					}
 				}
 				_tokens.clear();
-				std::cout << "file: " << _uri << offset << std::endl;
 				_tokens = CTokenizer::Tokenize(_uri, "/?=;", offset);
 				if (_tokens.size() > 0)
 				{
