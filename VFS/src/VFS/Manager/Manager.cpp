@@ -27,6 +27,7 @@
 */
 
 #include <string>
+#include <iostream>
 
 #include "VFS/Manager/Manager.h"
 #include "VFS/Util/URI.h"
@@ -46,6 +47,8 @@ namespace VFS
 			 * 			Providers' shared libraries
 			 */
 			 _providers["file"] = VFS::Provider::CFileProvider::CFileProvider::Construct;
+			 //_providers["http"] = VFS::Provider::CHttpProvider::CHttpProvider::Construct;
+			 //_providers["zip"] = VFS::Provider::CZipProvider::CZipProvider::Construct;
 		}
 		
 		CManager::~CManager(void)

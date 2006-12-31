@@ -26,36 +26,19 @@
 **
 */
 
+#include "VFS/Resource/DirectoryResource.h"
 
-#ifndef __VFS_VFS_H__
-# define __VFS_VFS_H__
 
-# include <VFS/API/IVFS.h>
-# include <VFS/Manager/API/IManager.h>
-# include <VFS/Manager/Manager.h>
-
-namespace	VFS
+namespace VFS
 {
-	class	CVFS : public virtual VFS::API::IVFS
+	namespace Resource
 	{
-	private:
-		static CVFS*					_pVFS;
-		VFS::Manager::API::IManager*	_pDefaultManager;
+		CDirectoryResource::CDirectoryResource(void)
+		{
+		}
 		
-	private:
-		CVFS(void);
-
-	public:
-		virtual ~CVFS(void);
-		
-
-		VFS::Manager::API::IManager*		CreateManager(void) const;
-		VFS::Manager::API::IManager*		GetManager(void) const;
-		
-		static CVFS*						GetVFS(void);
-		static VFS::Manager::API::IManager*	GetDefaultManager(void);
-	};
+		CDirectoryResource::~CDirectoryResource(void)
+		{
+		}
+	}
 }
-
-
-#endif	// __VFS_VFS_H__

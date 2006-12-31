@@ -48,6 +48,7 @@ namespace	VFS
 		public:
 			CManager();
 			virtual ~CManager();
+
 			
 			VFS::Resource::API::IResource*	Resource(const std::string& uri);
 			

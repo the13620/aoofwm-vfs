@@ -9,6 +9,7 @@
     like:
     	-Features
     	-Bug Fixes
+    	-Libraries
 
 
 
@@ -52,6 +53,16 @@
 		 without a trailing '/' and other deliciously funny things)
 	- filetype dection errors
 	    (extension, mime-type, encoding,magic numbers & headers ...)
+	- ...
+
+--------------------------------------------------------------------------
+
++ Libraries
+
+	- Using a C++ RegExp Library would greatl simplify parsing &
+	  extraction of informations from strings (URI, confs).
+	    -> look for a library (simple, clean, bullet-proof, portable) ?
+	    -> implement our own simple RegExp Library ?
 	- ...
 
 --------------------------------------------------------------------------
