@@ -38,6 +38,7 @@ namespace VFS
 		CPathEntry::CPathEntry(const std::string& name)
 		{
 			_name = name;
+//			_provider = VFS::Provider::
 		}
 		
 		CPathEntry::~CPathEntry(void)

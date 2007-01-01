@@ -50,6 +50,7 @@ namespace VFS
 		{
 		}
 		
+		
 		const std::string&				CFileProvider::GetScheme(void) const
 		{
 			return (CFileProvider::_scheme);
