@@ -38,7 +38,7 @@ namespace	VFS
     {
     	namespace	API
 		{
-			class	IResource {};
+			class	IResource;	// Circular Forward Declaration
 			
 			class	IResourceContent
 	    	{
@@ -47,9 +47,9 @@ namespace	VFS
 
 				virtual const VFS::Resource::API::IResourceContentInfo*	GetInfo(void) const		= 0;
 
-				virtual const bool										IsOpen(void) const		= 0;
-
-				virtual const bool										close(void)				= 0;
+//				virtual const bool										IsOpen(void) const		= 0;
+//
+//				virtual const bool										close(void)				= 0;
 
 //				virtual const IInputStream*								getInputStream() const	= 0;
 //				virtual const IOutputStream*							getOutputStream() const	= 0;

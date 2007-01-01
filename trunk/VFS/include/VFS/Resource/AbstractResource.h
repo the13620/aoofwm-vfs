@@ -30,6 +30,8 @@
 #ifndef __VFS_RESOURCE_ABSTRACTRESOURCE_H__
 # define __VFS_RESOURCE_ABSTRACTRESOURCE_H__
 
+# include <VFS/Resource/ResourceTypes.h>
+
 # include <VFS/Resource/API/IResource.h>
 
 namespace	VFS
@@ -41,6 +43,34 @@ namespace	VFS
 		public:
 			CAbstractResource(void);
 			virtual ~CAbstractResource(void);
+			
+			
+			const API::IResourceContent*			GetContent(void) const;
+	      	const API::IResourceName*				GetName(void) const;
+	      	const API::IResourceType*				GetType(void) const;
+
+			const bool								Exists(void) const;
+
+			const bool								Open(void) const;
+			const bool								Close(void) const;
+			const bool								Create(void) const;
+			const bool								Delete(void) const;
+
+			const bool								Copy(void) const;
+			const bool								Move(void) const;
+			const bool								Rename(void) const;
+						
+			const unsigned int						Read(char buffer[], unsigned int size) const;
+			const unsigned int						Read(char buffer[], unsigned int offset, unsigned int size) const;
+			const VFS::Resource::RsrcString&		ReadLine(const VFS::Resource::RsrcString& delimiter = "\n") const;
+			const VFS::Resource::RsrcString&		ReadLine(const char delimiter = '\n') const;
+			const VFS::Resource::RsrcStringList&	ReadLines(const VFS::Resource::RsrcString& delimiter = "\n") const;
+			const VFS::Resource::RsrcStringList&	ReadLines(const char delimiter = '\n') const;
+
+			const bool								IsWritable(void) const;
+			const bool								IsHidden(void) const;
+			const bool								IsReadable(void) const;
+			const bool								IsOpen(void) const;
 		};
 	}
 }
