@@ -27,32 +27,32 @@
 */
 
 
-#ifndef __VFS_PATH_API_IPATH_H__
-# define __VFS_PATH_API_IPATH_H__
+#ifndef __VFS_PATH_CPATH_H__
+# define __VFS_PATH_CPATH_H__
 
-# include <string>
-# include <vector>
-
+# include "VFS/Path/API/IPath.h"
 # include "VFS/Path/API/IPathEntry.h"
 
 namespace	VFS
 {
 	namespace	Path
 	{
-		typedef std::vector<const VFS::Path::API::IPathEntry*>	PathEntryList;
-
-		namespace	API
+		class	CPath : public VFS::Path::API::IPath
 		{
-			class	IPath
-			{
-			public:
-				virtual const std::string&		GetPath(void) const									= 0;
-				virtual const PathEntryList&	GetEntries(void) const								= 0;
-				virtual const API::IPathEntry*	GetEntry(const PathEntryList::size_type idx) const	= 0;
-			};
-		}
+		private:
+			std::string		_path;
+			PathEntryList	_entries;
+			
+		public:
+			CPath(const std::string& path);
+			virtual ~CPath(void);
+		
+			const std::string&		GetPath(void) const;
+			const PathEntryList&	GetEntries(void) const;
+			const API::IPathEntry*	GetEntry(const PathEntryList::size_type idx) const;
+		};
 	}
 }
 
 
-#endif	// __VFS_PATH_API_IPATH_H__
+#endif	// __VFS_PATH_CPATH_H__

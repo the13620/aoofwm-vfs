@@ -43,6 +43,7 @@ namespace	VFS
 		class	CManager : public virtual VFS::Manager::API::IManager
 		{
 		private:
+	    	VFS::Manager::RsrcMap			_resources;
 			VFS::Provider::ProvidersMap		_providers;
 			
 		public:
@@ -50,12 +51,15 @@ namespace	VFS
 			virtual ~CManager();
 
 			
-			VFS::Resource::API::IResource*	Resource(const std::string& uri);
+			VFS::Resource::API::IResource*		Resource(const std::string& uri) const;
 			
-			VFS::Provider::ProvidersMap&	GetProviders(void);
+			const VFS::Manager::RsrcMap&		GetResources(void) const;
+			VFS::Resource::API::IResource*		GetResource(const std::string &key) const;
 			
-			void							AddProvider(VFS::Provider::API::IProvider* pProvider);
-			void							RemoveProvider(const std::string& providerName);
+			const VFS::Provider::ProvidersMap&	GetProviders(void) const;
+			
+			void								AddProvider(VFS::Provider::API::IProvider* pProvider) const;
+			void								RemoveProvider(const std::string& providerName) const;
 		};
 	}
 }

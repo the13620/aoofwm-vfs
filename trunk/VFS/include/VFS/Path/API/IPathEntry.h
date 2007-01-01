@@ -30,7 +30,9 @@
 #ifndef __VFS_PATH_API_IPATHENTRY_H__
 # define __VFS_PATH_API_IPATHENTRY_H__
 
+# include <string>
 
+# include "VFS/Provider/API/IProvider.h"
 
 namespace	VFS
 {
@@ -40,7 +42,8 @@ namespace	VFS
 		{
 			class	IPathEntry
 			{
-				
+				virtual const std::string&						GetName(void)		= 0;
+				virtual const VFS::Provider::API::IProvider*	GetProvider(void)	= 0;
 			};
 		}
 	}

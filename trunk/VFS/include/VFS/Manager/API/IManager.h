@@ -30,6 +30,7 @@
 # define __VFS_MANAGER_API_IMANAGER_H__
 
 # include <string>
+# include <map>
 
 # include "VFS/Provider/Providers.h"
 
@@ -40,12 +41,14 @@ namespace	VFS
 {
 	namespace	Manager
     {
+    	typedef std::map<std::string, VFS::Resource::API::IResource*>	RsrcMap;
+    	
     	namespace	API
 		{
 			class	IManager
 		    {
 			public:
-				virtual VFS::Resource::API::IResource*	Resource(const std::string& uri) 								= 0;
+				virtual VFS::Resource::API::IResource*		Resource(const std::string& uri) const						= 0;
 
 				/*
 				 * TODO: thinking about tagging the following methods as private,
@@ -53,12 +56,15 @@ namespace	VFS
 				 * 		configuration files, and not programmatically by the developers.
 				 */
 
-				virtual VFS::Provider::ProvidersMap&			GetProviders(void) 										= 0; 
+				virtual const VFS::Manager::RsrcMap&		GetResources(void) const 									= 0;
+				virtual VFS::Resource::API::IResource*		GetResource(const std::string &key) const					= 0;
 
-				virtual void									AddProvider(VFS::Provider::API::IProvider* pProvider)	= 0;
-				virtual void									RemoveProvider(const std::string& providerName)			= 0;
+				virtual const VFS::Provider::ProvidersMap&	GetProviders(void) const									= 0; 
+
+				virtual void								AddProvider(VFS::Provider::API::IProvider* pProvider) const	= 0;
+				virtual void								RemoveProvider(const std::string& providerName) const		= 0;
 				
-				//virtual const ResourcesPool&					getResourcePool(void);
+				//virtual const ResourcesPool&				getResourcePool(void);
 		    };
 		}
     }
