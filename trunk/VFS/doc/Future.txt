@@ -63,6 +63,7 @@
 	  extraction of informations from strings (URI, confs).
 	    -> look for a library (simple, clean, bullet-proof, portable) ?
 	    -> implement our own simple RegExp Library ?
+	- C++ Boost Library (http://www.boost.org/)
 	- ...
 
 --------------------------------------------------------------------------
