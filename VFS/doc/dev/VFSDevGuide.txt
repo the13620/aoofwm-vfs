@@ -1,0 +1,56 @@
+[Last Revision: 2007.01.01 - 18:22 GMT]
+
+            Aoof-Wm.VFS
+		 Developer's Guide
+
+
+    This document explains the processes you have to follow
+    if you want to contribute to the Aoof-Wm Virtual FileSystem,
+    and presents you the elements of Aoof-Wm.VFS that may be of
+    interest for your development.
+
+
+
+==========================================================================
+
+
+
++ Where can I grab some information on the Aoof-Wm.VFS ?
+
+
+  Have a look at the other documents, especially
+	- /doc/HowTo.txt
+  	- /doc/faq.txt
+
+--------------------------------------------------------------------------
+
++ How can I develop a new Resource Driver or Resource type ?
+
+
+  Resource Drivers are still under development, however you can develop
+  a new Resource type by having a look at the 'IResource*' interfaces that
+  define the base API for Resources, and you can also have a look at the
+  'Resource*' default implementations.
+  
+  You may also have a quick look at the 'AbstractResource*'
+  implementations, which are basically very standard implementations of
+  the 'IResource*' to improve code reuse for negligible parts, ensuring
+  that you shouldn't have to reinvent the wheel for management code.
+
+--------------------------------------------------------------------------
+
++ Where can I learn more about Aoof-Wm.VFS ?
+
+
+  Aoof-Wm.VFS is a part of the
+  Advanced Object Oriented Framework for Window Managers (Aoof-Wm),
+  itself being a part of the Toy'd Window Manager Project.
+
+  Toy'd is a next-generation multiplatform Window Manager.
+
+  Please, visit http://www.toyd.org/ for more informations.
+  
+  See also:
+    http://code.google.com/p/toyd/
+    http://code.google.com/p/aoofwm/
+    http://code.google.com/p/aoofwm-vfs/
