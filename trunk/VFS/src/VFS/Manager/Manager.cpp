@@ -60,7 +60,8 @@ namespace VFS
 		
 		VFS::Resource::API::IResource*		CManager::Resource(const std::string& uri) const
 		{
-			AoofWm::VFS::Util::CURI	rsrcURI(uri);
+			VFS::Resource::API::IResource*	pRsrc	= NULL;
+			AoofWm::VFS::Util::CURI			rsrcURI(uri);
 
 			/*
 			 * TODO:
@@ -72,14 +73,14 @@ namespace VFS
 			 */
 			if (rsrcURI.GetFile().empty())
 			{// Directory
-//				VFS::Resource::CDirectoryResource();
+//				pRsrc = new VFS::Resource::CDirectoryResource();
 			}
 			else
 			{// File
-//				VFS::Resource::CFileResource();
+//				pRsrc = new VFS::Resource::CFileResource();
 			}
 			/*
-			 *	TODO:
+			 *	PROCESS:
 			 * 		-select Provider from scheme.
 			 * 		-select Driver from filetype.
 			 * 		-check path existence and file existence
@@ -90,7 +91,7 @@ namespace VFS
 			 * 			2b-if file doesn't exist, user has to use trailing '/' to specify
 			 * 			   a directory is targeted, otherwise we consider it a file.
 			 */
-			return (NULL);
+			return (pRsrc);
 		}
 		
 		const VFS::Manager::RsrcMap&						CManager::GetResources(void) const
