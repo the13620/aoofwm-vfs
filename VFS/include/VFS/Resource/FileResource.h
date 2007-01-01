@@ -41,6 +41,8 @@ namespace	VFS
 		public:
 			CFileResource(void);
 			virtual ~CFileResource(void);
+			
+			
 		};
 	}
 }

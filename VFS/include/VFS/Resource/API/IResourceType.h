@@ -31,6 +31,8 @@
 
 # include <string>
 
+# include <VFS/Resource/ResourceTypes.h>
+
 # include <VFS/Resource/API/IResource.h>
 
 namespace	VFS
@@ -39,18 +41,18 @@ namespace	VFS
     {
     	namespace	API
 		{
-			class	IResource;
+			class	IResource;	// Circular Forward Declaration
 			
 			class	IResourceType
 	    	{
 	      	public:
-		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;
+		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const				= 0;
 
 				virtual const std::string&						GetResourceTypeName(void) const		= 0;
 				virtual const std::string&						GetResourceTypeCode(void) const		= 0;
 
-				virtual const bool								HasChildren(void) const	= 0;
-				virtual const bool								HasContent(void) const	= 0;
+				virtual const bool								HasChildren(void) const				= 0;
+				virtual const bool								HasContent(void) const				= 0;
 		    };
 		}
     }

@@ -33,6 +33,9 @@
 # include <string>
 # include <vector>
 
+# include <VFS/Resource/ResourceTypes.h>
+
+# include <VFS/Resource/API/IResourceContent.h>
 # include <VFS/Resource/API/IResourceName.h>
 # include <VFS/Resource/API/IResourceType.h>
 
@@ -43,45 +46,40 @@ namespace	VFS
     {
     	namespace	API
 		{
-			typedef std::string				RsrcString;
-			typedef std::vector<RsrcString>	RsrcStringList;
-			
-			class	IResourceContent;
-			
 			class	IResource
 	    	{
 	      	public:
-				virtual const IResourceContent*	GetContent(void) const	= 0;
-		      	virtual const IResourceName*	GetName(void) const		= 0;
-		      	virtual const IResourceType*	GetType(void) const		= 0;
+				virtual const IResourceContent*					GetContent(void) const												= 0;
+		      	virtual const IResourceName*					GetName(void) const													= 0;
+		      	virtual const IResourceType*					GetType(void) const													= 0;
 
-				virtual const bool				Exists(void) const		= 0;
+				virtual const bool								Exists(void) const													= 0;
 
-				virtual const bool				Open(void) const		= 0;
-				virtual const bool				Close(void) const		= 0;
-				virtual const bool				Create(void) const		= 0;
-				virtual const bool				Delete(void) const		= 0;
+				virtual const bool								Open(void) const													= 0;
+				virtual const bool								Close(void) const													= 0;
+				virtual const bool								Create(void) const													= 0;
+				virtual const bool								Delete(void) const													= 0;
 
-				virtual const bool				Copy(void) const		= 0;
-				virtual const bool				Move(void) const		= 0;
-				virtual const bool				Rename(void) const		= 0;
+				virtual const bool								Copy(void) const													= 0;
+				virtual const bool								Move(void) const													= 0;
+				virtual const bool								Rename(void) const													= 0;
 				
-				virtual const unsigned int		Read(char buffer[], unsigned int size) const		= 0;
-				virtual const unsigned int		Read(char buffer[], unsigned int offset, unsigned int size) const		= 0;
-				virtual const RsrcString		ReadLine(const RsrcString& delimiter = "\n") const	= 0;
-				virtual const RsrcString		ReadLine(const char delimiter = '\n') const			= 0;
-				virtual const RsrcStringList	ReadLines(const RsrcString& delimiter = "\n") const	= 0;
-				virtual const RsrcStringList	ReadLines(const char delimiter = '\n') const		= 0;
+				virtual const unsigned int						Read(char buffer[], unsigned int size) const						= 0;
+				virtual const unsigned int						Read(char buffer[], unsigned int offset, unsigned int size) const	= 0;
+				virtual const RsrcString&		ReadLine(const VFS::Resource::RsrcString& delimiter = "\n") const					= 0;
+				virtual const VFS::Resource::RsrcString&		ReadLine(const char delimiter = '\n') const							= 0;
+				virtual const VFS::Resource::RsrcStringList&	ReadLines(const VFS::Resource::RsrcString& delimiter = "\n") const					= 0;
+				virtual const VFS::Resource::RsrcStringList&	ReadLines(const char delimiter = '\n') const						= 0;
 
 				/*
 				 * TODO:	define a Selector architecture
 				 */
 				//virtual const bool									Find(VFS::Selector::API::ISelector *pSelector, VFS::Resource::API::IResource *pSearchRoot) const		= 0;
 
-				virtual const bool				IsWritable(void) const	= 0;
-				virtual const bool				IsHidden(void) const	= 0;
-				virtual const bool				IsReadable(void) const	= 0;
-				virtual const bool				IsOpen(void) const		= 0;
+				virtual const bool								IsWritable(void) const												= 0;
+				virtual const bool								IsHidden(void) const												= 0;
+				virtual const bool								IsReadable(void) const												= 0;
+				virtual const bool								IsOpen(void) const													= 0;
 
 
 				/*

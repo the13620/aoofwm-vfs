@@ -61,7 +61,23 @@ namespace VFS
 		VFS::Resource::API::IResource*		CManager::Resource(const std::string& uri) const
 		{
 			AoofWm::VFS::Util::CURI	rsrcURI(uri);
-			
+
+			/*
+			 * TODO:
+			 * 	Recode previous version of the ResourceType selector
+			 *  with the new Path/PathEntry hierarchy & Providers' system.
+			 * 
+			 *  For now it's just a basic selector only suitable for
+			 *  the FileProvider with no advanced detection system at all.
+			 */
+			if (rsrcURI.GetFile().empty())
+			{// Directory
+//				VFS::Resource::CDirectoryResource();
+			}
+			else
+			{// File
+//				VFS::Resource::CFileResource();
+			}
 			/*
 			 *	TODO:
 			 * 		-select Provider from scheme.

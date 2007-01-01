@@ -26,31 +26,25 @@
 **
 */
 
-#ifndef __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
-# define __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
 
+#ifndef __VFS_RESOURCE_RESOURCETYPES_H__
+# define __VFS_RESOURCE_RESOURCETYPES_H__
+
+# include <map>
 # include <string>
-
-# include "VFS/Resource/API/IResource.h"
+# include <vector>
 
 namespace	VFS
 {
 	namespace	Resource
-    {
-    	namespace	API
-		{
-			class	IResource;	// Circular Forward Declaration
-			
-			class	IResourceContentInfo
-	    	{
-	      	public:
-		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const	= 0;
-
-				virtual const std::string&						GetEncoding(void) const	= 0;
-				virtual const std::string&						GetType(void) const		= 0;
-		    };
-		}
-    }
+	{
+		class	IResource;	//	Circular Forward Declaration
+		
+		typedef std::string							RsrcString;
+		typedef std::vector<RsrcString>				RsrcStringList;
+		typedef std::map<std::string, IResource*>	RsrcMap;
+	}
 }
 
-#endif	// __VFS_RESOURCE_API_IRESOURCECONTENTINFO_H__
+
+#endif	// __VFS_RESOURCE_RESOURCETYPES_H__

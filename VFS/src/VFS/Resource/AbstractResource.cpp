@@ -40,5 +40,116 @@ namespace VFS
 		CAbstractResource::~CAbstractResource(void)
 		{
 		}
+		
+		
+		const API::IResourceContent*	CAbstractResource::GetContent(void) const
+		{
+			
+		}
+		
+      	const API::IResourceName*		CAbstractResource::GetName(void) const
+		{
+			
+		}
+      	
+      	const API::IResourceType*		CAbstractResource::GetType(void) const
+		{
+			
+		}
+		
+
+		const bool						CAbstractResource::Exists(void) const
+		{
+			
+		}
+		
+
+		const bool						CAbstractResource::Open(void) const
+		{
+			
+		}
+
+		const bool						CAbstractResource::Close(void) const
+		{
+			
+		}
+		
+		const bool						CAbstractResource::Create(void) const
+		{
+			
+		}
+		
+		const bool						CAbstractResource::Delete(void) const
+		{
+			
+		}
+		
+
+		const bool						CAbstractResource::Copy(void) const
+		{
+			
+		}
+		
+		const bool						CAbstractResource::Move(void) const
+		{
+			
+		}
+		
+		const bool						CAbstractResource::Rename(void) const
+		{
+			
+		}
+		
+
+		const unsigned int				CAbstractResource::Read(char buffer[], unsigned int size) const
+		{
+			
+		}
+		
+		const unsigned int				CAbstractResource::Read(char buffer[], unsigned int offset, unsigned int size) const
+		{
+			
+		}
+		
+		const RsrcString&				CAbstractResource::ReadLine(const RsrcString& delimiter) const
+		{
+			
+		}
+		
+		const RsrcString&				CAbstractResource::ReadLine(const char delimiter) const
+		{
+			
+		}
+		
+		const RsrcStringList&			CAbstractResource::ReadLines(const RsrcString& delimiter) const
+		{
+			
+		}
+		
+		const RsrcStringList&			CAbstractResource::ReadLines(const char delimiter) const
+		{
+			
+		}
+		
+
+		const bool						CAbstractResource::IsWritable(void) const
+		{
+			
+		}
+		
+		const bool						CAbstractResource::IsHidden(void) const
+		{
+			
+		}
+		
+		const bool						CAbstractResource::IsReadable(void) const
+		{
+			
+		}
+		
+		const bool						CAbstractResource::IsOpen(void) const
+		{
+			
+		}
 	}
 }
