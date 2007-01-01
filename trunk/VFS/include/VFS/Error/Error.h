@@ -43,14 +43,14 @@ namespace	VFS
 			
 		public:
 			std::string		_message;
-			eVFSErrorCode	_code;
+			eErrorCode		_code;
 			
 		public:
 			CError(void);
-			CError(const eVFSErrorCode code = eveVFSError, const std::string& message = "");
+			CError(const eErrorCode code = ecVFSError, const std::string& message = "");
 			virtual ~CError(void);
 			
-			const eVFSErrorCode	GetCode(void) const;
+			const eErrorCode	GetCode(void) const;
 			const std::string&	GetMessage(void) const;
 			
 			static CError*		GetError(void);

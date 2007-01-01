@@ -38,7 +38,7 @@ namespace VFS
 		CError*	CError::_lastError = NULL;
 		
 		
-		CError::CError(const eVFSErrorCode code, const std::string& message)
+		CError::CError(const eErrorCode code, const std::string& message)
 		{
 			_code 		= code;
 			_message	= message;
@@ -53,7 +53,7 @@ namespace VFS
 		}
 
 
-		const VFS::Error::eVFSErrorCode	CError::GetCode(void) const
+		const VFS::Error::eErrorCode	CError::GetCode(void) const
 		{
 			return (_code);
 		}
@@ -62,6 +62,7 @@ namespace VFS
 		{
 			return (_message);
 		}
+		
 		
 		CError*							CError::GetError(void)
 		{

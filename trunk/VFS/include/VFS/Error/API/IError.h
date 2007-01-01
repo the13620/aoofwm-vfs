@@ -44,7 +44,7 @@ namespace	VFS
 			class	IError
 			{
 			public:
-				virtual	const eVFSErrorCode	GetCode(void) const		=	0;
+				virtual	const eErrorCode	GetCode(void) const		=	0;
 				virtual	const std::string&	GetMessage(void) const	=	0;
 			};
 		}
