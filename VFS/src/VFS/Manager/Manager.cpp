@@ -34,6 +34,7 @@
 #include "VFS/Provider/Providers.h"
 
 
+using namespace	VFS::Manager;
 
 namespace VFS
 {
@@ -53,10 +54,11 @@ namespace VFS
 		
 		CManager::~CManager(void)
 		{
+			
 		}
+
 		
-		
-		VFS::Resource::API::IResource*	CManager::Resource(const std::string& uri)
+		VFS::Resource::API::IResource*		CManager::Resource(const std::string& uri) const
 		{
 			AoofWm::VFS::Util::CURI	rsrcURI(uri);
 			
@@ -75,17 +77,34 @@ namespace VFS
 			return (NULL);
 		}
 		
-		VFS::Provider::ProvidersMap&	CManager::GetProviders(void)
+		const VFS::Manager::RsrcMap&						CManager::GetResources(void) const
+		{
+			return (_resources);
+		}
+		
+		VFS::Resource::API::IResource*		CManager::GetResource(const std::string& key) const
+		{
+			VFS::Resource::API::IResource*	pRsrc	= NULL;
+			
+//			VFS::Manager::RsrcMap::iterator	iFind = _resources.find(key);
+//			if (iFind != _resources.end() )
+//			{
+//    			pRsrc = *iterFind;
+//			}
+			return (pRsrc);
+		}
+		
+		const VFS::Provider::ProvidersMap&	CManager::GetProviders(void) const
 		{
 			return (_providers);
 		}
 		
-		void							CManager::AddProvider(VFS::Provider::API::IProvider* pProvider)
+		void								CManager::AddProvider(VFS::Provider::API::IProvider* pProvider) const
 		{
 			
 		}
 		
-		void							CManager::RemoveProvider(const std::string& providerName)
+		void								CManager::RemoveProvider(const std::string& providerName) const
 		{
 			
 		}
