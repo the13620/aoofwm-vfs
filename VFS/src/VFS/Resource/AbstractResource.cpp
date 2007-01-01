@@ -27,34 +27,44 @@
 */
 
 #include "VFS/Resource/AbstractResource.h"
+#include "VFS/Resource/ResourceContent.h"
+#include "VFS/Resource/ResourceName.h"
+#include "VFS/Resource/ResourceType.h"
 
 
 namespace VFS
 {
 	namespace Resource
 	{
-		CAbstractResource::CAbstractResource(void)
+		CAbstractResource::CAbstractResource(const std::string& uri)
 		{
+			_pRsrcContent = new CResourceContent(&(*this));
+			_pRsrcName = new CResourceName(&(*this), uri);
+			_pRsrcType = new CResourceType(&(*this));
 		}
 		
 		CAbstractResource::~CAbstractResource(void)
 		{
+			Close();
+			delete(_pRsrcContent);
+			delete(_pRsrcName);
+			delete(_pRsrcType);
 		}
 		
 		
 		const API::IResourceContent*	CAbstractResource::GetContent(void) const
 		{
-			
+			return (_pRsrcContent);
 		}
 		
       	const API::IResourceName*		CAbstractResource::GetName(void) const
 		{
-			
+			return (_pRsrcName);
 		}
       	
       	const API::IResourceType*		CAbstractResource::GetType(void) const
 		{
-			
+			return (_pRsrcType);
 		}
 		
 

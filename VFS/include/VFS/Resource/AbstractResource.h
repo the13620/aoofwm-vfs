@@ -40,8 +40,14 @@ namespace	VFS
 	{
 		class	CAbstractResource : public virtual VFS::Resource::API::IResource
 		{
+		private:
+			API::IResourceContent*	_pRsrcContent;
+			API::IResourceName*		_pRsrcName;
+			API::IResourceType*		_pRsrcType;
+			
+			
 		public:
-			CAbstractResource(void);
+			CAbstractResource(const std::string& uri);
 			virtual ~CAbstractResource(void);
 			
 			

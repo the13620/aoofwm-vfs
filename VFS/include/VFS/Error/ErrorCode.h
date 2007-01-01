@@ -34,14 +34,20 @@ namespace	VFS
 {
 	namespace	Error
 	{
-		typedef enum			eVFSErrorCode
+		typedef enum			eErrorCode
 		{
-			eveVFSError			= 0	,
-			eveManagerError			,
-			eveResourceError		,
+			ecVFSError			= 0	,
+			ecManagerError			,
+			ecPathError				,
+			ecProviderError			,
+			ecResourceError			,
+			
+			ecIOError				,
+			
+			ecUnknownError			,
 
-			eveFatalError
-		}						eVFSErrorCode;
+			ecFatalError
+		}						eErrorCode;
 	}
 }
 
