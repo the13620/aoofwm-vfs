@@ -81,12 +81,12 @@ namespace AoofWm
 			}
 
 
-			std::string					CURI::GetURIString(void) const
+			const std::string&			CURI::GetURIString(void) const
 			{
 				return (_uri);
 			}
 
-			std::string					CURI::GetScheme(void) const
+			const std::string&			CURI::GetScheme(void) const
 			{
 				return (_scheme);
 			}
@@ -101,17 +101,17 @@ namespace AoofWm
 				return (_directories);
 			}
 
-			std::string					CURI::GetFile(void) const
+			const std::string&			CURI::GetFile(void) const
 			{
 				return (_file);
 			}
 
-			std::string					CURI::GetQuery(void) const
+			const std::string&			CURI::GetQuery(void) const
 			{
 				return (_query);
 			}
 
-			std::string&				CURI::ExtractScheme(void)
+			const std::string&			CURI::ExtractScheme(void)
 			{
 				_scheme = std::string();
 				_tokens = CTokenizer::TokenizeByString(_uri, "://");
@@ -180,7 +180,7 @@ namespace AoofWm
 				return (_directories);
 			}
 
-			std::string&				CURI::ExtractFile(void)
+			const std::string&			CURI::ExtractFile(void)
 			{
 				std::string::size_type	offset = 0;
 				
@@ -205,7 +205,7 @@ namespace AoofWm
 				return (_file);
 			}
 
-			std::string&				CURI::ExtractQuery(void)
+			const std::string&			CURI::ExtractQuery(void)
 			{
 				_query = std::string();
 				return (_query);

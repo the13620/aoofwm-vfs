@@ -27,22 +27,36 @@
 */
 
 
-#ifndef __VFS_ERROR_ERRORCODE_H__
-# define __VFS_ERROR_ERRORCODE_H__
+#ifndef __VFS_RESOURCE_RESOURCENAME_H__
+# define __VFS_RESOURCE_RESOURCENAME_H__
+
+# include <VFS/Resource/API/IResourceName.h>
+
 
 namespace	VFS
 {
-	namespace	Error
+	namespace	Resource
 	{
-		typedef enum			eVFSErrorCode
+		class	CResourceName : public virtual VFS::Resource::API::IResourceName
 		{
-			eveVFSError			= 0	,
-			eveManagerError			,
-			eveResourceError		,
-
-			eveFatalError
-		}						eVFSErrorCode;
+		private:
+			const VFS::Resource::API::IResource*	_pResource;
+			AoofWm::VFS::Util::CURI					_uri;
+			
+		public:
+			CResourceName(const VFS::Resource::API::IResource* pRsrc, const std::string& name) : _pResource(pRsrc), _uri(AoofWm::VFS::Util::CURI(name)) {};
+			virtual ~CResourceName(void);
+			
+			const VFS::Resource::API::IResource*	GetResource(void) const;
+			
+			const std::string&						GetBaseName(void) const;
+			const std::string&						GetExtension(void) const;
+			const std::string&						GetPath(void) const;
+			const std::string&						GetScheme(void) const;
+			const AoofWm::VFS::Util::CURI&			GetURI(void) const;
+		};
 	}
 }
 
-#endif	// __VFS_ERROR_ERRORCODE_H__
+
+#endif	// __VFS_RESOURCE_RESOURCENAME_H__

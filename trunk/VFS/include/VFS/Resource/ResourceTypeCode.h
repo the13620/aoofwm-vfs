@@ -27,22 +27,20 @@
 */
 
 
-#ifndef __VFS_ERROR_ERRORCODE_H__
-# define __VFS_ERROR_ERRORCODE_H__
+#ifndef __VFS_RESOURCE_RESOURCETYPECODE_H__
+# define __VFS_RESOURCE_RESOURCETYPECODE_H__
 
 namespace	VFS
 {
-	namespace	Error
+	namespace	Resource
 	{
-		typedef enum			eVFSErrorCode
+		typedef enum			eVFSResourceTypeCode
 		{
-			eveVFSError			= 0	,
-			eveManagerError			,
-			eveResourceError		,
-
-			eveFatalError
-		}						eVFSErrorCode;
+			evrTreeRoot			= 0	,
+			eveTreeNode				,
+			eveTreeLeaf
+		}						eVFSResourceTypeCode;
 	}
 }
 
-#endif	// __VFS_ERROR_ERRORCODE_H__
+#endif	// __VFS_RESOURCE_RESOURCETYPECODE_H__

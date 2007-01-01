@@ -26,23 +26,49 @@
 **
 */
 
+#include "VFS/Resource/ResourceType.h"
 
-#ifndef __VFS_ERROR_ERRORCODE_H__
-# define __VFS_ERROR_ERRORCODE_H__
 
-namespace	VFS
+namespace VFS
 {
-	namespace	Error
+	namespace Resource
 	{
-		typedef enum			eVFSErrorCode
+		CResourceType::CResourceType(const VFS::Resource::API::IResource* pRsrc)
 		{
-			eveVFSError			= 0	,
-			eveManagerError			,
-			eveResourceError		,
+			_pResource = pRsrc;
+		}
+		
+		CResourceType::~CResourceType(void)
+		{
+			
+		}
+		
+			
+		const VFS::Resource::API::IResource*	CResourceType::GetResource(void) const
+		{
+			return (_pResource);
+		}
+		
+			
+		const std::string&						CResourceType::GetResourceTypeName(void) const
+		{
+			return (_strTypeName);
+		}
+		
+		const eVFSResourceTypeCode				CResourceType::GetResourceTypeCode(void) const
+		{
+			return (_eTypeCode);
+		}
+		
 
-			eveFatalError
-		}						eVFSErrorCode;
+		const bool								CResourceType::HasChildren(void) const
+		{
+			return (true);	// TODO: useless for now
+		}
+		
+		const bool								CResourceType::CResourceType::HasContent(void) const
+		{
+			return (true);	// TODO: useless for now
+		}
 	}
 }
-
-#endif	// __VFS_ERROR_ERRORCODE_H__

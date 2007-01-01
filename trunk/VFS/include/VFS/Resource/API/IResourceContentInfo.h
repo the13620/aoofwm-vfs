@@ -31,8 +31,6 @@
 
 # include <string>
 
-# include "VFS/Resource/API/IResource.h"
-
 namespace	VFS
 {
 	namespace	Resource
