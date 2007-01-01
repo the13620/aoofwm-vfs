@@ -75,22 +75,22 @@ namespace AoofWm
 				bool						IsAbsolute(void);
 				bool						IsRelative(void);
 
-				std::string					GetURIString(void) const;
-				std::string					GetScheme(void) const;
+				const std::string&			GetURIString(void) const;
+				const std::string&			GetScheme(void) const;
 				CCredentials				GetCredentials(void) const ;
 				std::vector<std::string>	GetDirectories(void) const;
-				std::string					GetFile(void) const;
-				std::string					GetQuery(void) const;
+				const std::string&			GetFile(void) const;
+				const std::string&			GetQuery(void) const;
 
 
 
 			private:
 				void						Parse(void);
-				std::string&				ExtractScheme(void);
+				const std::string&			ExtractScheme(void);
 				CCredentials				ExtractCredentials(void);
 				std::vector<std::string>&	ExtractDirectories(void);
-				std::string&				ExtractFile(void);
-				std::string&				ExtractQuery(void);
+				const std::string&			ExtractFile(void);
+				const std::string&			ExtractQuery(void);
 			};
 		}
 	}

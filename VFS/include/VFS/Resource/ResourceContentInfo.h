@@ -27,22 +27,34 @@
 */
 
 
-#ifndef __VFS_ERROR_ERRORCODE_H__
-# define __VFS_ERROR_ERRORCODE_H__
+#ifndef __VFS_RESOURCE_RESOURCECONTENTINFO_H__
+# define __VFS_RESOURCE_RESOURCECONTENTINFO_H__
+
+# include <VFS/Resource/API/IResourceContentInfo.h>
+
 
 namespace	VFS
 {
-	namespace	Error
+	namespace	Resource
 	{
-		typedef enum			eVFSErrorCode
+		class	CResourceContentInfo : public virtual VFS::Resource::API::IResourceContentInfo
 		{
-			eveVFSError			= 0	,
-			eveManagerError			,
-			eveResourceError		,
-
-			eveFatalError
-		}						eVFSErrorCode;
+		private:
+			const VFS::Resource::API::IResource*	_pResource;
+			std::string								_strEncoding;
+			std::string								_strType;
+			
+		public:
+			CResourceContentInfo(const VFS::Resource::API::IResource* pRsrc);
+			virtual ~CResourceContentInfo(void);
+			
+			const VFS::Resource::API::IResource*	GetResource(void) const;
+			
+			const std::string&						GetEncoding(void) const;
+			const std::string&						GetType(void) const;
+		};
 	}
 }
 
-#endif	// __VFS_ERROR_ERRORCODE_H__
+
+#endif	// __VFS_RESOURCE_RESOURCECONTENTINFO_H__

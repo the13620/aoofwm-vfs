@@ -26,23 +26,48 @@
 **
 */
 
+#include "VFS/Resource/ResourceName.h"
 
-#ifndef __VFS_ERROR_ERRORCODE_H__
-# define __VFS_ERROR_ERRORCODE_H__
 
-namespace	VFS
+namespace VFS
 {
-	namespace	Error
+	namespace Resource
 	{
-		typedef enum			eVFSErrorCode
+		CResourceName::~CResourceName(void)
 		{
-			eveVFSError			= 0	,
-			eveManagerError			,
-			eveResourceError		,
-
-			eveFatalError
-		}						eVFSErrorCode;
+			
+		}
+		
+			
+		const VFS::Resource::API::IResource*	CResourceName::GetResource(void) const
+		{
+			return (_pResource);
+		}
+		
+			
+		const std::string&						CResourceName::GetBaseName(void) const
+		{
+			return ("/!\\ - Not Implemented Yet.");
+		}
+		
+		const std::string&						CResourceName::GetExtension(void) const
+		{
+			return ("/!\\ - Not Implemented Yet.");			
+		}
+		
+		const std::string&						CResourceName::GetPath(void) const
+		{
+			return ("/!\\ - Not Implemented Yet.");
+		}
+		
+		const std::string&						CResourceName::GetScheme(void) const
+		{
+				return ((const std::string&)_uri.GetScheme());
+		}
+		
+		const AoofWm::VFS::Util::CURI&			CResourceName::GetURI(void) const
+		{
+			return (_uri);
+		}
 	}
 }
-
-#endif	// __VFS_ERROR_ERRORCODE_H__

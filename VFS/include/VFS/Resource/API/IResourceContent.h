@@ -29,8 +29,8 @@
 #ifndef __VFS_RESOURCE_API_IRESOURCECONTENT_H__
 # define __VFS_RESOURCE_API_IRESOURCECONTENT_H__
 
-# include <VFS/Resource/API/IResource.h>
 # include <VFS/Resource/API/IResourceContentInfo.h>
+
 
 namespace	VFS
 {

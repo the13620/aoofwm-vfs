@@ -31,9 +31,8 @@
 
 # include <string>
 
-# include <VFS/Resource/ResourceTypes.h>
+# include <VFS/Resource/ResourceTypeCode.h>
 
-# include <VFS/Resource/API/IResource.h>
 
 namespace	VFS
 {
@@ -49,7 +48,7 @@ namespace	VFS
 		      	virtual const VFS::Resource::API::IResource*	GetResource(void) const				= 0;
 
 				virtual const std::string&						GetResourceTypeName(void) const		= 0;
-				virtual const std::string&						GetResourceTypeCode(void) const		= 0;
+				virtual const eVFSResourceTypeCode				GetResourceTypeCode(void) const		= 0;
 
 				virtual const bool								HasChildren(void) const				= 0;
 				virtual const bool								HasContent(void) const				= 0;

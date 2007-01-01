@@ -31,7 +31,7 @@
 
 # include <string>
 
-# include "VFS/Resource/API/IResource.h"
+# include "VFS/Util/URI.h"
 
 namespace	VFS
 {
@@ -45,12 +45,13 @@ namespace	VFS
 	    	{
 	      	public:
 	      		virtual const VFS::Resource::API::IResource*	GetResource(void) const		= 0;
-
-		      	virtual const std::string&						GetBaseName(void) const		= 0;
+	      		
+	      		virtual const std::string&						GetBaseName(void) const		= 0;
 		      	virtual const std::string&						GetExtension(void) const	= 0;
 				virtual const std::string&						GetPath(void) const			= 0;
 				virtual const std::string&						GetScheme(void) const		= 0;
-				virtual const std::string&						GetURI(void) const			= 0;
+//				virtual const std::string&						GetURI(void) const			= 0;
+				virtual const AoofWm::VFS::Util::CURI&			GetURI(void) const			= 0;
 		    };
 		}
     }
