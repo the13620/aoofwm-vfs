@@ -42,8 +42,8 @@ namespace	VFS
 		{
 			class	IPathEntry
 			{
-				virtual const std::string&						GetName(void)		= 0;
-				virtual const VFS::Provider::API::IProvider*	GetProvider(void)	= 0;
+				virtual const std::string&						GetName(void) const		= 0;
+				virtual const VFS::Provider::API::IProvider*	GetProvider(void) const	= 0;
 			};
 		}
 	}

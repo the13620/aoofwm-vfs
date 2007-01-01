@@ -26,7 +26,11 @@
 **
 */
 
+#include <vector>
+
 #include "VFS/Path/Path.h"
+#include "VFS/Path/PathEntry.h"
+#include "VFS/Util/URI.h"
 
 using namespace VFS::Path;
 
@@ -37,12 +41,25 @@ namespace VFS
 	{
 		CPath::CPath(const std::string& path)
 		{
+			AoofWm::VFS::Util::CURI	uri(path);
 			
+			
+			for (unsigned int i = 0; i < uri.GetDirectories().size(); i++)
+			{
+				const std::string&	pathEntryString = uri.GetDirectories().at(i);
+				
+				_path += pathEntryString + "/";
+				_entries.push_back(new CPathEntry(pathEntryString));
+			}
 		}
-		
+
 		CPath::~CPath(void)
 		{
-			
+			for (unsigned int i = 0; i < _entries.size(); i++)
+			{
+				delete _entries.at(i);
+			}
+			_entries.clear();
 		}
 		
 		

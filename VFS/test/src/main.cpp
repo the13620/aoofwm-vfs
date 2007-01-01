@@ -82,6 +82,7 @@ int	vfs(int ac, char **av)
 
 int	main(int ac, char **av)
 {
+	VFS::Util::URITestMain(ac, av);
 	vfs(ac, av);
 	return (0);	
 }

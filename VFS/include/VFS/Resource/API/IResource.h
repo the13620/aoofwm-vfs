@@ -66,9 +66,9 @@ namespace	VFS
 				
 				virtual const unsigned int						Read(char buffer[], unsigned int size) const						= 0;
 				virtual const unsigned int						Read(char buffer[], unsigned int offset, unsigned int size) const	= 0;
-				virtual const RsrcString&		ReadLine(const VFS::Resource::RsrcString& delimiter = "\n") const					= 0;
+				virtual const VFS::Resource::RsrcString&		ReadLine(const VFS::Resource::RsrcString& delimiter = "\n") const	= 0;
 				virtual const VFS::Resource::RsrcString&		ReadLine(const char delimiter = '\n') const							= 0;
-				virtual const VFS::Resource::RsrcStringList&	ReadLines(const VFS::Resource::RsrcString& delimiter = "\n") const					= 0;
+				virtual const VFS::Resource::RsrcStringList&	ReadLines(const VFS::Resource::RsrcString& delimiter = "\n") const	= 0;
 				virtual const VFS::Resource::RsrcStringList&	ReadLines(const char delimiter = '\n') const						= 0;
 
 				/*
