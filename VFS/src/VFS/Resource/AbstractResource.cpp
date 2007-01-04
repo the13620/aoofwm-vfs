@@ -36,11 +36,20 @@ namespace VFS
 {
 	namespace Resource
 	{
+		CAbstractResource::CAbstractResource(void)
+		{
+		}
+		
 		CAbstractResource::CAbstractResource(const std::string& uri)
 		{
 			_pRsrcContent = new CResourceContent(&(*this));
 			_pRsrcName = new CResourceName(&(*this), uri);
 			_pRsrcType = new CResourceType(&(*this));
+		}
+		
+		CAbstractResource::CAbstractResource(const CAbstractResource& rsrc)
+		{
+			
 		}
 		
 		CAbstractResource::~CAbstractResource(void)

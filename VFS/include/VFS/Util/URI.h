@@ -69,6 +69,7 @@ namespace AoofWm
 				std::vector<Token>			_tokens;
 
 			public:
+				CURI(void);
 				CURI(const std::string& uri);
 				~CURI(void);
 

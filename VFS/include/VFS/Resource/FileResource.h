@@ -30,16 +30,16 @@
 #ifndef __VFS_RESOURCE_FILERESOURCE_H__
 # define __VFS_RESOURCE_FILERESOURCE_H__
 
-# include <VFS/Resource/API/IResource.h>
+# include <VFS/Resource/AbstractResource.h>
 
 namespace	VFS
 {
 	namespace	Resource
 	{
-		class	CFileResource : public virtual VFS::Resource::API::IResource
+		class	CFileResource : public virtual VFS::Resource::CAbstractResource
 		{
 		public:
-			CFileResource(void);
+			CFileResource(const std::string& uri);
 			virtual ~CFileResource(void);
 			
 			

@@ -25,7 +25,7 @@
 ** Project : The Toy'd Project
 **
 */
-
+#include <iostream>
 #include "VFS/Resource/ResourceName.h"
 
 
@@ -33,12 +33,18 @@ namespace VFS
 {
 	namespace Resource
 	{
+		CResourceName::CResourceName(const VFS::Resource::API::IResource* pRsrc, const std::string& name)
+			: _pResource(pRsrc), _uri(name)
+		{
+
+		}
+		
 		CResourceName::~CResourceName(void)
 		{
 			
 		}
 		
-			
+		
 		const VFS::Resource::API::IResource*	CResourceName::GetResource(void) const
 		{
 			return (_pResource);

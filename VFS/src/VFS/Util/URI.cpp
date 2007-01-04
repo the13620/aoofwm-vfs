@@ -40,6 +40,11 @@ namespace AoofWm
 	{
 		namespace Util
 		{
+			CURI::CURI(void)
+			{
+				
+			}
+			
 			CURI::CURI(const std::string& uri)
 			{
 				_uri = uri;

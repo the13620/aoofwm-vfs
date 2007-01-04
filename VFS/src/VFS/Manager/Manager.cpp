@@ -30,8 +30,9 @@
 #include <iostream>
 
 #include "VFS/Manager/Manager.h"
-#include "VFS/Util/URI.h"
 #include "VFS/Provider/Providers.h"
+#include "VFS/Resource/Resources.h"
+#include "VFS/Util/URI.h"
 
 
 using namespace	VFS::Manager;
@@ -60,7 +61,7 @@ namespace VFS
 		
 		VFS::Resource::API::IResource*		CManager::Resource(const std::string& uri) const
 		{
-			VFS::Resource::API::IResource*	pRsrc	= NULL;
+			VFS::Resource::API::IResource*	pRsrc			= NULL;
 			AoofWm::VFS::Util::CURI			rsrcURI(uri);
 
 			/*
@@ -73,11 +74,11 @@ namespace VFS
 			 */
 			if (rsrcURI.GetFile().empty())
 			{// Directory
-//				pRsrc = new VFS::Resource::CDirectoryResource();
+				pRsrc = new VFS::Resource::CDirectoryResource(uri);
 			}
 			else
 			{// File
-//				pRsrc = new VFS::Resource::CFileResource();
+				pRsrc = new VFS::Resource::CFileResource(uri);
 			}
 			/*
 			 *	PROCESS:

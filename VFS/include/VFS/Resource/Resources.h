@@ -27,36 +27,25 @@
 */
 
 
-#ifndef __VFS_RESOURCE_RESOURCENAME_H__
-# define __VFS_RESOURCE_RESOURCENAME_H__
+#ifndef __VFS_RESOURCE_RESOURCES_H__
+# define __VFS_RESOURCE_RESOURCES_H__
 
-# include <VFS/Resource/API/IResourceName.h>
-
+# include <VFS/Resource/AbstractResource.h>
+# include <VFS/Resource/DirectoryResource.h>
+# include <VFS/Resource/FileResource.h>
 
 namespace	VFS
 {
 	namespace	Resource
 	{
-		class	CResourceName : public virtual VFS::Resource::API::IResourceName
-		{
-		private:
-			const VFS::Resource::API::IResource*	_pResource;
-			AoofWm::VFS::Util::CURI					_uri;
-			
-		public:
-			CResourceName(const VFS::Resource::API::IResource* pRsrc, const std::string& name);
-			virtual ~CResourceName(void);
-			
-			const VFS::Resource::API::IResource*	GetResource(void) const;
-			
-			const std::string&						GetBaseName(void) const;
-			const std::string&						GetExtension(void) const;
-			const std::string&						GetPath(void) const;
-			const std::string&						GetScheme(void) const;
-			const AoofWm::VFS::Util::CURI&			GetURI(void) const;
-		};
+		/*
+		**
+		* TODO:
+		**	Doesn't need anything here... for now.
+		**
+		*/
 	}
 }
 
 
-#endif	// __VFS_RESOURCE_RESOURCENAME_H__
+#endif	// __VFS_RESOURCE_RESOURCES_H__
