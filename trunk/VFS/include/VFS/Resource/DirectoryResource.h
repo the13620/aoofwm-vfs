@@ -30,16 +30,17 @@
 #ifndef __VFS_RESOURCE_DIRECTORYRESOURCE_H__
 # define __VFS_RESOURCE_DIRECTORYRESOURCE_H__
 
-# include <VFS/Resource/API/IResource.h>
+# include <VFS/Resource/AbstractResource.h>
+
 
 namespace	VFS
 {
 	namespace	Resource
 	{
-		class	CDirectoryResource : public virtual VFS::Resource::API::IResource
+		class	CDirectoryResource : public VFS::Resource::CAbstractResource
 		{
 		public:
-			CDirectoryResource(void);
+			CDirectoryResource(const std::string& uri);
 			virtual ~CDirectoryResource(void);
 		};
 	}

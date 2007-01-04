@@ -26,6 +26,8 @@
 **
 */
 
+#include <string>
+
 #include "VFS/Resource/DirectoryResource.h"
 
 
@@ -33,7 +35,7 @@ namespace VFS
 {
 	namespace Resource
 	{
-		CDirectoryResource::CDirectoryResource(void)
+		CDirectoryResource::CDirectoryResource(const std::string& uri) : CAbstractResource(uri)
 		{
 		}
 		

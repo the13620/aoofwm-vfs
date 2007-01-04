@@ -47,7 +47,9 @@ namespace	VFS
 			
 			
 		public:
+			CAbstractResource(void);
 			CAbstractResource(const std::string& uri);
+			CAbstractResource(const CAbstractResource& rsrc);
 			virtual ~CAbstractResource(void);
 			
 			

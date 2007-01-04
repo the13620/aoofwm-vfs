@@ -33,8 +33,9 @@ namespace VFS
 {
 	namespace Resource
 	{
-		CFileResource::CFileResource(void)
+		CFileResource::CFileResource(const std::string& uri) : CAbstractResource(uri)
 		{
+			
 		}
 		
 		CFileResource::~CFileResource(void)

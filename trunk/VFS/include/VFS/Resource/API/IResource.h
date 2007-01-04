@@ -29,6 +29,7 @@
 #ifndef __VFS_RESOURCE_API_IRESOURCE_H__
 # define __VFS_RESOURCE_API_IRESOURCE_H__
 
+# include <iostream>
 # include <map>
 # include <string>
 # include <vector>
