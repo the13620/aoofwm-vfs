@@ -47,9 +47,70 @@ namespace AoofWm
 			
 			CURI::CURI(const std::string& uri)
 			{
-				_uri = uri;
-				Parse();
+				Parse(uri);
+			}
 
+			CURI::~CURI(void)
+			{
+			}
+			
+			
+			CCredentials				CURI::GetCredentials(void) const
+			{
+				return (_credentials);
+			}
+
+			std::vector<std::string>	CURI::GetDirectories(void) const	
+			{
+				return (_directories);
+			}
+
+			const std::string&			CURI::GetFile(void) const
+			{
+				return (_file);
+			}
+
+			const std::string&			CURI::GetQuery(void) const
+			{
+				return (_query);
+			}
+			
+			const std::string&			CURI::GetScheme(void) const
+			{
+				return (_scheme);
+			}
+			
+			const std::string&			CURI::GetURIString(void) const
+			{
+				return (_uri);
+			}
+			
+			
+			const bool					CURI::IsAbsolute(void) const
+			{
+				// TODO:
+				return (true);
+			}
+			
+			const bool					CURI::IsRelative(void) const
+			{
+				// TODO:
+				return (true);
+			}
+			
+			
+			void						CURI::Parse(const std::string& uri)
+			{
+				_uri = uri;
+				_scheme			= ExtractScheme();
+				_directories	= ExtractDirectories();
+				_file			= ExtractFile();
+				//_query			= ExtractQuery();
+			}
+			
+			
+			void						CURI::Print(void) const
+			{
 				std::cout << "\t{" << std::endl;
 				std::cout << "\t   URI\t\t: " + _uri << std::endl;
 				std::cout << "\t   Scheme\t: " + _scheme << std::endl;
@@ -70,62 +131,7 @@ namespace AoofWm
 				std::cout << "\t            \t  ]" << std::endl;
 				std::cout << "\t}" << std::endl;
 			}
-
-
-			CURI::~CURI(void)
-			{
-			}
-
-
-			void						CURI::Parse(void)
-			{
-				_scheme			= ExtractScheme();
-				_directories	= ExtractDirectories();
-				_file			= ExtractFile();
-				//_query			= ExtractQuery();
-			}
-
-
-			const std::string&			CURI::GetURIString(void) const
-			{
-				return (_uri);
-			}
-
-			const std::string&			CURI::GetScheme(void) const
-			{
-				return (_scheme);
-			}
-
-			CCredentials				CURI::GetCredentials(void) const
-			{
-				return (_credentials);
-			}
-
-			std::vector<std::string>	CURI::GetDirectories(void) const	
-			{
-				return (_directories);
-			}
-
-			const std::string&			CURI::GetFile(void) const
-			{
-				return (_file);
-			}
-
-			const std::string&			CURI::GetQuery(void) const
-			{
-				return (_query);
-			}
-
-			const std::string&			CURI::ExtractScheme(void)
-			{
-				_scheme = std::string();
-				_tokens = CTokenizer::TokenizeByString(_uri, "://");
-				if (_tokens.size() > 0)
-				{
-					_scheme = _tokens.at(0).token;
-				}
-				return (_scheme);
-			}
+			
 
 			CCredentials				CURI::ExtractCredentials(void)
 			{
@@ -214,6 +220,17 @@ namespace AoofWm
 			{
 				_query = std::string();
 				return (_query);
+			}
+			
+			const std::string&			CURI::ExtractScheme(void)
+			{
+				_scheme = std::string();
+				_tokens = CTokenizer::TokenizeByString(_uri, "://");
+				if (_tokens.size() > 0)
+				{
+					_scheme = _tokens.at(0).token;
+				}
+				return (_scheme);
 			}
 		}
 	}
