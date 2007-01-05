@@ -56,21 +56,27 @@ namespace	VFS
 
 				virtual const bool								Exists(void) const													= 0;
 
-				virtual const bool								Open(void) const													= 0;
-				virtual const bool								Close(void) const													= 0;
-				virtual const bool								Create(void) const													= 0;
-				virtual const bool								Delete(void) const													= 0;
-
-				virtual const bool								Copy(void) const													= 0;
-				virtual const bool								Move(void) const													= 0;
-				virtual const bool								Rename(void) const													= 0;
+				virtual const bool								Open(void)															= 0;
+				virtual const bool								Close(void)															= 0;
+				virtual const bool								Create(void)														= 0;
+				virtual const bool								Delete(void)														= 0;
 				
-				virtual const unsigned int						Read(char buffer[], unsigned int size) const						= 0;
-				virtual const unsigned int						Read(char buffer[], unsigned int offset, unsigned int size) const	= 0;
-				virtual const VFS::Resource::RsrcString&		ReadLine(const VFS::Resource::RsrcString& delimiter = "\n") const	= 0;
-				virtual const VFS::Resource::RsrcString&		ReadLine(const char delimiter = '\n') const							= 0;
-				virtual const VFS::Resource::RsrcStringList&	ReadLines(const VFS::Resource::RsrcString& delimiter = "\n") const	= 0;
-				virtual const VFS::Resource::RsrcStringList&	ReadLines(const char delimiter = '\n') const						= 0;
+				virtual const bool								Reset(void)															= 0;
+				virtual const bool								Seek(const unsigned long location)									= 0;
+				virtual const unsigned long						Tell(void)															= 0;
+				
+				virtual const unsigned long						Size(void)															= 0;
+
+				virtual const bool								Copy(const VFS::Resource::RsrcString& name)							= 0;
+				virtual const bool								Move(const VFS::Resource::RsrcString& name)							= 0;
+				virtual const bool								Rename(const VFS::Resource::RsrcString& name)						= 0;
+				
+				virtual const unsigned int						Read(char buffer[], unsigned int size)								= 0;
+				virtual const unsigned int						Read(char buffer[], unsigned int offset, unsigned int size)			= 0;
+				virtual const VFS::Resource::RsrcString*		ReadLine(const VFS::Resource::RsrcString& delimiter = "\n")			= 0;
+				virtual const VFS::Resource::RsrcString*		ReadLine(const char delimiter)										= 0;
+				virtual const VFS::Resource::RsrcStringList*	ReadLines(const VFS::Resource::RsrcString& delimiter = "\n")		= 0;
+				virtual const VFS::Resource::RsrcStringList*	ReadLines(const char delimiter)										= 0;
 
 				/*
 				 * TODO:	define a Selector architecture
@@ -89,6 +95,9 @@ namespace	VFS
 				//virtual const IResource*		GetChild(RsrcString name) const	= 0;
 				//virtual const std::map<RsrcString, IResource *>	GetChildren(void) const	= 0;
 				//virtual const bool			FindChildren() const	= 0;
+				
+			protected:
+				virtual void									Finalize(void)														= 0;
 		    };
 		}
     }

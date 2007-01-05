@@ -58,15 +58,16 @@ namespace AoofWm
 			class CURI
 			{
 			private:
-				std::string					_uri;
-				std::string					_scheme;
+				std::vector<Token>			_tokens;
+
 				CCredentials				_credentials;
 				std::vector<std::string>	_directories;
 				std::string					_file;
+				std::string					_path;
 				std::string					_query;
-				std::string					_queryArgs;
-
-				std::vector<Token>			_tokens;
+				std::string					_queryArgs;				
+				std::string					_scheme;
+				std::string					_uri;
 
 			public:
 				CURI(void);
@@ -76,6 +77,7 @@ namespace AoofWm
 				CCredentials				GetCredentials(void) const ;
 				std::vector<std::string>	GetDirectories(void) const;
 				const std::string&			GetFile(void) const;
+				const std::string&			GetPath(void) const;
 				const std::string&			GetQuery(void) const;
 				const std::string&			GetScheme(void) const;
 				const std::string&			GetURIString(void) const;
@@ -91,6 +93,7 @@ namespace AoofWm
 				CCredentials				ExtractCredentials(void);
 				std::vector<std::string>&	ExtractDirectories(void);
 				const std::string&			ExtractFile(void);
+				const std::string&			ExtractPath(void);
 				const std::string&			ExtractQuery(void);
 				const std::string&			ExtractScheme(void);
 			};

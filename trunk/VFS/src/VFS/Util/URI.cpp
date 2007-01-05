@@ -69,6 +69,11 @@ namespace AoofWm
 			{
 				return (_file);
 			}
+			
+			const std::string&			CURI::GetPath(void) const
+			{
+				return (_path);
+			}
 
 			const std::string&			CURI::GetQuery(void) const
 			{
@@ -105,6 +110,7 @@ namespace AoofWm
 				_scheme			= ExtractScheme();
 				_directories	= ExtractDirectories();
 				_file			= ExtractFile();
+				_path			= ExtractPath();
 				//_query			= ExtractQuery();
 			}
 			
@@ -215,6 +221,17 @@ namespace AoofWm
 				}
 				return (_file);
 			}
+			
+			const std::string&			CURI::ExtractPath(void)
+			{
+				for (unsigned int i = 0; i < _directories.size(); i++)
+				{
+					_path.append(_directories.at(i) + "/");
+				}
+				_path.append(_file);
+				return (_path);
+			}
+			
 
 			const std::string&			CURI::ExtractQuery(void)
 			{

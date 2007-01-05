@@ -53,7 +53,7 @@ namespace VFS
 			
 		const std::string&						CResourceName::GetBaseName(void) const
 		{
-			return ("/!\\ - Not Implemented Yet.");
+			return (_uri.GetFile());
 		}
 		
 		const std::string&						CResourceName::GetExtension(void) const
@@ -63,12 +63,12 @@ namespace VFS
 		
 		const std::string&						CResourceName::GetPath(void) const
 		{
-			return ("/!\\ - Not Implemented Yet.");
+			return (_uri.GetPath());	
 		}
 		
 		const std::string&						CResourceName::GetScheme(void) const
 		{
-				return ((const std::string&)_uri.GetScheme());
+			return (_uri.GetScheme());
 		}
 		
 		const AoofWm::VFS::Util::CURI&			CResourceName::GetURI(void) const
