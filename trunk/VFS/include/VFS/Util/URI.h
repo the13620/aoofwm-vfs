@@ -73,25 +73,26 @@ namespace AoofWm
 				CURI(const std::string& uri);
 				~CURI(void);
 
-				bool						IsAbsolute(void);
-				bool						IsRelative(void);
-
-				const std::string&			GetURIString(void) const;
-				const std::string&			GetScheme(void) const;
 				CCredentials				GetCredentials(void) const ;
 				std::vector<std::string>	GetDirectories(void) const;
 				const std::string&			GetFile(void) const;
 				const std::string&			GetQuery(void) const;
+				const std::string&			GetScheme(void) const;
+				const std::string&			GetURIString(void) const;
 
+				const bool					IsAbsolute(void) const;
+				const bool					IsRelative(void) const;
 
+				void						Parse(const std::string& uri);
+
+				void						Print(void) const;
 
 			private:
-				void						Parse(void);
-				const std::string&			ExtractScheme(void);
 				CCredentials				ExtractCredentials(void);
 				std::vector<std::string>&	ExtractDirectories(void);
 				const std::string&			ExtractFile(void);
 				const std::string&			ExtractQuery(void);
+				const std::string&			ExtractScheme(void);
 			};
 		}
 	}
