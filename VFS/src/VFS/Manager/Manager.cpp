@@ -74,10 +74,12 @@ namespace VFS
 			 */
 			if (rsrcURI.GetFile().empty())
 			{// Directory
+				std::cout << "Directory Detection" << std::endl;
 				pRsrc = new VFS::Resource::CDirectoryResource(uri);
 			}
 			else
 			{// File
+				std::cout << "File Detection" << std::endl;
 				pRsrc = new VFS::Resource::CFileResource(uri);
 			}
 			/*

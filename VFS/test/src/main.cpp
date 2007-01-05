@@ -17,17 +17,19 @@ int	unit(int ac, char **av)
 
 const char*		glTestResources[]	=
 {
-	"file://file.txt",
-	"file://file",
-	
-	"file://dir",
-	"file://dir/",
-	
-	"file://dir/file.txt",
-	"file://dir/file",
-	
-	"file://dir/dir",
-	"file://dir/dir/",
+	"file://C:/test/",
+	"file://C:/test/test.txt",
+//	"file://file.txt",
+//	"file://file",
+//	
+//	"file://dir",
+//	"file://dir/",
+//	
+//	"file://dir/file.txt",
+//	"file://dir/file",
+//	
+//	"file://dir/dir",
+//	"file://dir/dir/",
 	
 	NULL
 };
@@ -35,34 +37,58 @@ const char*		glTestResources[]	=
 
 int	vfsCase(const std::string& rsrcUri)
 {
-	std::string	line;
+	VFS::Manager::API::IManager*			pVFSMgr;
+	VFS::Resource::API::IResource*			pRsrc;
 	
 	std::cout << "---------- VFS USE CASE EXAMPLE ----------" << std::endl;
 	
-	std::cout << " + Initializing the VFS" << std::endl;
-	VFS::Manager::API::IManager*	pVFSMgr = VFS::CVFS::GetVFS()->GetDefaultManager();
+	std::cout << " + Initializing VFS" << std::endl;
+	pVFSMgr = VFS::CVFS::GetVFS()->GetDefaultManager();
 
-	std::cout << " + Initializing/Resolving a Resource" << std::endl;
-	VFS::Resource::API::IResource*	pRsrc = pVFSMgr->Resource(rsrcUri);
+	std::cout << " + Initializing/Resolving Resource" << std::endl;
+	pRsrc = pVFSMgr->Resource(rsrcUri);
 
-	if (pRsrc != NULL)
+	if ((pRsrc != NULL) && (pRsrc->Exists()))
 	{
-		std::cout << " + Opening the resolved Resource" << std::endl;
+		const VFS::Resource::RsrcString*		line;
+		const VFS::Resource::RsrcStringList*	lines;
+		
+		std::cout << " + Opening resolved Resource" << std::endl;
+		std::cout << pRsrc->GetName()->GetPath() << std::endl;
 		pRsrc->Open();
 		
-		std::cout << " + Readoing Resource's content" << std::endl;
-	//	while ((line = pRsrc->Readline()) != std::string::npos)
-	//	{
-	//		std::cout << "\t\t" << line << std::endl;
-	//	}
+		std::cout << " + Retrieving Resource's size" << std::endl;
+		std::cout << "\t\t> " << pRsrc->Size() << std::endl;
+		
+		std::cout << " + Reading Resource's content" << std::endl;
+		while ((line = pRsrc->ReadLine()) != NULL)
+		{
+			std::cout << "\t\t> " << *line << std::endl;
+			delete line;
+		}
+		
+		std::cout << " + Reseting Resource's internal pointer" << std::endl;
+		pRsrc->Reset();
+		
+		std::cout << " + Reading all Resource's content" << std::endl;
+		lines = pRsrc->ReadLines();
+		if (lines != NULL)
+		{
+			for (unsigned int i = 0; i < lines->size(); i++)
+			{
+				std::cout << "\t\t> " << lines->at(i) << std::endl;
+			}
+			delete lines;
+		}
+
 		std::cout << " + Closing Resource" << std::endl;
 		pRsrc->Close();
 	}
 
-	std::cout << " + Destroying the Resource" << std::endl;
+	std::cout << " + Destroying Resource" << std::endl;
 	delete pRsrc;
 	
-	std::cout << " + Destroying the VFS" << std::endl;
+	std::cout << " + Destroying VFS" << std::endl;
 	delete VFS::CVFS::GetVFS();
 	std::cout << "------------------------------------------" << std::endl;
 	
@@ -82,7 +108,7 @@ int	vfs(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	VFS::Util::URITestMain(ac, av);
+//	VFS::Util::URITestMain(ac, av);
 	vfs(ac, av);
 	return (0);	
 }
