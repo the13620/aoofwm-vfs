@@ -3,19 +3,20 @@
 
 <ManagedProjectBuildInfo>
 <project id="Aoof-WM.VFS.cdt.managedbuild.target.gnu.cygwin.exe.17885602" name="Executable (Gnu on Windows)" projectType="cdt.managedbuild.target.gnu.cygwin.exe">
-<configuration artifactExtension="exe" artifactName="Aoof-WM.VFS" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.562768466" name="Debug" parent="cdt.managedbuild.config.gnu.cygwin.exe.debug">
+<configuration artifactExtension="exe" artifactName="Aoof-Wm.VFS" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.VCErrorParser" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.562768466" name="Debug" parent="cdt.managedbuild.config.gnu.cygwin.exe.debug">
 <toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug.2094220637" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug">
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug.617770393" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug">
 <option id="gnu.cpp.compiler.option.include.paths.1996247306" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-WM.VFS/include}&quot;"/>
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-WM.VFS/test/include}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/test/include}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/include}&quot;"/>
 </option>
 <option id="gnu.cpp.compiler.option.warnings.pedantic.191487967" superClass="gnu.cpp.compiler.option.warnings.pedantic" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.other.verbose.1734238909" superClass="gnu.cpp.compiler.option.other.verbose" value="false" valueType="boolean"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1010427014" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug">
 <option id="gnu.c.compiler.option.include.paths.1429176230" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-WM.VFS/include}&quot;"/>
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-WM.VFS/test/include}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/include}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/test/include}&quot;"/>
 </option>
 <option id="gnu.c.compiler.option.warnings.pedantic.1175613843" superClass="gnu.c.compiler.option.warnings.pedantic" value="true" valueType="boolean"/>
 <option id="gnu.c.compiler.option.misc.verbose.1520891652" superClass="gnu.c.compiler.option.misc.verbose" value="true" valueType="boolean"/>
@@ -24,7 +25,7 @@
 <tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug.1910932591" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug.1710716719" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug">
 <option id="gnu.cpp.link.option.paths.884485993" superClass="gnu.cpp.link.option.paths" valueType="stringList">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-WM.VFS/lib}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/lib}&quot;"/>
 </option>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug.107074775" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug"/>

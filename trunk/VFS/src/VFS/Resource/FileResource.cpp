@@ -40,6 +40,7 @@ namespace VFS
 		
 		CFileResource::~CFileResource(void)
 		{
+			std::cout << "FDestruction" << std::endl;
 		}
 		
 		
@@ -62,7 +63,7 @@ namespace VFS
 
 		const bool				CFileResource::Open(void)
 		{
-			if (_stream.is_open() == false)
+			if (IsOpen() == false)
 			{
 				_stream.open(GetName()->GetPath().c_str());
 				if (_stream.is_open())
@@ -82,7 +83,7 @@ namespace VFS
 		
 		const bool				CFileResource::Close(void)
 		{
-			if (_stream.is_open() == false)
+			if (IsOpen() == false)
 			{
 				_stream.close();
 				return (_stream.is_open() == false);
@@ -101,7 +102,7 @@ namespace VFS
 			{
 				return (Open());
 			}
-			if (_stream.is_open() == false)
+			if (IsOpen() == false)
 			{
 				_stream.open(GetName()->GetPath().c_str());
 				if (_stream.is_open())
@@ -140,7 +141,7 @@ namespace VFS
 		
 		const bool				CFileResource::Seek(const unsigned long location)
 		{
-			if (_stream.is_open())
+			if (IsOpen())
 			{
 				_stream.seekp(location);
 				_stream.seekg(location);
@@ -152,7 +153,10 @@ namespace VFS
 		
 		const unsigned long		CFileResource::Tell(void)
 		{
-			
+			if (IsOpen())
+			{
+				return (_stream.tellg());
+			}
 			return (0);
 		}
 		
@@ -161,7 +165,7 @@ namespace VFS
 		{
 			FileStat	fileStat;
 			
-			if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &fileStat) == 0)
+			if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
 			{
 				return (fileStat.st_size);
 			}
@@ -202,7 +206,7 @@ namespace VFS
 		
 		const unsigned int		CFileResource::Read(char buffer[], unsigned int size)
 		{
-			if (_stream.is_open())
+			if (IsOpen())
 			{
 
 			}
@@ -211,7 +215,7 @@ namespace VFS
 		
 		const unsigned int		CFileResource::Read(char buffer[], unsigned int offset, unsigned int size)
 		{
-			if (_stream.is_open())
+			if (IsOpen())
 			{
 
 			}
@@ -220,7 +224,7 @@ namespace VFS
 		
 		const RsrcString*		CFileResource::ReadLine(const RsrcString& delimiter)
 		{
-			if (_stream.is_open())
+			if (IsOpen())
 			{
 				/*
 				 * TODO: no time, later
@@ -232,7 +236,7 @@ namespace VFS
 		
 		const RsrcString*		CFileResource::ReadLine(const char delimiter)
 		{
-			if (_stream.is_open())
+			if (IsOpen())
 			{
 				if (_stream.eof() == false)
 				{
@@ -247,7 +251,7 @@ namespace VFS
 		
 		const RsrcStringList*	CFileResource::ReadLines(const RsrcString& delimiter)
 		{
-			if (_stream.is_open())
+			if (IsOpen())
 			{
 				RsrcStringList*		pRsrcStringList;
 				const RsrcString*	pLine;
@@ -265,7 +269,7 @@ namespace VFS
 		
 		const RsrcStringList*	CFileResource::ReadLines(const char delimiter)
 		{
-			if (_stream.is_open())
+			if (IsOpen())
 			{
 				RsrcStringList*		pRsrcStringList;
 				const RsrcString*	pLine;
@@ -288,7 +292,7 @@ namespace VFS
 			{
 				FileStat	fileStat;
 			
-				if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &fileStat) == 0)
+				if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
 				{
 					return ((fileStat.st_mode & O_RDWR) == O_RDWR);
 				}
@@ -307,12 +311,17 @@ namespace VFS
 			{
 				FileStat	fileStat;
 			
-				if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &fileStat) == 0)
+				if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
 				{
 					return ((fileStat.st_mode & O_RDONLY) == O_RDONLY);
 				}
 			}
 			return (false);
+		}
+		
+		const bool				CFileResource::IsOpen(void) const
+		{
+			return ((const_cast<std::fstream*>(&_stream))->is_open());
 		}
 		
 		const bool				CFileResource::IsOpen(void)
