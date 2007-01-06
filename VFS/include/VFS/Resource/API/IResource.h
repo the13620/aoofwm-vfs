@@ -50,6 +50,8 @@ namespace	VFS
 			class	IResource
 	    	{
 	      	public:
+	      		virtual ~IResource(void) {};
+	      		
 				virtual const IResourceContent*					GetContent(void) const												= 0;
 		      	virtual const IResourceName*					GetName(void) const													= 0;
 		      	virtual const IResourceType*					GetType(void) const													= 0;
@@ -95,9 +97,6 @@ namespace	VFS
 				//virtual const IResource*		GetChild(RsrcString name) const	= 0;
 				//virtual const std::map<RsrcString, IResource *>	GetChildren(void) const	= 0;
 				//virtual const bool			FindChildren() const	= 0;
-				
-			protected:
-				virtual void									Finalize(void)														= 0;
 		    };
 		}
     }

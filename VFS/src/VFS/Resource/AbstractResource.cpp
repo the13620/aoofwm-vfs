@@ -54,8 +54,6 @@ namespace VFS
 		
 		CAbstractResource::~CAbstractResource(void)
 		{
-			std::cout << "ADestruction" << std::endl;
-			Finalize();
 			delete(_pRsrcContent);
 			delete(_pRsrcName);
 			delete(_pRsrcType);
@@ -75,13 +73,6 @@ namespace VFS
       	const API::IResourceType*		CAbstractResource::GetType(void) const
 		{
 			return (_pRsrcType);
-		}
-		
-		
-		void							CAbstractResource::Finalize(void)
-		{
-			std::cout << "Finalize" << std::endl;
-			Close();
 		}
 	}
 }

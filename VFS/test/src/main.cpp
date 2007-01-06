@@ -6,6 +6,7 @@
 #include "VFS/VFS.h"
 #include "VFS/Manager/Manager.h"
 #include "VFS/Manager/API/IManager.h"
+#include "VFS/Resource/FileResource.h"
 
 
 int	unit(int ac, char **av)
@@ -17,6 +18,8 @@ int	unit(int ac, char **av)
 
 const char*		glTestResources[]	=
 {
+	"C:/test/",
+	"C:/test/test.txt",
 	"file://C:/test/",
 	"file://C:/test/test.txt",
 //	"file://file.txt",

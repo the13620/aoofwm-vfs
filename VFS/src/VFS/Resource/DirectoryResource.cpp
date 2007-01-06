@@ -43,7 +43,7 @@ namespace VFS
 		
 		CDirectoryResource::~CDirectoryResource(void)
 		{
-			std::cout << "DDestruction" << std::endl;
+			
 		}
 		
 		

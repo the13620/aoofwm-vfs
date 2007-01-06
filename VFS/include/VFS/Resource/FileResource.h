@@ -91,6 +91,7 @@ namespace	VFS
 			const bool				IsWritable(void) const;
 			const bool				IsHidden(void) const;
 			const bool				IsReadable(void) const;
+			const bool				IsOpen(void) const;
 			const bool				IsOpen(void);
 		};
 	}

@@ -50,15 +50,12 @@ namespace	VFS
 			CAbstractResource(void);
 			CAbstractResource(const std::string& uri);
 			CAbstractResource(const CAbstractResource& rsrc);
-			virtual ~CAbstractResource(void);
+			~CAbstractResource(void);
 			
 			
 			const API::IResourceContent*	GetContent(void) const;
 	      	const API::IResourceName*		GetName(void) const;
 	      	const API::IResourceType*		GetType(void) const;
-	      	
-      	protected:
-      		void							Finalize(void);
       	};
 	}
 }
