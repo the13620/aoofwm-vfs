@@ -3,15 +3,15 @@
 
 #include "test.h"
 
-#include "VFS/VFS.h"
-#include "VFS/Manager/Manager.h"
-#include "VFS/Manager/API/IManager.h"
-#include "VFS/Resource/FileResource.h"
+#include "Aoof-Wm/VFS/VFS.h"
+#include "Aoof-Wm/VFS/Manager/Manager.h"
+#include "Aoof-Wm/VFS/Manager/API/IManager.h"
+#include "Aoof-Wm/VFS/Resource/FileResource.h"
 
 
 int	unit(int ac, char **av)
 {
-	VFS::Util::URITestMain(ac, av);
+	AoofWm::VFS::Util::URITestMain(ac, av);
 	return (0);
 }
 
@@ -40,21 +40,21 @@ const char*		glTestResources[]	=
 
 int	vfsCase(const std::string& rsrcUri)
 {
-	VFS::Manager::API::IManager*			pVFSMgr;
-	VFS::Resource::API::IResource*			pRsrc;
+	AoofWm::VFS::Manager::API::IManager*			pVFSMgr;
+	AoofWm::VFS::Resource::API::IResource*			pRsrc;
 	
 	std::cout << "---------- VFS USE CASE EXAMPLE ----------" << std::endl;
 	
 	std::cout << " + Initializing VFS" << std::endl;
-	pVFSMgr = VFS::CVFS::GetVFS()->GetDefaultManager();
+	pVFSMgr = AoofWm::VFS::CVFS::GetVFS()->GetDefaultManager();
 
 	std::cout << " + Initializing/Resolving Resource" << std::endl;
 	pRsrc = pVFSMgr->Resource(rsrcUri);
 
 	if ((pRsrc != NULL) && (pRsrc->Exists()))
 	{
-		const VFS::Resource::RsrcString*		line;
-		const VFS::Resource::RsrcStringList*	lines;
+		const AoofWm::VFS::Resource::RsrcString*		line;
+		const AoofWm::VFS::Resource::RsrcStringList*	lines;
 		
 		std::cout << " + Opening resolved Resource" << std::endl;
 		std::cout << pRsrc->GetName()->GetPath() << std::endl;
@@ -92,7 +92,7 @@ int	vfsCase(const std::string& rsrcUri)
 	delete pRsrc;
 	
 	std::cout << " + Destroying VFS" << std::endl;
-	delete VFS::CVFS::GetVFS();
+	delete AoofWm::VFS::CVFS::GetVFS();
 	std::cout << "------------------------------------------" << std::endl;
 	
 	return (0);
@@ -111,7 +111,7 @@ int	vfs(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-//	VFS::Util::URITestMain(ac, av);
+//	AoofWm::VFS::Util::URITestMain(ac, av);
 	vfs(ac, av);
 	return (0);	
 }

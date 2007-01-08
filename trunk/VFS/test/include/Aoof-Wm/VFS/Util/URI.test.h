@@ -30,18 +30,20 @@
 #ifndef __AOOFWM_VFS_UTIL_URI_TEST_H__
 # define __AOOFWM_VFS_UTIL_URI_TEST_H__
 
-# include <VFS/Util/URI.h>
+# include <Aoof-Wm/VFS/Util/URI.h>
 
-namespace	VFS
+namespace	AoofWm
 {
-	namespace	Util
+	namespace	VFS
 	{
-		void	URITest(const std::string uriStr);
-		void	URITest(const char* pUriStr);
-		
-		int		URITestMain(int ac, char **av);
+		namespace	Util
+		{
+			void	URITest(const std::string uriStr);
+			void	URITest(const char* pUriStr);
+			
+			int		URITestMain(int ac, char **av);
+		}
 	}
 }
-
 
 #endif	// __AOOFWM_VFS_UTIL_URI_TEST_H__
