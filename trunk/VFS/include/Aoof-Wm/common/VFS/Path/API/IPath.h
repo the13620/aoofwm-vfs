@@ -27,9 +27,34 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_PATH_API_IPATH_H__
+# define __AOOFWM_VFS_PATH_API_IPATH_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <string>
+# include <vector>
 
-#endif	// __AOOFWM_TEST_H__
+# include <Aoof-Wm/common/VFS/Path/API/IPathEntry.h>
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Path
+		{
+			typedef std::vector<const AoofWm::VFS::Path::API::IPathEntry*>	PathEntryList;
+	
+			namespace	API
+			{
+				class	IPath
+				{
+				public:
+					virtual const std::string&		GetPath(void) const									= 0;
+					virtual const PathEntryList&	GetEntries(void) const								= 0;
+					virtual const API::IPathEntry*	GetEntry(const PathEntryList::size_type idx) const	= 0;
+				};
+			}
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_PATH_API_IPATH_H__

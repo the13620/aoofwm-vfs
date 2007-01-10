@@ -27,9 +27,33 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_ERROR_API_IERROR_H__
+# define __AOOFWM_VFS_ERROR_API_IERROR_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <string>
 
-#endif	// __AOOFWM_TEST_H__
+# include <Aoof-Wm/common/VFS/Error/ErrorCode.h>
+
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Error
+		{
+			namespace	API
+			{
+				class	IError
+				{
+				public:
+					virtual ~IError(void) {};
+					
+					virtual	const eErrorCode	GetCode(void) const		=	0;
+					virtual	const std::string&	GetMessage(void) const	=	0;
+				};
+			}
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_ERROR_API_IERROR_H__

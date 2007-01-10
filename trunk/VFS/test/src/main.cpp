@@ -3,10 +3,10 @@
 
 #include "test.h"
 
-#include "Aoof-Wm/VFS/VFS.h"
-#include "Aoof-Wm/VFS/Manager/Manager.h"
-#include "Aoof-Wm/VFS/Manager/API/IManager.h"
-#include "Aoof-Wm/VFS/Resource/FileResource.h"
+#include <Aoof-Wm/common/VFS/VFS.h>
+#include <Aoof-Wm/common/VFS/Manager/Manager.h>
+#include <Aoof-Wm/common/VFS/Manager/API/IManager.h>
+#include <Aoof-Wm/common/VFS/Resource/FileResource.h>
 
 
 int	unit(int ac, char **av)

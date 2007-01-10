@@ -27,9 +27,38 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_RESOURCE_RESOURCENAME_H__
+# define __AOOFWM_VFS_RESOURCE_RESOURCENAME_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Resource/API/IResourceName.h>
 
-#endif	// __AOOFWM_TEST_H__
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Resource
+		{
+			class	CResourceName : public virtual AoofWm::VFS::Resource::API::IResourceName
+			{
+			private:
+				const AoofWm::VFS::Resource::API::IResource*	_pResource;
+				AoofWm::VFS::Util::CURI					_uri;
+				
+			public:
+				CResourceName(const AoofWm::VFS::Resource::API::IResource* pRsrc, const std::string& name);
+				virtual ~CResourceName(void);
+				
+				const AoofWm::VFS::Resource::API::IResource*	GetResource(void) const;
+				
+				const std::string&						GetBaseName(void) const;
+				const std::string&						GetExtension(void) const;
+				const std::string&						GetPath(void) const;
+				const std::string&						GetScheme(void) const;
+				const AoofWm::VFS::Util::CURI&			GetURI(void) const;
+			};
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_RESOURCE_RESOURCENAME_H__

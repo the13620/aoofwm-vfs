@@ -26,10 +26,52 @@
 **
 */
 
+#include <Aoof-Wm/common/VFS/Resource/ResourceType.h>
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
-
-#endif	// __AOOFWM_TEST_H__
+namespace AoofWm
+{
+	namespace VFS
+	{
+		namespace Resource
+		{
+			CResourceType::CResourceType(const AoofWm::VFS::Resource::API::IResource* pRsrc)
+			{
+				_pResource = pRsrc;
+			}
+			
+			CResourceType::~CResourceType(void)
+			{
+				
+			}
+			
+				
+			const AoofWm::VFS::Resource::API::IResource*	CResourceType::GetResource(void) const
+			{
+				return (_pResource);
+			}
+			
+				
+			const std::string&						CResourceType::GetResourceTypeName(void) const
+			{
+				return (_strTypeName);
+			}
+			
+			const eVFSResourceTypeCode				CResourceType::GetResourceTypeCode(void) const
+			{
+				return (_eTypeCode);
+			}
+			
+	
+			const bool								CResourceType::HasChildren(void) const
+			{
+				return (true);	// TODO: useless for now
+			}
+			
+			const bool								CResourceType::CResourceType::HasContent(void) const
+			{
+				return (true);	// TODO: useless for now
+			}
+		}
+	}
+}

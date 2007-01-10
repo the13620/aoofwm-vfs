@@ -26,10 +26,57 @@
 **
 */
 
+#include <string>
+#include <vector>
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#include <Aoof-Wm/common/VFS/Util/Credentials.h>
+#include <Aoof-Wm/common/VFS/Util/Tokenizer.h>
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+namespace AoofWm
+{
+	namespace VFS
+	{
+		namespace Util
+		{
+			CCredentials::CCredentials(void)
+			{
+				_user = std::string();
+				_passwd = std::string();
+			}
+			
+			CCredentials::CCredentials(const CCredentials& copy)
+			{
+				_user = copy.GetUser();
+				_passwd = copy.GetPassword();
+			}
+			
+			CCredentials::~CCredentials(void)
+			{
+			}
 
-#endif	// __AOOFWM_TEST_H__
+			CCredentials*	CCredentials::fromString(const std::string& source)
+			{
+				std::vector<Token>	tokens;
+
+				tokens = CTokenizer::Tokenize(source, ":");
+				if (tokens.size() > 1)
+				{
+					CCredentials	credentials = CCredentials(tokens.at(0).token, tokens.at(1).token);
+					
+					return (new CCredentials(tokens.at(0).token, tokens.at(1).token));
+				}
+				return (NULL);
+			}
+
+			std::string		CCredentials::GetUser(void) const
+			{
+				return (_user);
+			}
+
+			std::string		CCredentials::GetPassword(void) const
+			{
+				return (_passwd);
+			}
+		}
+	}
+}

@@ -25,11 +25,59 @@
 ** Project : The Toy'd Project
 **
 */
+#include <iostream>
+
+#include <Aoof-Wm/common/VFS/Resource/ResourceName.h>
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
-
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
-
-#endif	// __AOOFWM_TEST_H__
+namespace AoofWm
+{
+	namespace VFS
+	{
+		namespace Resource
+		{
+			CResourceName::CResourceName(const AoofWm::VFS::Resource::API::IResource* pRsrc, const std::string& name)
+				: _pResource(pRsrc), _uri(name)
+			{
+	
+			}
+			
+			CResourceName::~CResourceName(void)
+			{
+				
+			}
+			
+			
+			const AoofWm::VFS::Resource::API::IResource*	CResourceName::GetResource(void) const
+			{
+				return (_pResource);
+			}
+			
+				
+			const std::string&						CResourceName::GetBaseName(void) const
+			{
+				return (_uri.GetFile());
+			}
+			
+			const std::string&						CResourceName::GetExtension(void) const
+			{
+				return ("/!\\ - Not Implemented Yet.");			
+			}
+			
+			const std::string&						CResourceName::GetPath(void) const
+			{
+				return (_uri.GetPath());	
+			}
+			
+			const std::string&						CResourceName::GetScheme(void) const
+			{
+				return (_uri.GetScheme());
+			}
+			
+			const AoofWm::VFS::Util::CURI&			CResourceName::GetURI(void) const
+			{
+				return (_uri);
+			}
+		}
+	}
+}

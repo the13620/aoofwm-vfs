@@ -26,10 +26,33 @@
 **
 */
 
+#ifndef __AOOFWM_VFS_PROVIDER_FILEPROVIDER_H__
+# define __AOOFWM_VFS_PROVIDER_FILEPROVIDER_H__
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+# include <string>
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Provider/API/IProvider.h>
 
-#endif	// __AOOFWM_TEST_H__
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Provider
+	    {
+	    	class	CFileProvider : public AoofWm::VFS::Provider::API::IProvider
+			{
+			public:
+				static const std::string	_scheme;
+				
+			public:
+				CFileProvider(void);
+				virtual ~CFileProvider(void);
+			
+				const std::string&						GetScheme(void) const;
+				static AoofWm::VFS::Provider::API::IProvider*	Construct(void);
+			};
+	    }
+	}
+}
+
+#endif	// __AOOFWM_VFS_PROVIDER_FILEPROVIDER_H__

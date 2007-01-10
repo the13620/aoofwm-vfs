@@ -26,10 +26,58 @@
 **
 */
 
+#include <Aoof-Wm/common/VFS/VFS.h>
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
-
-#endif	// __AOOFWM_TEST_H__
+namespace AoofWm
+{
+	namespace VFS
+	{
+		CVFS*	CVFS::_pVFS	= NULL;
+		
+		
+		CVFS::CVFS(void)
+		{
+			_pDefaultManager = NULL;
+		}
+		
+		CVFS::~CVFS(void)
+		{
+			if (_pDefaultManager != NULL)
+			{
+				delete _pDefaultManager;
+				_pDefaultManager = NULL;
+			}
+			CVFS::_pVFS = NULL;
+		}
+		
+		
+		AoofWm::VFS::Manager::API::IManager*	CVFS::CreateManager(void) const
+		{
+			return (NULL);
+		}
+		
+		AoofWm::VFS::Manager::API::IManager*	CVFS::GetManager(void) const
+		{
+			return (NULL);
+		}
+		
+		CVFS*							CVFS::GetVFS(void)
+		{
+			if (CVFS::_pVFS == NULL)
+			{
+				_pVFS = new CVFS();
+			}
+			return (_pVFS);
+		}
+		
+		AoofWm::VFS::Manager::API::IManager*	CVFS::GetDefaultManager(void)
+		{
+			if (CVFS::GetVFS()->_pDefaultManager == NULL)
+			{
+				CVFS::GetVFS()->_pDefaultManager = new AoofWm::VFS::Manager::CManager();
+			}
+			return (CVFS::GetVFS()->_pDefaultManager);
+		}
+	}
+}

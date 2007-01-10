@@ -27,9 +27,28 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_DRIVER_DRIVER_H__
+# define __AOOFWM_VFS_DRIVER_DRIVER_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <string>
 
-#endif	// __AOOFWM_TEST_H__
+# include <Aoof-Wm/common/VFS/Driver/API/IDriver.h>
+# include <Aoof-Wm/common/VFS/Resource/API/IResource.h>
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Driver
+		{
+			class	CDriver : public virtual AoofWm::VFS::Driver::API::IDriver
+			{
+			public:
+				CDriver(void);
+				virtual ~CDriver(void);
+			};
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_DRIVER_DRIVER_H__

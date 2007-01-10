@@ -27,9 +27,23 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_UTIL_URI_TEST_H__
+# define __AOOFWM_VFS_UTIL_URI_TEST_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Util/URI.h>
 
-#endif	// __AOOFWM_TEST_H__
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Util
+		{
+			void	URITest(const std::string uriStr);
+			void	URITest(const char* pUriStr);
+			
+			int		URITestMain(int ac, char **av);
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_UTIL_URI_TEST_H__
