@@ -27,9 +27,34 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_PATH_CPATH_H__
+# define __AOOFWM_VFS_PATH_CPATH_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Path/API/IPath.h>
+# include <Aoof-Wm/common/VFS/Path/API/IPathEntry.h>
 
-#endif	// __AOOFWM_TEST_H__
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Path
+		{
+			class	CPath : public AoofWm::VFS::Path::API::IPath
+			{
+			private:
+				std::string		_path;
+				PathEntryList	_entries;
+				
+			public:
+				CPath(const std::string& path);
+				virtual ~CPath(void);
+			
+				const std::string&		GetPath(void) const;
+				const PathEntryList&	GetEntries(void) const;
+				const API::IPathEntry*	GetEntry(const PathEntryList::size_type idx) const;
+			};
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_PATH_CPATH_H__

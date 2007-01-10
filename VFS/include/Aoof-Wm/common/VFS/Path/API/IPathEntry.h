@@ -27,9 +27,29 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_PATH_API_IPATHENTRY_H__
+# define __AOOFWM_VFS_PATH_API_IPATHENTRY_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <string>
 
-#endif	// __AOOFWM_TEST_H__
+# include <Aoof-Wm/common/VFS/Provider/API/IProvider.h>
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Path
+		{
+			namespace	API
+			{
+				class	IPathEntry
+				{
+					virtual const std::string&						GetName(void) const		= 0;
+					virtual const AoofWm::VFS::Provider::API::IProvider*	GetProvider(void) const	= 0;
+				};
+			}
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_PATH_API_IPATHENTRY_H__

@@ -27,9 +27,27 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_PROVIDER_PROVIDERS_H__
+# define __AOOFWM_VFS_PROVIDER_PROVIDERS_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <map>
+# include <string>
 
-#endif	// __AOOFWM_TEST_H__
+# include <Aoof-Wm/common/VFS/Provider/API/IProvider.h>
+
+# include <Aoof-Wm/common/VFS/Provider/FileProvider.h>
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Provider
+		{
+			typedef	AoofWm::VFS::Provider::API::IProvider*				(*ProviderConstructor)(void);
+			typedef std::map<std::string, ProviderConstructor>	ProvidersMap;
+		}
+	}
+}
+
+
+#endif	// __AOOFWM_VFS_PROVIDER_PROVIDERS_H__

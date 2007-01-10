@@ -27,9 +27,27 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_RESOURCE_RESOURCES_H__
+# define __AOOFWM_VFS_RESOURCE_RESOURCES_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Resource/AbstractResource.h>
+# include <Aoof-Wm/common/VFS/Resource/DirectoryResource.h>
+# include <Aoof-Wm/common/VFS/Resource/FileResource.h>
 
-#endif	// __AOOFWM_TEST_H__
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Resource
+		{
+			/*
+			**
+			* TODO:
+			**	Doesn't need anything here... for now.
+			**
+			*/
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_RESOURCE_RESOURCES_H__

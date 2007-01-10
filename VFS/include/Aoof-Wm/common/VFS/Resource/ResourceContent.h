@@ -27,9 +27,35 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_RESOURCE_RESOURCECONTENT_H__
+# define __AOOFWM_VFS_RESOURCE_RESOURCECONTENT_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Resource/API/IResourceContent.h>
+# include <Aoof-Wm/common/VFS/Resource/ResourceContentInfo.h>
 
-#endif	// __AOOFWM_TEST_H__
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Resource
+		{
+			class	CResourceContent : public virtual AoofWm::VFS::Resource::API::IResourceContent
+			{
+			private:
+				const AoofWm::VFS::Resource::API::IResource*			_pResource;
+				const AoofWm::VFS::Resource::API::IResourceContentInfo*	_pInfo;
+				
+			public:
+				CResourceContent(const AoofWm::VFS::Resource::API::IResource* pRsrc);
+				virtual ~CResourceContent(void);
+				
+				const AoofWm::VFS::Resource::API::IResource*			GetResource(void) const;
+				
+				const AoofWm::VFS::Resource::API::IResourceContentInfo*	GetInfo(void) const;
+			};
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_RESOURCE_RESOURCECONTENT_H__

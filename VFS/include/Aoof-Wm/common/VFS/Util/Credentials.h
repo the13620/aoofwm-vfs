@@ -27,9 +27,42 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_UTIL_CREDENTIALS_H__
+# define __AOOFWM_VFS_UTIL_CREDENTIALS_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
 
-#endif	// __AOOFWM_TEST_H__
+# include <string>
+
+# include <Aoof-Wm/common/VFS/Util/Tokenizer.h>
+
+
+namespace AoofWm
+{
+	namespace VFS
+	{
+		namespace Util
+		{
+			class CCredentials
+			{
+				private:
+					std::string					_user;
+					std::string					_passwd;
+
+				public:
+					CCredentials(void);
+					CCredentials(const CCredentials& copy);
+					CCredentials(const std::string& user, const std::string& passwd)
+						: _user(user), _passwd(passwd) {};
+					~CCredentials(void);
+
+					static CCredentials* fromString(const std::string& source);
+
+					std::string			GetUser(void) const;
+					std::string			GetPassword(void) const;
+			};
+		}
+	}
+}
+
+
+#endif	// ! __AOOFWM_VFS_UTIL_CREDENTIALS_H__

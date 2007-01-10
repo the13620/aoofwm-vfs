@@ -27,9 +27,37 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_VFS_H__
+# define __AOOFWM_VFS_VFS_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/API/IVFS.h>
+# include <Aoof-Wm/common/VFS/Manager/API/IManager.h>
+# include <Aoof-Wm/common/VFS/Manager/Manager.h>
 
-#endif	// __AOOFWM_TEST_H__
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		class	CVFS : public virtual AoofWm::VFS::API::IVFS
+		{
+		private:
+			static CVFS*					_pVFS;
+			AoofWm::VFS::Manager::API::IManager*	_pDefaultManager;
+			
+		private:
+			CVFS(void);
+	
+		public:
+			virtual ~CVFS(void);
+			
+	
+			AoofWm::VFS::Manager::API::IManager*		CreateManager(void) const;
+			AoofWm::VFS::Manager::API::IManager*		GetManager(void) const;
+			
+			static CVFS*						GetVFS(void);
+			static AoofWm::VFS::Manager::API::IManager*	GetDefaultManager(void);
+		};
+	}
+}
+
+#endif	// __AOOFWM_VFS_VFS_H__

@@ -27,9 +27,32 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_PATH_PATHENTRY_H__
+# define __AOOFWM_VFS_PATH_PATHENTRY_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Path/API/IPathEntry.h>
 
-#endif	// __AOOFWM_TEST_H__
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Path
+		{
+			class	CPathEntry : public AoofWm::VFS::Path::API::IPathEntry
+			{
+			private:
+				std::string						_name;
+				AoofWm::VFS::Provider::API::IProvider*	_provider;
+				
+			public:
+				CPathEntry(const std::string& name);
+				virtual ~CPathEntry(void);
+			
+				const std::string&						GetName(void) const;
+				const AoofWm::VFS::Provider::API::IProvider*	GetProvider(void) const;
+			};
+		}
+	}
+}
+
+#endif	// __AOOFWM_VFS_PATH_PATHENTRY_H__

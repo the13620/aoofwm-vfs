@@ -26,10 +26,22 @@
 **
 */
 
+#include <Aoof-Wm/common/VFS/Driver/Driver.h>
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
-
-#endif	// __AOOFWM_TEST_H__
+namespace AoofWm
+{
+	namespace VFS
+	{
+		namespace Driver
+		{
+			CDriver::CDriver(void)
+			{
+			}
+			
+			CDriver::~CDriver(void)
+			{
+			}
+		}
+	}
+}

@@ -26,10 +26,38 @@
 **
 */
 
+#ifndef __AOOFWM_VFS_RESOURCE_API_IRESOURCETYPE_H__
+# define __AOOFWM_VFS_RESOURCE_API_IRESOURCETYPE_H__
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+# include <string>
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Resource/ResourceTypeCode.h>
 
-#endif	// __AOOFWM_TEST_H__
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Resource
+	    {
+	    	namespace	API
+			{
+				class	IResource;	// Circular Forward Declaration
+				
+				class	IResourceType
+		    	{
+		      	public:
+			      	virtual const AoofWm::VFS::Resource::API::IResource*	GetResource(void) const				= 0;
+	
+					virtual const std::string&						GetResourceTypeName(void) const		= 0;
+					virtual const eVFSResourceTypeCode				GetResourceTypeCode(void) const		= 0;
+	
+					virtual const bool								HasChildren(void) const				= 0;
+					virtual const bool								HasContent(void) const				= 0;
+			    };
+			}
+	    }
+	}
+}
+
+#endif	// __AOOFWM_VFS_RESOURCE_API_IRESOURCETYPE_H__

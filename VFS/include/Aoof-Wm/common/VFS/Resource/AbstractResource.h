@@ -27,9 +27,41 @@
 */
 
 
-#ifndef __AOOFWM_TEST_H__
-# define __AOOFWM_TEST_H__
+#ifndef __AOOFWM_VFS_RESOURCE_ABSTRACTRESOURCE_H__
+# define __AOOFWM_VFS_RESOURCE_ABSTRACTRESOURCE_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/common/VFS/Resource/ResourceTypes.h>
 
-#endif	// __AOOFWM_TEST_H__
+# include <Aoof-Wm/common/VFS/Resource/API/IResource.h>
+
+namespace	AoofWm
+{
+	namespace	VFS
+	{
+		namespace	Resource
+		{
+			class	CAbstractResource : public virtual AoofWm::VFS::Resource::API::IResource
+			{
+			private:
+				API::IResourceContent*	_pRsrcContent;
+				API::IResourceName*		_pRsrcName;
+				API::IResourceType*		_pRsrcType;
+				
+				
+			public:
+				CAbstractResource(void);
+				CAbstractResource(const std::string& uri);
+				CAbstractResource(const CAbstractResource& rsrc);
+				~CAbstractResource(void);
+				
+				
+				const API::IResourceContent*	GetContent(void) const;
+		      	const API::IResourceName*		GetName(void) const;
+		      	const API::IResourceType*		GetType(void) const;
+	      	};
+		}
+	}
+}
+
+
+#endif	// __AOOFWM_VFS_RESOURCE_ABSTRACTRESOURCE_H__
