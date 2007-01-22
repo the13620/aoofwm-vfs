@@ -22,6 +22,7 @@ const char*		glTestResources[]	=
 	"C:/test/test.txt",
 	"file://C:/test/",
 	"file://C:/test/test.txt",
+	"testfile.txt",
 //	"file://file.txt",
 //	"file://file",
 //	
@@ -38,13 +39,14 @@ const char*		glTestResources[]	=
 };
 
 
+
+
 int	vfsCase(const std::string& rsrcUri)
 {
 	AoofWm::VFS::Manager::API::IManager*			pVFSMgr;
 	AoofWm::VFS::Resource::API::IResource*			pRsrc;
-	
+
 	std::cout << "---------- VFS USE CASE EXAMPLE ----------" << std::endl;
-	
 	std::cout << " + Initializing VFS" << std::endl;
 	pVFSMgr = AoofWm::VFS::CVFS::GetVFS()->GetDefaultManager();
 

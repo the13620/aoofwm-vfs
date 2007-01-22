@@ -1,10 +1,35 @@
-#Tue Dec 12 23:06:30 CET 2006
+#Fri Jan 19 16:32:43 CET 2007
 cdt.managedbuild.config.gnu.cygwin.exe.debug.562768466/internalBuilder/enabled=false
 cdt.managedbuild.config.gnu.cygwin.exe.debug.562768466/internalBuilder/ignoreErr=true
+cdt.managedbuild.config.gnu.cygwin.exe.debug.684957387/internalBuilder/enabled=false
+cdt.managedbuild.config.gnu.cygwin.exe.debug.684957387/internalBuilder/ignoreErr=true
+cdt.managedbuild.config.gnu.cygwin.exe.debug.713354720/internalBuilder/enabled=false
+cdt.managedbuild.config.gnu.cygwin.exe.debug.713354720/internalBuilder/ignoreErr=true
+cdt.managedbuild.config.gnu.cygwin.exe.debug.931800993/internalBuilder/enabled=false
+cdt.managedbuild.config.gnu.cygwin.exe.debug.931800993/internalBuilder/ignoreErr=true
+cdt.managedbuild.config.gnu.cygwin.exe.release.1641152129/internalBuilder/enabled=false
+cdt.managedbuild.config.gnu.cygwin.exe.release.1641152129/internalBuilder/ignoreErr=true
 cdt.managedbuild.config.gnu.cygwin.exe.release.2100532075/internalBuilder/enabled=false
 cdt.managedbuild.config.gnu.cygwin.exe.release.2100532075/internalBuilder/ignoreErr=true
+cdt.managedbuild.config.gnu.cygwin.exe.release.973579785/internalBuilder/enabled=false
+cdt.managedbuild.config.gnu.cygwin.exe.release.973579785/internalBuilder/ignoreErr=true
 eclipse.preferences.version=1
 environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.cygwin.exe.debug.562768466=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="CPLUS_INCLUDE_PATH" operation\="remove"/>\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.cygwin.exe.debug.684957387=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="CPLUS_INCLUDE_PATH" operation\="remove"/>\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.cygwin.exe.debug.713354720=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="CPLUS_INCLUDE_PATH" operation\="remove"/>\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.cygwin.exe.release.1641152129=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="CPLUS_INCLUDE_PATH" operation\="remove"/>\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.cygwin.exe.release.2100532075=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="CPLUS_INCLUDE_PATH" operation\="remove"/>\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.cygwin.exe.release.973579785=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="CPLUS_INCLUDE_PATH" operation\="remove"/>\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
 environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.cygwin.exe.debug.562768466=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="LIBRARY_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.cygwin.exe.debug.684957387=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="LIBRARY_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.cygwin.exe.debug.713354720=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="LIBRARY_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.cygwin.exe.release.1641152129=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="LIBRARY_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.cygwin.exe.release.2100532075=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="LIBRARY_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.cygwin.exe.release.973579785=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="LIBRARY_PATH" operation\="remove"/>\r\n</environment>\r\n
 environment/project=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
 environment/project/cdt.managedbuild.config.gnu.cygwin.exe.debug.562768466=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.debug.684957387=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.debug.713354720=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.release.1641152129=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.release.2100532075=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.release.973579785=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
