@@ -30,74 +30,10 @@
 #ifndef __AOOFWM_VFS_RESOURCE_FILERESOURCE_H__
 # define __AOOFWM_VFS_RESOURCE_FILERESOURCE_H__
 
-# include <cstdio>
-# include <fstream>
-# include <iostream>
-
-# include <fcntl.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <unistd.h>
-
-# include <Aoof-Wm/common/VFS/Resource/AbstractResource.h>
-
-namespace	AoofWm
-{
-	namespace	VFS
-	{
-		namespace	Resource
-		{
-			class	CFileResource : public virtual AoofWm::VFS::Resource::CAbstractResource
-			{
-	//			typedef FILE			FileHandle;
-				typedef struct stat		FileStat;
-				
-			private:
-				static const unsigned int	BUFFER_SIZE	= 1024;
-				
-				std::fstream	_stream;
-	//			FileHandle*		_pFileHandle;
-	//			char			_buffer[BUFFER_SIZE];
-	//			unsigned int	_bufferCount;
-							
-				
-			public:
-				CFileResource(const std::string& uri);
-				virtual ~CFileResource(void);
-				
-				const bool				Exists(void) const;
-	
-				const bool				Open(void);
-				const bool				Close(void);
-				const bool				Create(void);
-				const bool				Delete(void);
-				
-				const bool				Reset(void);
-				const bool				Seek(const unsigned long location);
-				const unsigned long		Tell(void);
-					
-				const unsigned long		Size(void);
-	
-				const bool				Copy(const RsrcString& name);
-				const bool				Move(const RsrcString& name);
-				const bool				Rename(const RsrcString& name);
-				
-				const unsigned int		Read(char buffer[], unsigned int size);
-				const unsigned int		Read(char buffer[], unsigned int offset, unsigned int size);
-				const RsrcString*		ReadLine(const RsrcString& delimiter = "\n");
-				const RsrcString*		ReadLine(const char delimiter);
-				const RsrcStringList*	ReadLines(const RsrcString& delimiter = "\n");
-				const RsrcStringList*	ReadLines(const char delimiter);
-				
-				const bool				IsWritable(void) const;
-				const bool				IsHidden(void) const;
-				const bool				IsReadable(void) const;
-				const bool				IsOpen(void) const;
-				const bool				IsOpen(void);
-			};
-		}
-	}
-}
+# ifdef WIN32
+#  include <Aoof-Wm/win/VFS/Resource/FileResource.h>
+# else
+#  include <Aoof-Wm/unix/VFS/Resource/FileResource.h>
+# endif
 
 #endif	// __AOOFWM_VFS_RESOURCE_FILERESOURCE_H__

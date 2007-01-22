@@ -68,7 +68,7 @@ namespace AoofWm
 				return (true);	// TODO: useless for now
 			}
 			
-			const bool								CResourceType::CResourceType::HasContent(void) const
+			const bool								CResourceType::HasContent(void) const
 			{
 				return (true);	// TODO: useless for now
 			}

@@ -42,7 +42,7 @@ namespace AoofWm
 			
 			CFileResource::~CFileResource(void)
 			{
-				std::cout << "FDestruction" << std::endl;
+				
 			}
 			
 			
