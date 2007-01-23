@@ -26,7 +26,7 @@
 **
 */
 
-#include <Aoof-Wm/common/VFS/VFS.h>
+#include <Aoof-Wm/VFS/VFS.h>
 
 
 namespace AoofWm

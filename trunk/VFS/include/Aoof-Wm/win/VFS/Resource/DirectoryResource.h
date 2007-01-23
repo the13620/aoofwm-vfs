@@ -36,7 +36,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-# include <Aoof-Wm/common/VFS/Resource/AbstractResource.h>
+# include <Aoof-Wm/VFS/Resource/AbstractResource.h>
 
 
 namespace	AoofWm

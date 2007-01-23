@@ -26,7 +26,7 @@
 **
 */
 
-#include <Aoof-Wm/common/VFS/Resource/ResourceContentInfo.h>
+#include <Aoof-Wm/VFS/Resource/ResourceContentInfo.h>
 
 
 namespace AoofWm

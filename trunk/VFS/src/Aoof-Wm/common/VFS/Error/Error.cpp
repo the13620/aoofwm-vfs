@@ -26,7 +26,7 @@
 **
 */
 
-#include <Aoof-Wm/common/VFS/Error/Error.h>
+#include <Aoof-Wm/VFS/Error/Error.h>
 
 using namespace AoofWm::VFS::Error;
 

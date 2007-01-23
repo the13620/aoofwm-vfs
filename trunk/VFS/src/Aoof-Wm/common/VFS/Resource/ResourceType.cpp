@@ -26,7 +26,7 @@
 **
 */
 
-#include <Aoof-Wm/common/VFS/Resource/ResourceType.h>
+#include <Aoof-Wm/VFS/Resource/ResourceType.h>
 
 
 namespace AoofWm
