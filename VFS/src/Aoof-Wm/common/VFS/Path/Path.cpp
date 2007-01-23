@@ -28,9 +28,9 @@
 
 #include <vector>
 
-#include <Aoof-Wm/common/VFS/Path/Path.h>
-#include <Aoof-Wm/common/VFS/Path/PathEntry.h>
-#include <Aoof-Wm/common/VFS/Util/URI.h>
+#include <Aoof-Wm/VFS/Path/Path.h>
+#include <Aoof-Wm/VFS/Path/PathEntry.h>
+#include <Aoof-Wm/VFS/Util/URI.h>
 
 using namespace AoofWm::VFS::Path;
 

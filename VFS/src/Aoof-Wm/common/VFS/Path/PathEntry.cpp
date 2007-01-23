@@ -26,7 +26,7 @@
 **
 */
 
-#include <Aoof-Wm/common/VFS/Path/PathEntry.h>
+#include <Aoof-Wm/VFS/Path/PathEntry.h>
 
 using namespace AoofWm::VFS::Path;
 

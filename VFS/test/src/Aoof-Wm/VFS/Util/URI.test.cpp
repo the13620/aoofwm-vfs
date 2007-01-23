@@ -29,8 +29,8 @@
 #include <iostream>
 #include <string>
 
-#include <Aoof-Wm/common/VFS/Util/URI.h>
-#include <Aoof-Wm/common/VFS/Util/URI.test.h>
+#include <Aoof-Wm/VFS/Util/URI.h>
+#include <Aoof-Wm/VFS/Util/URI.test.h>
 
 
 namespace	AoofWm

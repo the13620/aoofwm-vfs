@@ -26,9 +26,11 @@
 **
 */
 
+#ifdef WIN32
+
 #include <string>
 
-#include <Aoof-Wm/common/VFS/Resource/DirectoryResource.h>
+#include <Aoof-Wm/VFS/Resource/DirectoryResource.h>
 
 
 namespace AoofWm
@@ -353,3 +355,5 @@ namespace AoofWm
 		}
 	}
 }
+
+#endif

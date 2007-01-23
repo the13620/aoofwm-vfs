@@ -29,8 +29,8 @@
 #include <string>
 #include <vector>
 
-#include <Aoof-Wm/common/VFS/Util/Credentials.h>
-#include <Aoof-Wm/common/VFS/Util/Tokenizer.h>
+#include <Aoof-Wm/VFS/Util/Credentials.h>
+#include <Aoof-Wm/VFS/Util/Tokenizer.h>
 
 namespace AoofWm
 {

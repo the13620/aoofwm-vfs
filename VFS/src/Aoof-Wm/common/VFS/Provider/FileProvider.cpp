@@ -28,11 +28,11 @@
 
 #include <string>
 
-#include <Aoof-Wm/common/VFS/Provider/API/IProvider.h>
+#include <Aoof-Wm/VFS/Provider/API/IProvider.h>
 
-#include <Aoof-Wm/common/VFS/Provider/Providers.h>
+#include <Aoof-Wm/VFS/Provider/Providers.h>
 
-#include <Aoof-Wm/common/VFS/Provider/FileProvider.h>
+#include <Aoof-Wm/VFS/Provider/FileProvider.h>
 
 
 namespace AoofWm

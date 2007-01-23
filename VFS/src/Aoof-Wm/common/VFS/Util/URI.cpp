@@ -30,8 +30,8 @@
 #include <iostream>
 #include <vector>
 
-#include <Aoof-Wm/common/VFS/Util/Tokenizer.h>
-#include <Aoof-Wm/common/VFS/Util/URI.h>
+#include <Aoof-Wm/VFS/Util/Tokenizer.h>
+#include <Aoof-Wm/VFS/Util/URI.h>
 
 
 namespace AoofWm

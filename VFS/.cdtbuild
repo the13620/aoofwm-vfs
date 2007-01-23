@@ -92,6 +92,9 @@
 <option id="gnu.c.compiler.option.warnings.pedantic.2111492701" name="Pedantic (-pedantic)" superClass="gnu.c.compiler.option.warnings.pedantic" value="true" valueType="boolean"/>
 <option id="gnu.c.compiler.option.misc.verbose.2056983010" name="Verbose (-v)" superClass="gnu.c.compiler.option.misc.verbose" value="true" valueType="boolean"/>
 <option id="gnu.c.compiler.option.misc.ansi.1589825495" name="Support ANSI programs (-ansi)" superClass="gnu.c.compiler.option.misc.ansi" value="true" valueType="boolean"/>
+<option id="gnu.c.compiler.option.preprocessor.undef.symbol.160998573" superClass="gnu.c.compiler.option.preprocessor.undef.symbol" valueType="stringList">
+<listOptionValue builtIn="false" value="WIN32"/>
+</option>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug.1217761005" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug.844153962" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug">

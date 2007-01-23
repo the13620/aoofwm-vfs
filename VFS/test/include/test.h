@@ -30,6 +30,6 @@
 #ifndef __AOOFWM_TEST_H__
 # define __AOOFWM_TEST_H__
 
-# include <Aoof-Wm/common/VFS/Util/URI.test.h>
+# include <Aoof-Wm/VFS/Util/URI.test.h>
 
 #endif	// __AOOFWM_TEST_H__

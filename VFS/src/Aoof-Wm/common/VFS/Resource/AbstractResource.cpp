@@ -26,10 +26,10 @@
 **
 */
 
-#include <Aoof-Wm/common/VFS/Resource/AbstractResource.h>
-#include <Aoof-Wm/common/VFS/Resource/ResourceContent.h>
-#include <Aoof-Wm/common/VFS/Resource/ResourceName.h>
-#include <Aoof-Wm/common/VFS/Resource/ResourceType.h>
+#include <Aoof-Wm/VFS/Resource/AbstractResource.h>
+#include <Aoof-Wm/VFS/Resource/ResourceContent.h>
+#include <Aoof-Wm/VFS/Resource/ResourceName.h>
+#include <Aoof-Wm/VFS/Resource/ResourceType.h>
 
 
 namespace AoofWm

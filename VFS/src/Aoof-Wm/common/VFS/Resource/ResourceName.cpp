@@ -27,7 +27,7 @@
 */
 #include <iostream>
 
-#include <Aoof-Wm/common/VFS/Resource/ResourceName.h>
+#include <Aoof-Wm/VFS/Resource/ResourceName.h>
 
 
 namespace AoofWm

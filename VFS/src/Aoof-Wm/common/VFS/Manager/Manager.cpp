@@ -29,11 +29,11 @@
 #include <string>
 #include <iostream>
 
-#include <Aoof-Wm/common/VFS/Error/Error.h>
-#include <Aoof-Wm/common/VFS/Manager/Manager.h>
-#include <Aoof-Wm/common/VFS/Provider/Providers.h>
-#include <Aoof-Wm/common/VFS/Resource/Resources.h>
-#include <Aoof-Wm/common/VFS/Util/URI.h>
+#include <Aoof-Wm/VFS/Error/Error.h>
+#include <Aoof-Wm/VFS/Manager/Manager.h>
+#include <Aoof-Wm/VFS/Provider/Providers.h>
+#include <Aoof-Wm/VFS/Resource/Resources.h>
+#include <Aoof-Wm/VFS/Util/URI.h>
 
 
 using namespace	AoofWm::VFS::Manager;
