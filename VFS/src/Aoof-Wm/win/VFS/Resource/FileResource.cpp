@@ -48,7 +48,15 @@ namespace AoofWm
 			
 			const bool				CFileResource::Exists(void) const
 			{
-				
+				if ((IsOpen() == true))
+				{
+					WIN32_FILE_ATTRIBUTE_DATA	attr;
+
+					if (GetFileAttributesEx(GetName()->GetPath().c_str(), GetFileExInfoStandard, &attr) != 0)
+					{
+						return (!(attr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY));
+					}
+  				}
 				/*
 				 * TODO:
 				 * 	-throw exception
@@ -118,6 +126,8 @@ namespace AoofWm
 			
 			const bool				CFileResource::Delete(void)
 			{
+				if (IsOpen())
+					Close();
 				if (std::remove(GetName()->GetPath().c_str()) == 0)
 				{
 					return (true);
@@ -160,11 +170,11 @@ namespace AoofWm
 					
 			const unsigned long		CFileResource::Size(void)
 			{
-				FileStat	fileStat;
-				
-				if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
+				LARGE_INTEGER		lFileSize;
+
+				if (GetFileSizeEx(_pFileHandle, &lFileSize) != 0)
 				{
-					return (fileStat.st_size);
+					return (lFileSize.QuadPart);
 				}
 				/*
 				 * TODO:
@@ -177,8 +187,12 @@ namespace AoofWm
 	
 			const bool				CFileResource::Copy(const RsrcString& name)
 			{
-				
-				return (true);
+				if (Exists() && (CopyFile(GetName()->GetPath().c_str(), name.c_str(), false) != 0))
+				{
+					return (true);	
+				}
+				// TODO: GetLastError
+				return (false);
 			}
 			
 			const bool				CFileResource::Move(const RsrcString& name)
@@ -287,31 +301,41 @@ namespace AoofWm
 			{
 				if (Exists())
 				{
-					FileStat	fileStat;
+					//FileStat	fileStat;
 				
-					if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
-					{
-						return ((fileStat.st_mode & O_RDWR) == O_RDWR);
-					}
+					//if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
+					//{
+					//	return ((fileStat.st_mode & O_RDWR) == O_RDWR);
+					//}
 				}
 				return (false);
 			}
 			
 			const bool				CFileResource::IsHidden(void) const
 			{
-				return (GetName()->GetBaseName().substr(0, 1).c_str()[0] == '.');
+				if (Exists())
+				{
+					WIN32_FILE_ATTRIBUTE_DATA attr;
+				
+					if (GetFileAttributesEx(GetName()->GetPath().c_str(), GetFileExInfoStandard, &attr) != 0)
+					{
+						return (Exists() && (attr.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN));
+					}
+					// TODO: GetLastError
+				}
+				return (false);
 			}
 			
 			const bool				CFileResource::IsReadable(void) const
 			{
 				if (Exists())
 				{
-					FileStat	fileStat;
+					//FileStat	fileStat;
 				
-					if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
-					{
-						return ((fileStat.st_mode & O_RDONLY) == O_RDONLY);
-					}
+					//if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
+					//{
+					//	return ((fileStat.st_mode & O_RDONLY) == O_RDONLY);
+					//}
 				}
 				return (false);
 			}

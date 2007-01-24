@@ -32,9 +32,7 @@
 
 # include <cstdio>
 
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/stat.h>
+# include <windows.h>
 
 # include <Aoof-Wm/VFS/Resource/AbstractResource.h>
 
@@ -48,11 +46,11 @@ namespace	AoofWm
 			class	CDirectoryResource : public AoofWm::VFS::Resource::CAbstractResource
 			{
 				typedef struct dirent	DirData;
-				typedef DIR				DirHandle;
+//				typedef DIR				DirHandle;
 				typedef struct stat		DirStat;
 			
 			private:
-				DirHandle*	_pDirHandle;
+//				DirHandle*	_pDirHandle;
 				DirData*	_pDirData;
 		
 			public:

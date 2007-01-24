@@ -41,8 +41,8 @@ namespace AoofWm
 		{
 			CDirectoryResource::CDirectoryResource(const std::string& uri) : CAbstractResource(uri)
 			{
-				_pDirHandle = NULL;
-				_pDirData = NULL;
+				//_pDirHandle = NULL;
+				//_pDirData = NULL;
 			}
 			
 			CDirectoryResource::~CDirectoryResource(void)
@@ -53,18 +53,21 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Exists(void) const
 			{
-				DirStat	dirStat;
-				
-				if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
+				if ((IsOpen() == true))
 				{
-					return (true);	
-				}
+					WIN32_FILE_ATTRIBUTE_DATA	attr;
+
+					if (GetFileAttributesEx(GetName()->GetPath().c_str(), GetFileExInfoStandard, &attr) != 0)
+					{
+						return (attr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
+					}
+  				}
 				/*
 				 * TODO:
 				 * 	-throw exception
 				 * 	-setLastError
 				 */ 
-				return (false);
+				return (false);	
 			}
 	
 	
@@ -117,6 +120,8 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Delete(void)
 			{
+				if (IsOpen())
+					Close();
 				if (std::remove(GetName()->GetPath().c_str()) == 0)
 				{
 					return (true);	

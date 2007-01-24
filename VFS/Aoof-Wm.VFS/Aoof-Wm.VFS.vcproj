@@ -171,6 +171,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\test\src\main.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\Aoof-Wm\common\VFS\Manager\Manager.cpp"
 				>
 			</File>
@@ -199,6 +203,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\test\src\Aoof-Wm\VFS\Util\URI.test.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\Aoof-Wm\common\VFS\VFS.cpp"
 				>
 			</File>
@@ -209,15 +217,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\AbstractResource.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\AbstractResource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Util\Credentials.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\DirectoryResource.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Util\Credentials.h"
 				>
 			</File>
 			<File
@@ -225,19 +229,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Error\Error.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\DirectoryResource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Error\ErrorCode.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Error\Error.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Provider\FileProvider.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Error\ErrorCode.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\FileResource.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Provider\FileProvider.h"
 				>
 			</File>
 			<File
@@ -245,87 +249,99 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Error\API\IError.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\FileResource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Manager\API\IManager.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Error\API\IError.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Provider\API\IProvider.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Manager\API\IManager.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\API\IResource.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Provider\API\IProvider.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\API\IResourceContent.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\API\IResource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\API\IResourceContentInfo.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\API\IResourceContent.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\API\IResourceName.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\API\IResourceContentInfo.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\API\IResourceType.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\API\IResourceName.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\API\IVFS.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\API\IResourceType.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Manager\Manager.h"
+				RelativePath="..\include\Aoof-Wm\VFS\API\IVFS.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Provider\Providers.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Manager\Manager.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\ResourceContent.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Provider\Providers.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\ResourceContentInfo.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\ResourceContent.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\ResourceName.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\ResourceContentInfo.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\Resources.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\ResourceName.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\ResourceType.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\Resources.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\ResourceTypeCode.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\ResourceType.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Resource\ResourceTypes.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\ResourceTypeCode.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Util\Tokenizer.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\ResourceTypes.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\Util\URI.h"
+				RelativePath="..\test\include\test.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\common\VFS\VFS.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Util\Tokenizer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\Aoof-Wm\VFS\Util\URI.h"
+				>
+			</File>
+			<File
+				RelativePath="..\test\include\Aoof-Wm\VFS\Util\URI.test.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\Aoof-Wm\VFS\VFS.h"
 				>
 			</File>
 		</Filter>
