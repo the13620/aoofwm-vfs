@@ -51,7 +51,7 @@ namespace AoofWm
 				 * TODO:	replace / combine with auto-detected
 				 * 			Providers' shared libraries
 				 */
-				 _providers["file"] = AoofWm::VFS::Provider::CFileProvider::CFileProvider::Construct;
+				 //_providers["file"] = AoofWm::VFS::Provider::CFileProvider::CFileProvider::Construct;
 				 //_providers["http"] = AoofWm::VFS::Provider::CHttpProvider::CHttpProvider::Construct;
 				 //_providers["zip"] = AoofWm::VFS::Provider::CZipProvider::CZipProvider::Construct;
 			}

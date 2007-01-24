@@ -34,10 +34,7 @@
 # include <fstream>
 # include <iostream>
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/stat.h>
+# include <windows.h>
 
 # include <Aoof-Wm/VFS/Resource/AbstractResource.h>
 
@@ -49,14 +46,14 @@ namespace	AoofWm
 		{
 			class	CFileResource : public virtual AoofWm::VFS::Resource::CAbstractResource
 			{
-	//			typedef FILE			FileHandle;
+				typedef HANDLE			FileHandle;
 				typedef struct stat		FileStat;
 				
 			private:
 				static const unsigned int	BUFFER_SIZE	= 1024;
 				
 				std::fstream	_stream;
-	//			FileHandle*		_pFileHandle;
+				FileHandle*		_pFileHandle;
 	//			char			_buffer[BUFFER_SIZE];
 	//			unsigned int	_bufferCount;
 							

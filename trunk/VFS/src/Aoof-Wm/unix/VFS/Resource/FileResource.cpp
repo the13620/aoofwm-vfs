@@ -50,7 +50,7 @@ namespace AoofWm
 			{
 				FileStat	fileStat;
 				
-				if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
+				if ((IsOpen() == true) || (stat(GetName()->GetPath().c_str(), &fileStat) == 0))
 				{
 					return (true);	
 				}
@@ -123,6 +123,8 @@ namespace AoofWm
 			
 			const bool				CFileResource::Delete(void)
 			{
+				if (IsOpen())
+					Close();
 				if (std::remove(GetName()->GetPath().c_str()) == 0)
 				{
 					return (true);
@@ -182,8 +184,48 @@ namespace AoofWm
 	
 			const bool				CFileResource::Copy(const RsrcString& name)
 			{
-				
-				return (true);
+				std::fstream		dstStream;
+				std::fstream*		pSrcStream;
+				bool				self		= false;
+				bool				status		= true;
+
+				if (IsOpen() == true)
+				{
+					pSrcStream = &_stream;
+					self = true;
+				}
+				else
+				{
+					pSrcStream = new std::fstream();
+					pSrcStream->open(GetName()->GetPath().c_str());
+					if (!pSrcStream->is_open())
+					{
+						// failure
+						// TODO: GetLastError
+						status = false;
+					}
+				}
+				if (status)
+				{
+					dstStream.open(name.c_str());
+					if (!dstStream.is_open())
+					{
+						// failure
+						// TODO: GetLastError
+						status = false;
+					}
+					if (status)
+					{
+						dstStream << pSrcStream->rdbuf();
+						dstStream.close();
+					}
+					if (self == false)
+					{
+						pSrcStream->close();
+						delete pSrcStream;
+					}
+				}
+				return (status);
 			}
 			
 			const bool				CFileResource::Move(const RsrcString& name)
@@ -304,7 +346,7 @@ namespace AoofWm
 			
 			const bool				CFileResource::IsHidden(void) const
 			{
-				return (GetName()->GetBaseName().substr(0, 1).c_str()[0] == '.');
+				return (Exists() && (GetName()->GetBaseName().substr(0, 1).c_str()[0] == '.'));
 			}
 			
 			const bool				CFileResource::IsReadable(void) const

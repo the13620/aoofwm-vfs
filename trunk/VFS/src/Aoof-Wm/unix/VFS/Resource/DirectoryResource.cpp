@@ -115,6 +115,8 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Delete(void)
 			{
+				if (IsOpen())
+					Close();
 				if (std::remove(GetName()->GetPath().c_str()) == 0)
 				{
 					return (true);	
