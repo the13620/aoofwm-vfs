@@ -26,6 +26,8 @@
 **
 */
 
+#ifdef WIN32
+
 #include <Aoof-Wm/VFS/Resource/FileResource.h>
 
 
@@ -352,3 +354,6 @@ namespace AoofWm
 		}
 	}
 }
+
+
+#endif
