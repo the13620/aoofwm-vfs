@@ -34,6 +34,8 @@
 # include <string>
 # include <vector>
 
+//# include <Aoof-Wm/API/IObject.h>
+
 # include <Aoof-Wm/VFS/Resource/ResourceTypes.h>
 
 # include <Aoof-Wm/VFS/Resource/API/IResourceContent.h>
@@ -49,7 +51,7 @@ namespace	AoofWm
 	    {
 	    	namespace	API
 			{
-				class	IResource
+				class	IResource/* : public virtual IObject*/
 		    	{
 		      	public:
 		      		virtual ~IResource(void) {};
@@ -81,6 +83,13 @@ namespace	AoofWm
 					virtual const AoofWm::VFS::Resource::RsrcString*		ReadLine(const char delimiter)										= 0;
 					virtual const AoofWm::VFS::Resource::RsrcStringList*	ReadLines(const AoofWm::VFS::Resource::RsrcString& delimiter = "\n")		= 0;
 					virtual const AoofWm::VFS::Resource::RsrcStringList*	ReadLines(const char delimiter)										= 0;
+					
+//					virtual const unsigned int						Write(char buffer[], unsigned int size)								= 0;
+//					virtual const unsigned int						Write(char buffer[], unsigned int offset, unsigned int size)			= 0;
+//					virtual const AoofWm::VFS::Resource::RsrcString*		WriteLine(const AoofWm::VFS::Resource::RsrcString& delimiter = "\n")			= 0;
+//					virtual const AoofWm::VFS::Resource::RsrcString*		WriteLine(const char delimiter)										= 0;
+//					virtual const AoofWm::VFS::Resource::RsrcStringList*	WriteLines(const AoofWm::VFS::Resource::RsrcString& delimiter = "\n")		= 0;
+//					virtual const AoofWm::VFS::Resource::RsrcStringList*	WriteLines(const char delimiter)										= 0;
 	
 					/*
 					 * TODO:	define a Selector architecture

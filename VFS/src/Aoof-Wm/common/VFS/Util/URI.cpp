@@ -64,6 +64,11 @@ namespace AoofWm
 			{
 				return (_directories);
 			}
+			
+			const std::string&			CURI::GetExtension(void) const
+			{
+				return (_extension);
+			}
 
 			const std::string&			CURI::GetFile(void) const
 			{
@@ -110,6 +115,7 @@ namespace AoofWm
 				_scheme			= ExtractScheme();
 				_directories	= ExtractDirectories();
 				_file			= ExtractFile();
+				_extension		= ExtractExtension();
 				_path			= ExtractPath();
 				//_query			= ExtractQuery();
 			}
@@ -128,6 +134,7 @@ namespace AoofWm
 				}
 				std::cout << "\t              \t  ]" << std::endl;
 				std::cout << "\t   File\t\t: " + _file << std::endl;
+				std::cout << "\t   Extension\t: " + _extension << std::endl;
 				std::cout << "\t   Query\t: " + _query << std::endl;
 				std::cout << "\t   QueryArgs\t: [" << std::endl;
 				for (std::string::size_type i = 0; i < _queryArgs.size(); i++)
@@ -195,6 +202,19 @@ namespace AoofWm
 					}
 				}
 				return (_directories);
+			}
+			
+			const std::string&			CURI::ExtractExtension(void)
+			{
+				_extension = std::string();
+				
+				if (_file.length() > 0)
+				{
+					const std::string::size_type	dot = _file.find_last_of(".") + 1;
+					
+					_extension = _file.substr(dot, _file.length() - dot);
+				}
+				return (_extension);
 			}
 
 			const std::string&			CURI::ExtractFile(void)

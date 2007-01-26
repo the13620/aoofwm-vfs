@@ -63,6 +63,7 @@ namespace AoofWm
 				CCredentials				_credentials;
 				std::vector<std::string>	_directories;
 				std::string					_file;
+				std::string					_extension;
 				std::string					_path;
 				std::string					_query;
 				std::string					_queryArgs;				
@@ -76,6 +77,7 @@ namespace AoofWm
 
 				CCredentials				GetCredentials(void) const ;
 				std::vector<std::string>	GetDirectories(void) const;
+				const std::string&			GetExtension(void) const;
 				const std::string&			GetFile(void) const;
 				const std::string&			GetPath(void) const;
 				const std::string&			GetQuery(void) const;
@@ -93,6 +95,7 @@ namespace AoofWm
 				CCredentials				ExtractCredentials(void);
 				std::vector<std::string>&	ExtractDirectories(void);
 				const std::string&			ExtractFile(void);
+				const std::string&			ExtractExtension(void);
 				const std::string&			ExtractPath(void);
 				const std::string&			ExtractQuery(void);
 				const std::string&			ExtractScheme(void);

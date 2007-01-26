@@ -106,7 +106,7 @@ namespace AoofWm
 				}
 				if (IsOpen() == false)
 				{
-					_stream.open(GetName()->GetPath().c_str());
+					_stream.open(GetName()->GetPath().c_str(), std::ios::out);
 					if (_stream.is_open())
 					{
 						return (true);	

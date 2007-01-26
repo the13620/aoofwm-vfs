@@ -85,18 +85,6 @@ namespace AoofWm
 					std::cout << "File Detection" << std::endl;
 					pRsrc = new AoofWm::VFS::Resource::CFileResource(uri);
 				}
-				/*
-				 *	PROCESS:
-				 * 		-select Provider from scheme.
-				 * 		-select Driver from filetype.
-				 * 		-check path existence and file existence
-				 * 			1-if file exists, get type.
-				 * 			2a-if file doesn't exist, use abstract blank type
-				 * 			   (don't know yet if the user wants a directory or
-				 *              a file in the end).
-				 * 			2b-if file doesn't exist, user has to use trailing '/' to specify
-				 * 			   a directory is targeted, otherwise we consider it a file.
-				 */
 				return (pRsrc);
 			}
 			

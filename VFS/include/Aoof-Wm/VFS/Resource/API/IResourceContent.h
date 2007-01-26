@@ -29,6 +29,8 @@
 #ifndef __AOOFWM_VFS_RESOURCE_API_IRESOURCECONTENT_H__
 # define __AOOFWM_VFS_RESOURCE_API_IRESOURCECONTENT_H__
 
+//# include <Aoof-Wm/API/IObject.h>
+
 # include <Aoof-Wm/VFS/Resource/API/IResourceContentInfo.h>
 
 
@@ -42,7 +44,7 @@ namespace	AoofWm
 			{
 				class	IResource;	// Circular Forward Declaration
 				
-				class	IResourceContent
+				class	IResourceContent/* : public virtual IObject*/
 		    	{
 		      	public:
 			      	virtual const AoofWm::VFS::Resource::API::IResource*			GetResource(void) const	= 0;
