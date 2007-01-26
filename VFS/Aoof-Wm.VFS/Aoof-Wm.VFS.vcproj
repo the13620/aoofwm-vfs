@@ -39,6 +39,8 @@
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="&quot;E:\documents\lo\workspaces\toyd\Aoof-Wm.VFS\test\include&quot;;&quot;E:\documents\lo\workspaces\toyd\Aoof-Wm.VFS\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG"
+				RuntimeLibrary="1"
+				DebugInformationFormat="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -51,6 +53,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				GenerateDebugInformation="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -225,11 +228,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\win\VFS\Resource\DirectoryResource.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\DirectoryResource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\VFS\Resource\DirectoryResource.h"
+				RelativePath="..\include\Aoof-Wm\win\VFS\Resource\DirectoryResource.h"
 				>
 			</File>
 			<File

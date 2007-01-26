@@ -19,11 +19,21 @@ int	unit(int ac, char **av)
 const char*		glTestResources[]	=
 {
 	"C:/test/",
+	
+	"C:/test/test.txt",
+	"C:/test/test2.txt",
+	
 	"C:/test/newDir/",
 	"C:/test/newDir/newFile.txt",
-	"C:/test/test.txt",
+	
 	"file://C:/test/",
+	
 	"file://C:/test/test.txt",
+	"file://C:/test/test2.txt",
+	
+	"C:/test/newDir2/",
+	"C:/test/newDir2/newFile2.txt",
+	
 	"testfile.txt",
 //	"file://file.txt",
 //	"file://file",

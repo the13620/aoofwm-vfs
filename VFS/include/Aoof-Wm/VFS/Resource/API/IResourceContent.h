@@ -47,6 +47,8 @@ namespace	AoofWm
 				class	IResourceContent/* : public virtual IObject*/
 		    	{
 		      	public:
+		      		virtual ~IResourceContent(void) {};
+		      	
 			      	virtual const AoofWm::VFS::Resource::API::IResource*			GetResource(void) const	= 0;
 	
 					virtual const AoofWm::VFS::Resource::API::IResourceContentInfo*	GetInfo(void) const		= 0;

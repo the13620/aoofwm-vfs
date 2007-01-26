@@ -50,6 +50,8 @@ namespace	AoofWm
 				class	IManager
 			    {
 				public:
+					virtual ~IManager(void) {};
+				
 					virtual AoofWm::VFS::Resource::API::IResource*		Resource(const std::string& uri) const						= 0;
 	
 					/*

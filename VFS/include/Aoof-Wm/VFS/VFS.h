@@ -48,7 +48,7 @@ namespace	AoofWm
 			CVFS(void);
 	
 		public:
-			virtual ~CVFS(void);
+			~CVFS(void);
 			
 	
 			AoofWm::VFS::Manager::API::IManager*		CreateManager(void) const;

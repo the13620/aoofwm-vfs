@@ -50,15 +50,12 @@ namespace AoofWm
 			
 			const bool				CFileResource::Exists(void) const
 			{
-				if ((IsOpen() == true))
-				{
-					WIN32_FILE_ATTRIBUTE_DATA	attr;
+				WIN32_FILE_ATTRIBUTE_DATA	attr;
 
-					if (GetFileAttributesEx(GetName()->GetPath().c_str(), GetFileExInfoStandard, &attr) != 0)
-					{
-						return (!(attr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY));
-					}
-  				}
+				if (IsOpen() || (GetFileAttributesEx(GetName()->GetPath().c_str(), GetFileExInfoStandard, &attr) != 0))
+				{
+					return (!(attr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY));
+				}
 				/*
 				 * TODO:
 				 * 	-throw exception

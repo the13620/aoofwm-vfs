@@ -45,13 +45,16 @@ namespace	AoofWm
 		{
 			class	CDirectoryResource : public AoofWm::VFS::Resource::CAbstractResource
 			{
-				typedef struct dirent	DirData;
-//				typedef DIR				DirHandle;
-				typedef struct stat		DirStat;
-			
+				typedef WIN32_FIND_DATA	DirData;
+				typedef HANDLE			DirHandle;
+
 			private:
-//				DirHandle*	_pDirHandle;
-				DirData*	_pDirData;
+				void*					InvalidHandle;
+				DirData					EmptyData;
+
+				DirHandle				_dirHandle;
+				DirData					_dirData;
+				bool					_dirStatus;
 		
 			public:
 				CDirectoryResource(const std::string& uri);
@@ -85,6 +88,9 @@ namespace	AoofWm
 				const bool				IsHidden(void) const;
 				const bool				IsReadable(void) const;
 				const bool				IsOpen(void) const;
+
+			private:
+				const void				ResetDirData(void);
 			};
 		}
 	}
