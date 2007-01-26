@@ -61,7 +61,7 @@ namespace AoofWm
 			
 			const std::string&						CResourceName::GetExtension(void) const
 			{
-				return ("/!\\ - Not Implemented Yet.");			
+				return (_uri.GetExtension());			
 			}
 			
 			const std::string&						CResourceName::GetPath(void) const

@@ -19,6 +19,8 @@ int	unit(int ac, char **av)
 const char*		glTestResources[]	=
 {
 	"C:/test/",
+	"C:/test/newDir/",
+	"C:/test/newDir/newFile.txt",
 	"C:/test/test.txt",
 	"file://C:/test/",
 	"file://C:/test/test.txt",
@@ -53,41 +55,61 @@ int	vfsCase(const std::string& rsrcUri)
 	std::cout << " + Initializing/Resolving Resource" << std::endl;
 	pRsrc = pVFSMgr->Resource(rsrcUri);
 
-	if ((pRsrc != NULL) && (pRsrc->Exists()))
+	if (pRsrc != NULL)
 	{
-		const AoofWm::VFS::Resource::RsrcString*		line;
-		const AoofWm::VFS::Resource::RsrcStringList*	lines;
-		
-		std::cout << " + Opening resolved Resource" << std::endl;
-		std::cout << pRsrc->GetName()->GetPath() << std::endl;
-		pRsrc->Open();
-		
-		std::cout << " + Retrieving Resource's size" << std::endl;
-		std::cout << "\t\t> " << pRsrc->Size() << std::endl;
-		
-		std::cout << " + Reading Resource's content" << std::endl;
-		while ((line = pRsrc->ReadLine()) != NULL)
+		std::cout << "\t[[" << pRsrc->GetName()->GetPath() << "]]" << std::endl;
+		//pRsrc->GetName()->GetURI().Print();
+		if (pRsrc->Exists())
 		{
-			std::cout << "\t\t> " << *line << std::endl;
-			delete line;
-		}
-		
-		std::cout << " + Reseting Resource's internal pointer" << std::endl;
-		pRsrc->Reset();
-		
-		std::cout << " + Reading all Resource's content" << std::endl;
-		lines = pRsrc->ReadLines();
-		if (lines != NULL)
-		{
-			for (unsigned int i = 0; i < lines->size(); i++)
+			const AoofWm::VFS::Resource::RsrcString*		line;
+			const AoofWm::VFS::Resource::RsrcStringList*	lines;
+			
+			std::cout << " + Opening resolved Resource" << std::endl;
+			if (pRsrc->Open())
 			{
-				std::cout << "\t\t> " << lines->at(i) << std::endl;
+				std::cout << " + Retrieving Resource's size" << std::endl;
+				std::cout << "\t\t> " << pRsrc->Size() << std::endl;
+				
+				std::cout << " + Reading Resource's content" << std::endl;
+				while ((line = pRsrc->ReadLine()) != NULL)
+				{
+					std::cout << "\t\t> " << *line << std::endl;
+					delete line;
+				}
+				
+				std::cout << " + Resetting Resource's internal pointer" << std::endl;
+				pRsrc->Reset();
+				
+				std::cout << " + Reading all Resource's content" << std::endl;
+				lines = pRsrc->ReadLines();
+				if (lines != NULL)
+				{
+					for (unsigned int i = 0; i < lines->size(); i++)
+					{
+						std::cout << "\t\t> " << lines->at(i) << std::endl;
+					}
+					delete lines;
+				}
 			}
-			delete lines;
+			else
+			{
+				std::cout << "/!\\ - Could not open Resource" << std::endl;
+			}
 		}
-
-		std::cout << " + Closing Resource" << std::endl;
-		pRsrc->Close();
+		else
+		{
+			std::cout << " + Creating new Resource" << std::endl;
+			pRsrc->Create();
+		}
+		if (pRsrc->IsOpen())
+		{
+			std::cout << " + Closing Resource" << std::endl;
+			pRsrc->Close();
+		}
+	}
+	else
+	{
+		std::cout << "/!\\ - Could not resolve Resource" << std::endl;
 	}
 
 	std::cout << " + Destroying Resource" << std::endl;

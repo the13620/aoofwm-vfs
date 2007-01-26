@@ -31,6 +31,8 @@
 
 # include <string>
 
+//# include <Aoof-Wm/API/IObject.h>
+
 # include <Aoof-Wm/VFS/Resource/ResourceTypeCode.h>
 
 
@@ -44,7 +46,7 @@ namespace	AoofWm
 			{
 				class	IResource;	// Circular Forward Declaration
 				
-				class	IResourceType
+				class	IResourceType/* : public virtual IObject*/
 		    	{
 		      	public:
 			      	virtual const AoofWm::VFS::Resource::API::IResource*	GetResource(void) const				= 0;

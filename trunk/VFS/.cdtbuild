@@ -75,6 +75,7 @@
 <toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug.759352068" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug">
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug.553372865" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug">
 <option id="gnu.cpp.compiler.option.include.paths.571742562" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="&quot;E:\documents\lo\workspaces\toyd\libs\include&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/test/include}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/include}&quot;"/>
 </option>
@@ -86,6 +87,7 @@
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1170927404" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug">
 <option id="gnu.c.compiler.option.include.paths.1699960594" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="&quot;E:\documents\lo\workspaces\toyd\libs\include&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/include}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/test/include}&quot;"/>
 </option>
@@ -99,7 +101,12 @@
 <tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug.1217761005" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug.844153962" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug">
 <option id="gnu.cpp.link.option.paths.2040561106" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="stringList">
+<listOptionValue builtIn="false" value="&quot;E:\documents\lo\workspaces\toyd\libs\lib&quot;"/>
+<listOptionValue builtIn="false" value="&quot;E:\documents\lo\workspaces\toyd\libs&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aoof-Wm.VFS/lib}&quot;"/>
+</option>
+<option id="gnu.cpp.link.option.libs.142063637" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="xml2"/>
 </option>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug.704247391" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug"/>
