@@ -53,7 +53,7 @@ namespace AoofWm
 			{
 				DirStat	dirStat;
 				
-				if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
+				if (IsOpen() || (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0))
 				{
 					return (true);	
 				}
@@ -61,17 +61,18 @@ namespace AoofWm
 				 * TODO:
 				 * 	-throw exception
 				 * 	-setLastError
-				 */ 
+				 */
 				return (false);
 			}
 	
 	
 			const bool				CDirectoryResource::Open(void)
 			{
-				if (_pDirHandle == NULL)
+				if (IsOpen() == false)
 				{
+					
 					_pDirHandle = opendir(GetName()->GetPath().c_str());
-					if (_pDirHandle != NULL)
+					if (IsOpen())
 					{
 						return (true);	
 					}
@@ -87,7 +88,7 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Close(void)
 			{
-				if ((_pDirHandle == NULL) || (closedir(_pDirHandle) == 0))
+				if ((IsOpen() == false) || (closedir(_pDirHandle) == 0))
 				{
 					return (true);
 				}
@@ -101,7 +102,7 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Create(void)
 			{
-				if (mkdir(GetName()->GetPath().c_str()) == 0)
+				if (IsOpen() || (mkdir(GetName()->GetPath().c_str()) == 0))
 				{
 					return (true);	
 				}
@@ -132,7 +133,7 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Reset(void)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					rewinddir(_pDirHandle);
 					return (true);
@@ -147,7 +148,7 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Seek(const unsigned long location)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					seekdir(_pDirHandle, location);
 					return (true);
@@ -162,7 +163,7 @@ namespace AoofWm
 			
 			const unsigned long		CDirectoryResource::Tell(void)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					return (telldir(_pDirHandle));
 				}
@@ -208,7 +209,7 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Rename(const RsrcString& name)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					if (rename(GetName()->GetPath().c_str(), name.c_str()) == 0)
 					{
@@ -247,7 +248,7 @@ namespace AoofWm
 			
 			const RsrcString*		CDirectoryResource::ReadLine(const RsrcString& delimiter)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					DirData	*pent;
 				
@@ -280,7 +281,7 @@ namespace AoofWm
 			
 			const RsrcStringList*	CDirectoryResource::ReadLines(const RsrcString& delimiter)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					RsrcStringList*		pRsrcStringList;
 					const RsrcString*	pLine;
@@ -298,7 +299,7 @@ namespace AoofWm
 			
 			const RsrcStringList*	CDirectoryResource::ReadLines(const char delimiter)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					RsrcStringList*		pRsrcStringList;
 					const RsrcString*	pLine;

@@ -49,6 +49,8 @@ namespace	AoofWm
 				class	IResourceType/* : public virtual IObject*/
 		    	{
 		      	public:
+		      		virtual ~IResourceType(void) {};
+		      	
 			      	virtual const AoofWm::VFS::Resource::API::IResource*	GetResource(void) const				= 0;
 	
 					virtual const std::string&						GetResourceTypeName(void) const		= 0;

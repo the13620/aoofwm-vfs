@@ -48,7 +48,7 @@ namespace	AoofWm
 				
 			public:
 				CResourceContentInfo(const AoofWm::VFS::Resource::API::IResource* pRsrc);
-				virtual ~CResourceContentInfo(void);
+				~CResourceContentInfo(void);
 				
 				const AoofWm::VFS::Resource::API::IResource*	GetResource(void) const;
 				

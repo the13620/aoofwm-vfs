@@ -41,27 +41,30 @@ namespace AoofWm
 		{
 			CDirectoryResource::CDirectoryResource(const std::string& uri) : CAbstractResource(uri)
 			{
-				//_pDirHandle = NULL;
-				//_pDirData = NULL;
+				_dirHandle		= INVALID_HANDLE_VALUE;
+				ResetDirData();				
 			}
 			
 			CDirectoryResource::~CDirectoryResource(void)
 			{
 				
 			}
+
+			const void				CDirectoryResource::ResetDirData(void)
+			{
+				_dirData	= EmptyData;
+				_dirStatus	= false;
+			}
 			
 			
 			const bool				CDirectoryResource::Exists(void) const
 			{
-				if ((IsOpen() == true))
-				{
-					WIN32_FILE_ATTRIBUTE_DATA	attr;
+				WIN32_FILE_ATTRIBUTE_DATA	attr;
 
-					if (GetFileAttributesEx(GetName()->GetPath().c_str(), GetFileExInfoStandard, &attr) != 0)
-					{
-						return (attr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
-					}
-  				}
+				if (IsOpen() || (GetFileAttributesEx(GetName()->GetPath().c_str(), GetFileExInfoStandard, &attr) != 0))
+				{
+					return (IsOpen() || attr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
+				}
 				/*
 				 * TODO:
 				 * 	-throw exception
@@ -73,12 +76,15 @@ namespace AoofWm
 	
 			const bool				CDirectoryResource::Open(void)
 			{
-				if (_pDirHandle == NULL)
+				if (IsOpen() == false)
 				{
-					_pDirHandle = opendir(GetName()->GetPath().c_str());
-					if (_pDirHandle != NULL)
+					std::string	dirSpecifications	= GetName()->GetPath() + "\\*";
+
+					_dirHandle = FindFirstFile(dirSpecifications.c_str(), &_dirData);
+					if (IsOpen())
 					{
-						return (true);	
+						_dirStatus = true;
+						return (true);
 					}
 					/*
 				 	* TODO:
@@ -92,10 +98,12 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Close(void)
 			{
-				if ((_pDirHandle == NULL) || (closedir(_pDirHandle) == 0))
+				if ((IsOpen() == false) || (FindClose(_dirHandle) != 0))
 				{
+					_dirHandle = InvalidHandle;
 					return (true);
 				}
+				_dirHandle = InvalidHandle;
 				/*
 				 * TODO:
 				 * 	-throw exception (message taken from errno)
@@ -106,16 +114,38 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Create(void)
 			{
-				if (mkdir(GetName()->GetPath().c_str()) == 0)
+				bool	status			= true;
+
+				if (IsOpen() == false)
 				{
-					return (true);	
+					char		DirName[256];
+					const char*	pPath			= this->GetName()->GetPath().c_str();
+					char*		pDirName		= DirName;
+					
+					for (int i = 0; (pPath[i] != '\0') && (i < 256); i++)
+					{
+						if (((pPath[i] == '\\') || (pPath[i] == '/')) &&
+							(pPath[i + 1] != '\0')) // avoid creating same directory twice
+						{
+							if ((i > 0) && (pPath[i - 1] != ':')) // do not care about root directories
+							{
+								CreateDirectory(DirName, NULL);
+							}
+						}
+						*pDirName++ = pPath[i];
+						*pDirName = '\0';
+					}
+					status = (CreateDirectory(DirName, NULL) != 0);
 				}
-				/*
-				 * TODO:
-				 * 	-throw exception (message taken from errno)
-				 * 	-setLastError
-				 */ 
-				return (false);	
+				if (status == false)
+				{
+					/*
+					 * TODO:
+					 * 	-throw exception (message taken from errno)
+					 * 	-setLastError
+					 */ 
+				}
+				return (status);
 			}
 			
 			const bool				CDirectoryResource::Delete(void)
@@ -137,9 +167,9 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Reset(void)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
-					rewinddir(_pDirHandle);
+					//rewinddir(_pDirHandle);
 					return (true);
 				}
 				/*
@@ -152,9 +182,9 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Seek(const unsigned long location)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
-					seekdir(_pDirHandle, location);
+					//seekdir(_pDirHandle, location);
 					return (true);
 				}
 				/*
@@ -167,9 +197,9 @@ namespace AoofWm
 			
 			const unsigned long		CDirectoryResource::Tell(void)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
-					return (telldir(_pDirHandle));
+					return (0/*telldir(_pDirHandle)*/);
 				}
 				/*
 				 * TODO:
@@ -182,12 +212,12 @@ namespace AoofWm
 					
 			const unsigned long		CDirectoryResource::Size(void)
 			{
-				DirStat	dirStat;
+				/*DirStat	dirStat;
 				
 				if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
 				{
 					return (dirStat.st_size);
-				}
+				}*/
 				/*
 				 * TODO:
 				 * 	-throw exception
@@ -213,24 +243,20 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Rename(const RsrcString& name)
 			{
-				if (_pDirHandle != NULL)
+				if (rename(GetName()->GetPath().c_str(), name.c_str()) == 0)
 				{
-					if (rename(GetName()->GetPath().c_str(), name.c_str()) == 0)
-					{
-						/*
-						 * TODO:
-						 *  here we should juste rename the URI
-						 */
-						return (true);	
-					}
 					/*
 					 * TODO:
-					 * -throw exception (message taken from errno)
-					 * -setLastError
+					 *  here we should juste rename the URI
 					 */
-					 return (false);
+					return (true);	
 				}
-				return (true);
+				/*
+				 * TODO:
+				 * -throw exception (message taken from errno)
+				 * -setLastError
+				 */
+				 return (false);
 			}
 			
 			
@@ -252,14 +278,24 @@ namespace AoofWm
 			
 			const RsrcString*		CDirectoryResource::ReadLine(const RsrcString& delimiter)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
-					DirData	*pent;
-				
-					pent = readdir(_pDirHandle);
-					if (pent != NULL)
+					DWORD	dwError;
+
+					if (_dirStatus == true)
 					{
-						return (new std::string(pent->d_name));
+						std::string*	pFileName	= new std::string(_dirData.cFileName);
+
+						ResetDirData();
+						return (pFileName);
+					}
+					if ((FindNextFile(_dirHandle, &_dirData) != 0))
+					{
+						return (new std::string(_dirData.cFileName));
+					}
+					if (GetLastError() != ERROR_NO_MORE_FILES)
+					{
+						// smthg wrong happened here
 					}
 					if (errno)
 					{// error if errno set.
@@ -285,7 +321,7 @@ namespace AoofWm
 			
 			const RsrcStringList*	CDirectoryResource::ReadLines(const RsrcString& delimiter)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					RsrcStringList*		pRsrcStringList;
 					const RsrcString*	pLine;
@@ -303,7 +339,7 @@ namespace AoofWm
 			
 			const RsrcStringList*	CDirectoryResource::ReadLines(const char delimiter)
 			{
-				if (_pDirHandle != NULL)
+				if (IsOpen())
 				{
 					RsrcStringList*		pRsrcStringList;
 					const RsrcString*	pLine;
@@ -324,12 +360,12 @@ namespace AoofWm
 			{
 				if (Exists())
 				{
-					DirStat	dirStat;
+					/*DirStat	dirStat;
 				
 					if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
 					{
 						return ((dirStat.st_mode & O_RDWR) == O_RDWR);
-					}
+					}*/
 				}
 				return (false);
 			}
@@ -343,19 +379,19 @@ namespace AoofWm
 			{
 				if (Exists())
 				{
-					DirStat	dirStat;
+					/*DirStat	dirStat;
 				
 					if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
 					{
 						return ((dirStat.st_mode & O_RDONLY) == O_RDONLY);
-					}
+					}*/
 				}
 				return (false);
 			}
 			
 			const bool				CDirectoryResource::IsOpen(void) const
 			{
-				return (_pDirHandle != NULL);
+				return (_dirHandle != INVALID_HANDLE_VALUE);
 			}
 		}
 	}

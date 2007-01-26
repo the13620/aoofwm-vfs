@@ -50,7 +50,7 @@ namespace AoofWm
 			{
 				FileStat	fileStat;
 				
-				if ((IsOpen() == true) || (stat(GetName()->GetPath().c_str(), &fileStat) == 0))
+				if (IsOpen() || (stat(GetName()->GetPath().c_str(), &fileStat) == 0))
 				{
 					return (true);	
 				}
@@ -85,7 +85,7 @@ namespace AoofWm
 			
 			const bool				CFileResource::Close(void)
 			{
-				if (IsOpen() == false)
+				if (IsOpen())
 				{
 					_stream.close();
 					return (_stream.is_open() == false);

@@ -49,8 +49,8 @@ namespace	AoofWm
 				AoofWm::VFS::Provider::ProvidersMap		_providers;
 				
 			public:
-				CManager();
-				virtual ~CManager();
+				CManager(void);
+				~CManager(void);
 	
 				
 				AoofWm::VFS::Resource::API::IResource*		Resource(const std::string& uri) const;

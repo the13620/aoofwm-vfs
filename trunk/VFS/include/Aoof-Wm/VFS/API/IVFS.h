@@ -40,6 +40,8 @@ namespace	AoofWm
 			class	IVFS
 			{
 			public:
+				virtual ~IVFS(void) {};
+			
 				virtual AoofWm::VFS::Manager::API::IManager*	CreateManager(void) const	= 0;
 				virtual AoofWm::VFS::Manager::API::IManager*	GetManager(void) const		= 0;
 			};
