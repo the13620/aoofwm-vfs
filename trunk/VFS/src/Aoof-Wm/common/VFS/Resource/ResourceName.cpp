@@ -53,6 +53,20 @@ namespace AoofWm
 				return (_pResource);
 			}
 			
+
+			const std::string&						CResourceName::GetName(void) const
+			{
+				if (_uri.GetFile().empty())
+				{
+					if (_uri.GetDirectories().size() > 0)
+					{
+						static const std::string	name(_uri.GetDirectories().at(_uri.GetDirectories().size() - 1));
+
+						return (name);
+					}
+				}
+				return (_uri.GetFile());
+			}
 				
 			const std::string&						CResourceName::GetBaseName(void) const
 			{

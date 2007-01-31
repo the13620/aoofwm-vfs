@@ -74,6 +74,11 @@ namespace AoofWm
 			{
 				return (_file);
 			}
+
+			const std::string&			CURI::GetFullPath(void) const
+			{
+				return (_fullPath);
+			}
 			
 			const std::string&			CURI::GetPath(void) const
 			{
@@ -248,7 +253,8 @@ namespace AoofWm
 				{
 					_path.append(_directories.at(i) + "/");
 				}
-				_path.append(_file);
+				_fullPath.append(_path);
+				_fullPath.append(_file);
 				return (_path);
 			}
 			

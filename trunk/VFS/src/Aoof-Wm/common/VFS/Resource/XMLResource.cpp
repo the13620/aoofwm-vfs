@@ -26,10 +26,7 @@
 **
 */
 
-#ifdef WIN32
-
-#include <Aoof-Wm/VFS/Resource/FileResource.h>
-#include <Aoof-Wm/VFS/Resource/ResourceName.h>
+#include <Aoof-Wm/VFS/Resource/XMLResource.h>
 
 
 namespace AoofWm
@@ -38,24 +35,22 @@ namespace AoofWm
 	{
 		namespace Resource
 		{
-			CFileResource::CFileResource(const std::string& uri) : CAbstractResource(uri)
+			CXMLResource::CXMLResource(const std::string& uri) : CAbstractResource(uri)
 			{
 				
 			}
 			
-			CFileResource::~CFileResource(void)
+			CXMLResource::~CXMLResource(void)
 			{
 				
 			}
 			
 			
-			const bool				CFileResource::Exists(void) const
+			const bool				CXMLResource::Exists(void) const
 			{
-				WIN32_FILE_ATTRIBUTE_DATA	attr;
-
-				if (IsOpen() || (GetFileAttributesEx(GetName()->GetURI().GetFullPath().c_str(), GetFileExInfoStandard, &attr) != 0))
+				if (IsOpen())
 				{
-					return (!(attr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY));
+					return (true);	
 				}
 				/*
 				 * TODO:
@@ -66,16 +61,11 @@ namespace AoofWm
 			}
 	
 	
-			const bool				CFileResource::Open(void)
+			const bool				CXMLResource::Open(void)
 			{
 				if (IsOpen() == false)
 				{
-					_stream.open(GetName()->GetURI().GetFullPath().c_str());
-					if (_stream.is_open())
-					{
-						Reset();
-						return (true);	
-					}
+					return (true);	
 					/*
 				 	* TODO:
 				 	* 	-throw exception
@@ -86,12 +76,11 @@ namespace AoofWm
 				return (true); // already open
 			}
 			
-			const bool				CFileResource::Close(void)
+			const bool				CXMLResource::Close(void)
 			{
-				if (IsOpen() == false)
+				if (IsOpen())
 				{
-					_stream.close();
-					return (_stream.is_open() == false);
+					return (true);
 				}
 				/*
 				 * TODO:
@@ -101,7 +90,7 @@ namespace AoofWm
 				return (false);	
 			}
 			
-			const bool				CFileResource::Create(void)
+			const bool				CXMLResource::Create(void)
 			{
 				if (Exists())
 				{
@@ -109,8 +98,8 @@ namespace AoofWm
 				}
 				if (IsOpen() == false)
 				{
-					_stream.open(GetName()->GetURI().GetFullPath().c_str(), std::ios::out);
-					if (_stream.is_open())
+
+					if (IsOpen())
 					{
 						return (true);	
 					}
@@ -124,11 +113,11 @@ namespace AoofWm
 				return (true); // already open
 			}
 			
-			const bool				CFileResource::Delete(void)
+			const bool				CXMLResource::Delete(void)
 			{
 				if (IsOpen())
 					Close();
-				if (std::remove(GetName()->GetURI().GetFullPath().c_str()) == 0)
+				if (std::remove(GetName()->GetPath().c_str()) == 0)
 				{
 					return (true);
 				}
@@ -141,41 +130,33 @@ namespace AoofWm
 			}
 			
 			
-			const bool				CFileResource::Reset(void)
+			const bool				CXMLResource::Reset(void)
 			{
 				return (Seek(0));
 			}
 			
-			const bool				CFileResource::Seek(const unsigned long location)
+			const bool				CXMLResource::Seek(const unsigned long location)
 			{
 				if (IsOpen())
 				{
-					_stream.seekp(location);
-					_stream.seekg(location);
-					_stream.clear(std::ios::goodbit);
 					return (true);
 				}
 				return (false);
 			}
 			
-			const unsigned long		CFileResource::Tell(void)
+			const unsigned long		CXMLResource::Tell(void)
 			{
 				if (IsOpen())
 				{
-					return (_stream.tellg());
+					return (0);
 				}
 				return (0);
 			}
 			
 					
-			const unsigned long		CFileResource::Size(void)
+			const unsigned long		CXMLResource::Size(void)
 			{
-				LARGE_INTEGER		lFileSize;
-
-				if (GetFileSizeEx(_pFileHandle, &lFileSize) != 0)
-				{
-					return (lFileSize.QuadPart);
-				}
+				
 				/*
 				 * TODO:
 				 * 	-throw exception
@@ -185,33 +166,22 @@ namespace AoofWm
 			}
 	
 	
-			const bool				CFileResource::Copy(const RsrcString& name)
+			const bool				CXMLResource::Copy(const RsrcString& name)
 			{
-				if (Exists() && (CopyFile(GetName()->GetURI().GetFullPath().c_str(), name.c_str(), false) != 0))
-				{
-					return (true);	
-				}
-				// TODO: GetLastError
+				
 				return (false);
 			}
 			
-			const bool				CFileResource::Move(const RsrcString& name)
+			const bool				CXMLResource::Move(const RsrcString& name)
 			{
 				return (Rename(name));
 			}
 			
-			const bool				CFileResource::Rename(const RsrcString& name)
+			const bool				CXMLResource::Rename(const RsrcString& name)
 			{
-				if (rename(GetName()->GetURI().GetFullPath().c_str(), name.c_str()) == 0)
+				if (rename(GetName()->GetPath().c_str(), name.c_str()) == 0)
 				{
-					std::cout << "RENAMED" << std::endl;
-					delete _pRsrcName;
-					_pRsrcName = new AoofWm::VFS::Resource::CResourceName(&(*this), name);
 					return (true);	
-				}
-				if (errno)
-				{
-					std::cout << strerror(errno) << std::endl;
 				}
 				/*
 				 * TODO:
@@ -222,16 +192,7 @@ namespace AoofWm
 			}
 			
 			
-			const unsigned int		CFileResource::Read(char buffer[], unsigned int size)
-			{
-				if (IsOpen())
-				{
-					
-				}
-				return (0);
-			}
-			
-			const unsigned int		CFileResource::Read(char buffer[], unsigned int offset, unsigned int size)
+			const unsigned int		CXMLResource::Read(char buffer[], unsigned int size)
 			{
 				if (IsOpen())
 				{
@@ -240,7 +201,16 @@ namespace AoofWm
 				return (0);
 			}
 			
-			const RsrcString*		CFileResource::ReadLine(const RsrcString& delimiter)
+			const unsigned int		CXMLResource::Read(char buffer[], unsigned int offset, unsigned int size)
+			{
+				if (IsOpen())
+				{
+	
+				}
+				return (0);
+			}
+			
+			const RsrcString*		CXMLResource::ReadLine(const RsrcString& delimiter)
 			{
 				if (IsOpen())
 				{
@@ -252,22 +222,15 @@ namespace AoofWm
 				return (NULL);
 			}
 			
-			const RsrcString*		CFileResource::ReadLine(const char delimiter)
+			const RsrcString*		CXMLResource::ReadLine(const char delimiter)
 			{
 				if (IsOpen())
 				{
-					if (_stream.eof() == false)
-					{
-						RsrcString*	pInput = new RsrcString();
-						
-						std::getline(_stream, *pInput, delimiter);
-						return (pInput);
-					}
 				}
 				return (NULL);
 			}
 			
-			const RsrcStringList*	CFileResource::ReadLines(const RsrcString& delimiter)
+			const RsrcStringList*	CXMLResource::ReadLines(const RsrcString& delimiter)
 			{
 				if (IsOpen())
 				{
@@ -285,7 +248,7 @@ namespace AoofWm
 				return (NULL);
 			}
 			
-			const RsrcStringList*	CFileResource::ReadLines(const char delimiter)
+			const RsrcStringList*	CXMLResource::ReadLines(const char delimiter)
 			{
 				if (IsOpen())
 				{
@@ -304,61 +267,37 @@ namespace AoofWm
 			}
 			
 			
-			const bool				CFileResource::IsWritable(void) const
+			const bool				CXMLResource::IsWritable(void) const
 			{
 				if (Exists())
 				{
-					//FileStat	fileStat;
-				
-					//if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
-					//{
-					//	return ((fileStat.st_mode & O_RDWR) == O_RDWR);
-					//}
 				}
 				return (false);
 			}
 			
-			const bool				CFileResource::IsHidden(void) const
+			const bool				CXMLResource::IsHidden(void) const
+			{
+				return (Exists() && (GetName()->GetBaseName().substr(0, 1).c_str()[0] == '.'));
+			}
+			
+			const bool				CXMLResource::IsReadable(void) const
 			{
 				if (Exists())
 				{
-					WIN32_FILE_ATTRIBUTE_DATA attr;
-				
-					if (GetFileAttributesEx(GetName()->GetURI().GetFullPath().c_str(), GetFileExInfoStandard, &attr) != 0)
-					{
-						return (Exists() && (attr.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN));
-					}
-					// TODO: GetLastError
+
 				}
 				return (false);
 			}
 			
-			const bool				CFileResource::IsReadable(void) const
+			const bool				CXMLResource::IsOpen(void) const
 			{
-				if (Exists())
-				{
-					//FileStat	fileStat;
-				
-					//if (stat(GetName()->GetURI().GetFullPath().c_str(), &fileStat) == 0)
-					//{
-					//	return ((fileStat.st_mode & O_RDONLY) == O_RDONLY);
-					//}
-				}
 				return (false);
 			}
 			
-			const bool				CFileResource::IsOpen(void) const
+			const bool				CXMLResource::IsOpen(void)
 			{
-				return ((const_cast<std::fstream*>(&_stream))->is_open());
-			}
-			
-			const bool				CFileResource::IsOpen(void)
-			{
-				return (_stream.is_open());
+				return (false);
 			}
 		}
 	}
 }
-
-
-#endif
