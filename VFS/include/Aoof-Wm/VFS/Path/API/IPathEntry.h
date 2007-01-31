@@ -44,6 +44,9 @@ namespace	AoofWm
 			{
 				class	IPathEntry
 				{
+				public:
+					virtual ~IPathEntry(void) {};
+				
 					virtual const std::string&						GetName(void) const		= 0;
 					virtual const AoofWm::VFS::Provider::API::IProvider*	GetProvider(void) const	= 0;
 				};

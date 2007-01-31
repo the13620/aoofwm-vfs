@@ -50,6 +50,8 @@ namespace	AoofWm
 			    	 * 	reading/writing a file.
 			    	 */
 				public:
+					virtual ~IFilter(void) {};
+					
 					virtual const void	filter(void)	= 0;
 			    };
 			}

@@ -39,6 +39,8 @@ namespace	AoofWm
 			{
 				class	ITask
 			    {
+			    public:
+			    	virtual ~ITask(void) {};
 			      /*
 			       * TODO:
 			       * 	The Task objects and APIs provide means to automate

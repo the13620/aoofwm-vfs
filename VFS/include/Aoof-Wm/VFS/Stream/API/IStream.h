@@ -39,7 +39,8 @@ namespace	AoofWm
 			{
 				class	IStream
 			    {
-	
+				public:
+					virtual ~IStream(void) {};
 			    };
 			}
 	    }
