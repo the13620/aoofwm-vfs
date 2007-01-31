@@ -42,7 +42,7 @@ namespace	AoofWm
 		{
 			class	CAbstractResource : public virtual AoofWm::VFS::Resource::API::IResource
 			{
-			private:
+			protected:
 				API::IResourceContent*	_pRsrcContent;
 				API::IResourceName*		_pRsrcName;
 				API::IResourceType*		_pRsrcType;

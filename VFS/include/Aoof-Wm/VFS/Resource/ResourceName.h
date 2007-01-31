@@ -51,6 +51,7 @@ namespace	AoofWm
 				
 				const AoofWm::VFS::Resource::API::IResource*	GetResource(void) const;
 				
+				const std::string&						GetName(void) const;
 				const std::string&						GetBaseName(void) const;
 				const std::string&						GetExtension(void) const;
 				const std::string&						GetPath(void) const;

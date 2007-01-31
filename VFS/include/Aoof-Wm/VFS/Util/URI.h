@@ -64,6 +64,7 @@ namespace AoofWm
 				std::vector<std::string>	_directories;
 				std::string					_file;
 				std::string					_extension;
+				std::string					_fullPath;
 				std::string					_path;
 				std::string					_query;
 				std::string					_queryArgs;				
@@ -79,6 +80,7 @@ namespace AoofWm
 				std::vector<std::string>	GetDirectories(void) const;
 				const std::string&			GetExtension(void) const;
 				const std::string&			GetFile(void) const;
+				const std::string&			GetFullPath(void) const;
 				const std::string&			GetPath(void) const;
 				const std::string&			GetQuery(void) const;
 				const std::string&			GetScheme(void) const;

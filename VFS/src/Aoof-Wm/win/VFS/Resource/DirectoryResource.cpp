@@ -61,7 +61,7 @@ namespace AoofWm
 			{
 				WIN32_FILE_ATTRIBUTE_DATA	attr;
 
-				if (IsOpen() || (GetFileAttributesEx(GetName()->GetPath().c_str(), GetFileExInfoStandard, &attr) != 0))
+				if (IsOpen() || (GetFileAttributesEx(GetName()->GetURI().GetFullPath().c_str(), GetFileExInfoStandard, &attr) != 0))
 				{
 					return (IsOpen() || attr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
 				}
@@ -78,7 +78,7 @@ namespace AoofWm
 			{
 				if (IsOpen() == false)
 				{
-					std::string	dirSpecifications	= GetName()->GetPath() + "\\*";
+					std::string	dirSpecifications	= GetName()->GetURI().GetFullPath() + "\\*";
 
 					_dirHandle = FindFirstFile(dirSpecifications.c_str(), &_dirData);
 					if (IsOpen())
@@ -119,7 +119,7 @@ namespace AoofWm
 				if (IsOpen() == false)
 				{
 					char		DirName[256];
-					const char*	pPath			= this->GetName()->GetPath().c_str();
+					const char*	pPath			= this->GetName()->GetURI().GetFullPath().c_str();
 					char*		pDirName		= DirName;
 					
 					for (int i = 0; (pPath[i] != '\0') && (i < 256); i++)
@@ -152,7 +152,7 @@ namespace AoofWm
 			{
 				if (IsOpen())
 					Close();
-				if (std::remove(GetName()->GetPath().c_str()) == 0)
+				if (std::remove(GetName()->GetURI().GetFullPath().c_str()) == 0)
 				{
 					return (true);	
 				}
@@ -229,11 +229,34 @@ namespace AoofWm
 	
 			const bool				CDirectoryResource::Copy(const RsrcString& name)
 			{
-				/*
-				 * TODO:
-				 * 	Recursive directory copy
-				 */
-				return (true);
+				bool				status	= false;
+				SHFILEOPSTRUCT		shFileOp;
+				char				pathFrom[4096];
+				char				pathTo[4096];
+
+				::ZeroMemory(&shFileOp, sizeof(shFileOp));
+				::ZeroMemory(pathFrom, 4096);
+				::ZeroMemory(pathTo, 4096);
+				::GetShortPathName(GetName()->GetURI().GetFullPath().c_str(), pathFrom, 4095);
+				::GetShortPathName(name.c_str(), pathTo, 4095);
+				shFileOp.hwnd	= NULL;
+				shFileOp.wFunc	= FO_COPY;
+				shFileOp.pFrom	= pathFrom;
+				shFileOp.pTo	= pathTo;
+				shFileOp.fFlags	= FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT;
+				shFileOp.fFlags	|= FOF_NORECURSION;
+				if ((::SHFileOperation(&shFileOp)) == 0)
+					status = true;
+				else
+				{
+					//std::cout << "pathFrom:\t" << GetName()->GetURI().GetFullPath().c_str() << std::endl;
+					//std::cout << "pathFrom:\t" << pathFrom << std::endl;
+					//std::cout << "pathTo:\t" << name.c_str() << std::endl;
+					//std::cout << "pathTo:\t" << pathTo << std::endl;
+					//std::cout << "" << ::GetLastError() << std::endl;
+					// TODO: setLastError
+				}
+				return (status);
 			}
 			
 			const bool				CDirectoryResource::Move(const RsrcString& name)
@@ -243,7 +266,7 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Rename(const RsrcString& name)
 			{
-				if (rename(GetName()->GetPath().c_str(), name.c_str()) == 0)
+				if (rename(GetName()->GetURI().GetFullPath().c_str(), name.c_str()) == 0)
 				{
 					/*
 					 * TODO:
@@ -296,14 +319,12 @@ namespace AoofWm
 					if (GetLastError() != ERROR_NO_MORE_FILES)
 					{
 						// smthg wrong happened here
-					}
-					if (errno)
-					{// error if errno set.
 						/*
 				 		* TODO:
 				 		* 	-throw exception (message taken from errno)
 				 		* 	-setLastError
 				 		*/
+
 					}
 				}
 				/*

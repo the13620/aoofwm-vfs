@@ -34,6 +34,7 @@
 # include <fstream>
 # include <iostream>
 
+# include <libxml/tree.h>
 
 # include <Aoof-Wm/VFS/Resource/AbstractResource.h>
 

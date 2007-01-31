@@ -20,6 +20,10 @@ const char*		glTestResources[]	=
 {
 	"C:/test/",
 	
+	"C:/test/nodir",
+	"C:/test/nodir/",
+	"C:/test/nofile",
+
 	"C:/test/test.txt",
 	"C:/test/test2.txt",
 	
@@ -38,6 +42,8 @@ const char*		glTestResources[]	=
 	"C:/test/XML/config.xml",
 	
 	"testfile.txt",
+	"file://testfile.txt",
+	
 	"file://file.txt",
 	"file://file",
 	
@@ -70,12 +76,14 @@ int	vfsCase(const std::string& rsrcUri)
 
 	if (pRsrc != NULL)
 	{
-		std::cout << "\t[[" << pRsrc->GetName()->GetPath() << "]]" << std::endl;
+		std::cout << "\t[[" << pRsrc->GetName()->GetURI().GetFullPath() << "]]" << std::endl;
 		//pRsrc->GetName()->GetURI().Print();
 		if (pRsrc->Exists())
 		{
-			const AoofWm::VFS::Resource::RsrcString*		line;
-			const AoofWm::VFS::Resource::RsrcStringList*	lines;
+			const AoofWm::VFS::Resource::RsrcString			newName(pRsrc->GetName()->GetURI().GetPath() + "copy." + pRsrc->GetName()->GetName());
+			const AoofWm::VFS::Resource::RsrcString			copyName("C:/copies/copy." + pRsrc->GetName()->GetName());
+			const AoofWm::VFS::Resource::RsrcString*		pLine;
+			const AoofWm::VFS::Resource::RsrcStringList*	pLines;
 			
 			std::cout << " + Opening resolved Resource" << std::endl;
 			if (pRsrc->Open())
@@ -84,25 +92,31 @@ int	vfsCase(const std::string& rsrcUri)
 				std::cout << "\t\t> " << pRsrc->Size() << std::endl;
 				
 				std::cout << " + Reading Resource's content" << std::endl;
-				while ((line = pRsrc->ReadLine()) != NULL)
+				while ((pLine = pRsrc->ReadLine()) != NULL)
 				{
-					std::cout << "\t\t> " << *line << std::endl;
-					delete line;
+					std::cout << "\t\t> " << *pLine << std::endl;
+					delete pLine;
 				}
 				
 				std::cout << " + Resetting Resource's internal pointer" << std::endl;
 				pRsrc->Reset();
 				
 				std::cout << " + Reading all Resource's content" << std::endl;
-				lines = pRsrc->ReadLines();
-				if (lines != NULL)
+				pLines = pRsrc->ReadLines();
+				if (pLines != NULL)
 				{
-					for (unsigned int i = 0; i < lines->size(); i++)
+					for (unsigned int i = 0; i < pLines->size(); i++)
 					{
-						std::cout << "\t\t> " << lines->at(i) << std::endl;
+						std::cout << "\t\t> " << pLines->at(i) << std::endl;
 					}
-					delete lines;
+					delete pLines;
 				}
+
+				std::cout << " + Copying Resource [" << copyName << "]"<< std::endl;
+				pRsrc->Copy(copyName);
+
+				//std::cout << " + Renaming Resource [" << newName << "]"<< std::endl;
+				//pRsrc->Rename(newName);
 			}
 			else
 			{
