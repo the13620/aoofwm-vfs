@@ -47,7 +47,7 @@ namespace	AoofWm
 			{
 			public:
 				CXMLResource(const std::string& uri);
-				virtual ~CXMLResource(void);
+				~CXMLResource(void);
 				
 				const bool				Exists(void) const;
 	

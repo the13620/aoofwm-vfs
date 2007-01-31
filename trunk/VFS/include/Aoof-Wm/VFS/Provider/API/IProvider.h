@@ -43,6 +43,8 @@ namespace	AoofWm
 	    		class	IProvider
 	    		{
 				public:
+					virtual ~IProvider(void) {};
+				
 					virtual const std::string&	GetScheme(void) const	= 0;
 					
 					// /*static*/ IProvider*			Construct(void);

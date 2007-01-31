@@ -39,6 +39,8 @@ namespace	AoofWm
 			{
 				class	IDriver
 			    {
+			    public:
+			    	virtual ~IDriver(void) {};
 			    };
 			}
 	    }

@@ -39,6 +39,8 @@ namespace	AoofWm
 			{
 				class	ICache
 			    {
+			    public:
+			    	virtual ~ICache(void) {};
 			      /*
 			       *	TODO:
 			       * 		Still haven't had the time to think about

@@ -46,7 +46,7 @@ namespace	AoofWm
 				
 			public:
 				CFileProvider(void);
-				virtual ~CFileProvider(void);
+				~CFileProvider(void);
 			
 				const std::string&						GetScheme(void) const;
 				static AoofWm::VFS::Provider::API::IProvider*	Construct(void);

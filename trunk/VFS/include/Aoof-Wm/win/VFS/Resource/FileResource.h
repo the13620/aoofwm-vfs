@@ -60,7 +60,7 @@ namespace	AoofWm
 				
 			public:
 				CFileResource(const std::string& uri);
-				virtual ~CFileResource(void);
+				~CFileResource(void);
 				
 				const bool				Exists(void) const;
 	

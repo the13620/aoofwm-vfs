@@ -45,7 +45,7 @@ namespace	AoofWm
 			{
 			public:
 				CDriver(void);
-				virtual ~CDriver(void);
+				~CDriver(void);
 			};
 		}
 	}

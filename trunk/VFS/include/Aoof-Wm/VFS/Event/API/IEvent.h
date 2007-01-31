@@ -38,6 +38,8 @@ namespace	VFS
 			class	IEvent
 		    {
 		    public:
+		    	virtual ~IEvent(void) {};
+		    
 		    	//virtual const void	notify()		= 0;
 		    	virtual const void	fire(void)		= 0;
 		    };

@@ -48,6 +48,8 @@ namespace	AoofWm
 				class	IPath
 				{
 				public:
+					virtual ~IPath(void) {};
+				
 					virtual const std::string&		GetPath(void) const									= 0;
 					virtual const PathEntryList&	GetEntries(void) const								= 0;
 					virtual const API::IPathEntry*	GetEntry(const PathEntryList::size_type idx) const	= 0;

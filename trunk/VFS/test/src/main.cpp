@@ -33,19 +33,22 @@ const char*		glTestResources[]	=
 	
 	"C:/test/newDir2/",
 	"C:/test/newDir2/newFile2.txt",
+
+	"C:/test/XML/XMLfile.txt",
+	"C:/test/XML/config.xml",
 	
 	"testfile.txt",
-//	"file://file.txt",
-//	"file://file",
-//	
-//	"file://dir",
-//	"file://dir/",
-//	
-//	"file://dir/file.txt",
-//	"file://dir/file",
-//	
-//	"file://dir/dir",
-//	"file://dir/dir/",
+	"file://file.txt",
+	"file://file",
+	
+	"file://dir",
+	"file://dir/",
+	
+	"file://dir/file.txt",
+	"file://dir/file",
+	
+	"file://dir/dir",
+	"file://dir/dir/",
 	
 	NULL
 };
