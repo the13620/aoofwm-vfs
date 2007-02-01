@@ -50,7 +50,7 @@ namespace AoofWm
 			{
 				FileStat	fileStat;
 				
-				if (IsOpen() || (stat(GetName()->GetPath().c_str(), &fileStat) == 0))
+				if (IsOpen() || (stat(GetName()->GetURI().GetFullPath().c_str(), &fileStat) == 0))
 				{
 					return (true);	
 				}
@@ -67,7 +67,7 @@ namespace AoofWm
 			{
 				if (IsOpen() == false)
 				{
-					_stream.open(GetName()->GetPath().c_str());
+					_stream.open(GetName()->GetURI().GetFullPath().c_str());
 					if (_stream.is_open())
 					{
 						Reset();
@@ -106,7 +106,7 @@ namespace AoofWm
 				}
 				if (IsOpen() == false)
 				{
-					_stream.open(GetName()->GetPath().c_str(), std::ios::out);
+					_stream.open(GetName()->GetURI().GetFullPath().c_str(), std::ios::out);
 					if (_stream.is_open())
 					{
 						return (true);	
@@ -125,7 +125,7 @@ namespace AoofWm
 			{
 				if (IsOpen())
 					Close();
-				if (std::remove(GetName()->GetPath().c_str()) == 0)
+				if (std::remove(GetName()->GetURI().GetFullPath().c_str()) == 0)
 				{
 					return (true);
 				}
@@ -169,7 +169,7 @@ namespace AoofWm
 			{
 				FileStat	fileStat;
 				
-				if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
+				if (stat(GetName()->GetURI().GetFullPath().c_str(), &fileStat) == 0)
 				{
 					return (fileStat.st_size);
 				}
@@ -197,7 +197,7 @@ namespace AoofWm
 				else
 				{
 					pSrcStream = new std::fstream();
-					pSrcStream->open(GetName()->GetPath().c_str());
+					pSrcStream->open(GetName()->GetURI().GetFullPath().c_str());
 					if (!pSrcStream->is_open())
 					{
 						// failure
@@ -235,7 +235,7 @@ namespace AoofWm
 			
 			const bool				CFileResource::Rename(const RsrcString& name)
 			{
-				if (rename(GetName()->GetPath().c_str(), name.c_str()) == 0)
+				if (rename(GetName()->GetURI().GetFullPath().c_str(), name.c_str()) == 0)
 				{
 					return (true);	
 				}
@@ -336,7 +336,7 @@ namespace AoofWm
 				{
 					FileStat	fileStat;
 				
-					if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
+					if (stat(GetName()->GetURI().GetFullPath().c_str(), &fileStat) == 0)
 					{
 						return ((fileStat.st_mode & O_RDWR) == O_RDWR);
 					}
@@ -355,7 +355,7 @@ namespace AoofWm
 				{
 					FileStat	fileStat;
 				
-					if (stat(GetName()->GetPath().c_str(), &fileStat) == 0)
+					if (stat(GetName()->GetURI().GetFullPath().c_str(), &fileStat) == 0)
 					{
 						return ((fileStat.st_mode & O_RDONLY) == O_RDONLY);
 					}

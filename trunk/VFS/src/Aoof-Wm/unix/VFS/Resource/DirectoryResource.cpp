@@ -53,7 +53,7 @@ namespace AoofWm
 			{
 				DirStat	dirStat;
 				
-				if (IsOpen() || (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0))
+				if (IsOpen() || (stat(GetName()->GetURI().GetFullPath().substr(0, GetName()->GetURI().GetFullPath().length() - 1).c_str(), &dirStat) == 0))
 				{
 					return (true);	
 				}
@@ -71,7 +71,7 @@ namespace AoofWm
 				if (IsOpen() == false)
 				{
 					
-					_pDirHandle = opendir(GetName()->GetPath().c_str());
+					_pDirHandle = opendir(GetName()->GetURI().GetFullPath().c_str());
 					if (IsOpen())
 					{
 						return (true);	
@@ -102,7 +102,7 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Create(void)
 			{
-				if (IsOpen() || (mkdir(GetName()->GetPath().c_str()) == 0))
+				if (IsOpen() || (mkdir(GetName()->GetURI().GetFullPath().c_str()) == 0))
 				{
 					return (true);	
 				}
@@ -118,7 +118,7 @@ namespace AoofWm
 			{
 				if (IsOpen())
 					Close();
-				if (std::remove(GetName()->GetPath().c_str()) == 0)
+				if (std::remove(GetName()->GetURI().GetFullPath().c_str()) == 0)
 				{
 					return (true);	
 				}
@@ -180,7 +180,7 @@ namespace AoofWm
 			{
 				DirStat	dirStat;
 				
-				if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
+				if (stat(GetName()->GetURI().GetFullPath().substr(0, GetName()->GetURI().GetFullPath().length() - 1).c_str(), &dirStat) == 0)
 				{
 					return (dirStat.st_size);
 				}
@@ -211,7 +211,7 @@ namespace AoofWm
 			{
 				if (IsOpen())
 				{
-					if (rename(GetName()->GetPath().c_str(), name.c_str()) == 0)
+					if (rename(GetName()->GetURI().GetFullPath().c_str(), name.c_str()) == 0)
 					{
 						/*
 						 * TODO:
@@ -322,7 +322,7 @@ namespace AoofWm
 				{
 					DirStat	dirStat;
 				
-					if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
+					if (stat(GetName()->GetURI().GetFullPath().substr(0, GetName()->GetURI().GetFullPath().length() - 1).c_str(), &dirStat) == 0)
 					{
 						return ((dirStat.st_mode & O_RDWR) == O_RDWR);
 					}
@@ -341,7 +341,7 @@ namespace AoofWm
 				{
 					DirStat	dirStat;
 				
-					if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
+					if (stat(GetName()->GetURI().GetFullPath().substr(0, GetName()->GetURI().GetFullPath().length() - 1).c_str(), &dirStat) == 0)
 					{
 						return ((dirStat.st_mode & O_RDONLY) == O_RDONLY);
 					}
