@@ -31,6 +31,7 @@
 #include <string>
 
 #include <Aoof-Wm/VFS/Resource/DirectoryResource.h>
+#include <Aoof-Wm/VFS/Util/String/StringUtil.h>
 
 
 namespace AoofWm
@@ -225,35 +226,40 @@ namespace AoofWm
 				 */ 
 				return (0);
 			}
-	
-	
+
 			const bool				CDirectoryResource::Copy(const RsrcString& name)
 			{
-				bool				status	= false;
+				RsrcString			newName(name);
+				bool				status			= false;
 				SHFILEOPSTRUCT		shFileOp;
 				char				pathFrom[4096];
 				char				pathTo[4096];
+				unsigned int		uiPathFromLength;
+				unsigned int		uiPathToLength;
 
 				::ZeroMemory(&shFileOp, sizeof(shFileOp));
 				::ZeroMemory(pathFrom, 4096);
 				::ZeroMemory(pathTo, 4096);
 				::GetShortPathName(GetName()->GetURI().GetFullPath().c_str(), pathFrom, 4095);
-				::GetShortPathName(name.c_str(), pathTo, 4095);
+				::GetShortPathName(newName.c_str(), pathTo, 4095);
+				AoofWm::VFS::Util::String::CStringUtil::slashesToAntiSlashes(pathFrom);
+				AoofWm::VFS::Util::String::CStringUtil::slashesToAntiSlashes(pathTo);
+				uiPathFromLength = ::strlen(pathFrom);
+				uiPathToLength = ::strlen(pathTo);
+				if ((uiPathFromLength > 0) && (pathFrom[uiPathFromLength - 1] == '\\'))
+					pathFrom[uiPathFromLength - 1] = '\0';
+				if ((uiPathToLength > 0) && (pathTo[uiPathToLength - 1] == '\\'))
+					pathTo[uiPathToLength - 1] = '\0';
 				shFileOp.hwnd	= NULL;
 				shFileOp.wFunc	= FO_COPY;
 				shFileOp.pFrom	= pathFrom;
 				shFileOp.pTo	= pathTo;
 				shFileOp.fFlags	= FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT;
-				shFileOp.fFlags	|= FOF_NORECURSION;
+				/*shFileOp.fFlags	|= FOF_NORECURSION;*/
 				if ((::SHFileOperation(&shFileOp)) == 0)
 					status = true;
 				else
 				{
-					//std::cout << "pathFrom:\t" << GetName()->GetURI().GetFullPath().c_str() << std::endl;
-					//std::cout << "pathFrom:\t" << pathFrom << std::endl;
-					//std::cout << "pathTo:\t" << name.c_str() << std::endl;
-					//std::cout << "pathTo:\t" << pathTo << std::endl;
-					//std::cout << "" << ::GetLastError() << std::endl;
 					// TODO: setLastError
 				}
 				return (status);

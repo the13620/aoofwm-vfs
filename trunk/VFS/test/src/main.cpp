@@ -18,43 +18,43 @@ int	unit(int ac, char **av)
 
 const char*		glTestResources[]	=
 {
-	"C:/test/",
-	
-	"C:/test/nodir",
-	"C:/test/nodir/",
-	"C:/test/nofile",
+	//"C:/test/",
+	//
+	//"C:/test/nodir",
+	//"C:/test/nodir/",
+	//"C:/test/nofile",
 
-	"C:/test/test.txt",
-	"C:/test/test2.txt",
-	
-	"C:/test/newDir/",
-	"C:/test/newDir/newFile.txt",
-	
+	//"C:/test/test.txt",
+	//"C:/test/test2.txt",
+	//
+	//"C:/test/newDir/",
+	//"C:/test/newDir/newFile.txt",
+	//
 	"file://C:/test/",
-	
-	"file://C:/test/test.txt",
-	"file://C:/test/test2.txt",
-	
-	"C:/test/newDir2/",
-	"C:/test/newDir2/newFile2.txt",
+	//
+	//"file://C:/test/test.txt",
+	//"file://C:/test/test2.txt",
+	//
+	//"C:/test/newDir2/",
+	//"C:/test/newDir2/newFile2.txt",
 
-	"C:/test/XML/XMLfile.txt",
-	"C:/test/XML/config.xml",
-	
-	"testfile.txt",
-	"file://testfile.txt",
-	
-	"file://file.txt",
-	"file://file",
-	
-	"file://dir",
-	"file://dir/",
-	
-	"file://dir/file.txt",
-	"file://dir/file",
-	
-	"file://dir/dir",
-	"file://dir/dir/",
+	//"C:/test/XML/XMLfile.txt",
+	//"C:/test/XML/config.xml",
+	//
+	//"testfile.txt",
+	//"file://testfile.txt",
+	//
+	//"file://file.txt",
+	//"file://file",
+	//
+	//"file://dir",
+	//"file://dir/",
+	//
+	//"file://dir/file.txt",
+	//"file://dir/file",
+	//
+	//"file://dir/dir",
+	//"file://dir/dir/",
 	
 	NULL
 };
@@ -81,7 +81,7 @@ int	vfsCase(const std::string& rsrcUri)
 		if (pRsrc->Exists())
 		{
 			const AoofWm::VFS::Resource::RsrcString			newName(pRsrc->GetName()->GetURI().GetPath() + "copy." + pRsrc->GetName()->GetName());
-			const AoofWm::VFS::Resource::RsrcString			copyName("C:/copies/copy." + pRsrc->GetName()->GetName());
+			const AoofWm::VFS::Resource::RsrcString			copyDestination("C:/copies/");
 			const AoofWm::VFS::Resource::RsrcString*		pLine;
 			const AoofWm::VFS::Resource::RsrcStringList*	pLines;
 			
@@ -112,8 +112,8 @@ int	vfsCase(const std::string& rsrcUri)
 					delete pLines;
 				}
 
-				std::cout << " + Copying Resource [" << copyName << "]"<< std::endl;
-				pRsrc->Copy(copyName);
+				std::cout << " + Copying Resource to [" << copyDestination << "]"<< std::endl;
+				pRsrc->Copy(copyDestination);
 
 				//std::cout << " + Renaming Resource [" << newName << "]"<< std::endl;
 				//pRsrc->Rename(newName);
