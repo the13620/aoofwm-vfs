@@ -31,6 +31,8 @@
 # define __AOOFWM_UNIX_VFS_RESOURCE_DIRECTORYRESOURCE_H__
 
 # include <cstdio>
+# include <fstream>
+# include <iostream>
 
 # include <dir.h>
 # include <dirent.h>
@@ -89,6 +91,9 @@ namespace	AoofWm
 				const bool				IsHidden(void) const;
 				const bool				IsReadable(void) const;
 				const bool				IsOpen(void) const;
+				
+			private:
+				const bool				CopyDir(const AoofWm::VFS::Util::CURI& uri, const std::string& pathTo) const;
 			};
 		}
 	}

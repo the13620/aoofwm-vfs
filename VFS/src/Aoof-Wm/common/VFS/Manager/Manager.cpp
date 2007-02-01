@@ -65,7 +65,7 @@ namespace AoofWm
 			AoofWm::VFS::Resource::API::IResource*		CManager::Resource(const std::string& uri) const
 			{
 				AoofWm::VFS::Resource::API::IResource*	pRsrc			= NULL;
-				AoofWm::VFS::Util::CURI			rsrcURI(uri);
+				AoofWm::VFS::Util::CURI					rsrcURI(uri);
 	
 				/*
 				 * TODO:

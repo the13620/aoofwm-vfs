@@ -92,7 +92,7 @@ int	vfsCase(const std::string& rsrcUri)
 				std::cout << "\t\t> " << pRsrc->Size() << std::endl;
 				
 				std::cout << " + Reading Resource's content" << std::endl;
-				while ((pLine = pRsrc->ReadLine()) != NULL)
+				for (int i = 0; (pLine = pRsrc->ReadLine()) != NULL && i < 3; i++)
 				{
 					std::cout << "\t\t> " << *pLine << std::endl;
 					delete pLine;

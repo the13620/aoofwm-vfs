@@ -30,6 +30,7 @@
 
 #include <Aoof-Wm/VFS/Resource/FileResource.h>
 #include <Aoof-Wm/VFS/Resource/ResourceName.h>
+#include <Aoof-Wm/VFS/Util/String/StringUtil.h>
 
 
 namespace AoofWm
@@ -187,12 +188,19 @@ namespace AoofWm
 	
 			const bool				CFileResource::Copy(const RsrcString& name)
 			{
-				if (Exists() && (CopyFile(GetName()->GetURI().GetFullPath().c_str(), name.c_str(), false) != 0))
+				std::string			pathFrom(GetName()->GetURI().GetFullPath());
+				std::string			pathTo(name);
+				bool				bStatus	= false;
+
+				AoofWm::VFS::Util::String::CStringUtil::slashesToAntiSlashes(pathFrom);
+				AoofWm::VFS::Util::String::CStringUtil::slashesToAntiSlashes(pathTo);
+				if (Exists() && (CopyFile(pathFrom.c_str(), pathTo.c_str(), false) != 0))
+					bStatus = true;
+				else
 				{
-					return (true);	
+					// TODO: GetLastError
 				}
-				// TODO: GetLastError
-				return (false);
+				return (bStatus);
 			}
 			
 			const bool				CFileResource::Move(const RsrcString& name)
@@ -204,14 +212,13 @@ namespace AoofWm
 			{
 				if (rename(GetName()->GetURI().GetFullPath().c_str(), name.c_str()) == 0)
 				{
-					std::cout << "RENAMED" << std::endl;
 					delete _pRsrcName;
 					_pRsrcName = new AoofWm::VFS::Resource::CResourceName(&(*this), name);
 					return (true);	
 				}
 				if (errno)
 				{
-					std::cout << strerror(errno) << std::endl;
+					
 				}
 				/*
 				 * TODO:
