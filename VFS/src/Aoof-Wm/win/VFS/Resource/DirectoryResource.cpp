@@ -43,6 +43,7 @@ namespace AoofWm
 			CDirectoryResource::CDirectoryResource(const std::string& uri) : CAbstractResource(uri)
 			{
 				_dirHandle		= INVALID_HANDLE_VALUE;
+				_ulSeek			= 0;
 				ResetDirData();				
 			}
 			
@@ -54,7 +55,7 @@ namespace AoofWm
 			const void				CDirectoryResource::ResetDirData(void)
 			{
 				_dirData	= EmptyData;
-				_dirStatus	= false;
+				_bDirStatus	= false;
 			}
 			
 			
@@ -77,40 +78,51 @@ namespace AoofWm
 	
 			const bool				CDirectoryResource::Open(void)
 			{
+
 				if (IsOpen() == false)
 				{
-					std::string	dirSpecifications	= GetName()->GetURI().GetFullPath() + "\\*";
+					std::string		dirSpecifications	= GetName()->GetURI().GetFullPath() + "\\*";
+					bool			bStatus				=	false;
 
 					_dirHandle = FindFirstFile(dirSpecifications.c_str(), &_dirData);
 					if (IsOpen())
 					{
-						_dirStatus = true;
-						return (true);
+						_ulSeek		= 0;
+						_bDirStatus = true;
+						bStatus		= true;
 					}
-					/*
-				 	* TODO:
-				 	* 	-throw exception
-				 	* 	-setLastError
-				 	*/
-				 	return (false);	
+					else
+					{
+						/*
+				 		* TODO:
+				 		* 	-throw exception
+				 		* 	-setLastError
+				 		*/
+					}
+				 	return (bStatus);	
 				}
 				return (true); // already open
 			}
 			
 			const bool				CDirectoryResource::Close(void)
 			{
+				bool				bStatus	= false;
+
 				if ((IsOpen() == false) || (FindClose(_dirHandle) != 0))
 				{
-					_dirHandle = InvalidHandle;
-					return (true);
+					_ulSeek	= 0;
+					bStatus	= true;
 				}
-				_dirHandle = InvalidHandle;
-				/*
-				 * TODO:
-				 * 	-throw exception (message taken from errno)
-				 * 	-setLastError
-				 */ 
-				return (false);	
+				else
+				{
+					/*
+					* TODO:
+					* 	-throw exception (message taken from errno)
+					* 	-setLastError
+					*/ 
+				}
+				_dirHandle = INVALID_HANDLE_VALUE;
+				return (bStatus);	
 			}
 			
 			const bool				CDirectoryResource::Create(void)
@@ -119,9 +131,9 @@ namespace AoofWm
 
 				if (IsOpen() == false)
 				{
-					char		DirName[256];
-					const char*	pPath			= this->GetName()->GetURI().GetFullPath().c_str();
-					char*		pDirName		= DirName;
+					char				dirName[256];
+					const char* const	pPath			= this->GetName()->GetURI().GetFullPath().c_str();
+					char*				pDirName		= dirName;
 					
 					for (int i = 0; (pPath[i] != '\0') && (i < 256); i++)
 					{
@@ -129,14 +141,12 @@ namespace AoofWm
 							(pPath[i + 1] != '\0')) // avoid creating same directory twice
 						{
 							if ((i > 0) && (pPath[i - 1] != ':')) // do not care about root directories
-							{
-								CreateDirectory(DirName, NULL);
-							}
+								CreateDirectory(dirName, NULL);
 						}
 						*pDirName++ = pPath[i];
 						*pDirName = '\0';
 					}
-					status = (CreateDirectory(DirName, NULL) != 0);
+					status = (CreateDirectory(dirName, NULL) != 0);
 				}
 				if (status == false)
 				{
@@ -151,63 +161,99 @@ namespace AoofWm
 			
 			const bool				CDirectoryResource::Delete(void)
 			{
+				SHFILEOPSTRUCT		shFileOp;
+				unsigned int		uiPathFromLength;
+				char				pathFrom[4096];
+				bool				bStatus				= false;
+
 				if (IsOpen())
 					Close();
-				if (std::remove(GetName()->GetURI().GetFullPath().c_str()) == 0)
+				::ZeroMemory(&shFileOp, sizeof(shFileOp));
+				::ZeroMemory(pathFrom, 4096);
+				::GetShortPathName(GetName()->GetURI().GetFullPath().c_str(), pathFrom, 4095);
+				AoofWm::VFS::Util::String::CStringUtil::slashesToAntiSlashes(pathFrom);
+				uiPathFromLength = ::strlen(pathFrom);
+				if ((uiPathFromLength > 0) && (pathFrom[uiPathFromLength - 1] == '\\'))
+					pathFrom[uiPathFromLength - 1] = '\0';
+				shFileOp.wFunc  = FO_DELETE;
+				shFileOp.pFrom  = pathFrom;
+				shFileOp.fFlags = FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT;
+				if ((::SHFileOperation(&shFileOp)) == 0)
+					bStatus    = true;
+				else
 				{
-					return (true);	
+					/*
+					* TODO:
+					* 	-throw exception (message taken from errno)
+					* 	-setLastError
+					*/ 
 				}
-				/*
-				 * TODO:
-				 * 	-throw exception (message taken from errno)
-				 * 	-setLastError
-				 */ 
-				return (false);	
+				return (bStatus);	
 			}
 			
 			
 			const bool				CDirectoryResource::Reset(void)
 			{
+				return (Seek(0));
+			}
+
+			const void				CDirectoryResource::SeekForward(const unsigned long location)
+			{
 				if (IsOpen())
 				{
-					//rewinddir(_pDirHandle);
-					return (true);
+					while (_ulSeek < location)
+					{
+						if (FindNextFile(_dirHandle, &_dirData) == 0)
+						{
+							DWORD	error;
+
+							error = GetLastError();
+							if (error)
+							{
+								if (error == ERROR_NO_MORE_FILES)
+								{
+									// TODO: setLastError
+								}
+								break;
+							}
+						}
+						_ulSeek++;
+					}
 				}
-				/*
-				 * TODO:
-				 * 	-throw exception
-				 * 	-setLastError
-				 */
-				return (false);
 			}
 			
 			const bool				CDirectoryResource::Seek(const unsigned long location)
 			{
+				bool				bStatus	= false;
+
 				if (IsOpen())
 				{
-					//seekdir(_pDirHandle, location);
-					return (true);
+					if (_ulSeek > location)
+					{// rewind
+						Close();
+						Open();
+						SeekForward(location);
+					}
+					else if (_ulSeek < location)
+					{// forward
+						SeekForward(location);
+					}
+					bStatus = true;
 				}
-				/*
-				 * TODO:
-				 * 	-throw exception
-				 * 	-setLastError
-				 */
-				return (false);
+				else
+				{
+					/*
+					* TODO:
+					* 	-throw exception
+					* 	-setLastError
+					*/
+				}
+				return (bStatus);
 			}
 			
 			const unsigned long		CDirectoryResource::Tell(void)
 			{
-				if (IsOpen())
-				{
-					return (0/*telldir(_pDirHandle)*/);
-				}
-				/*
-				 * TODO:
-				 * 	-throw exception
-				 * 	-setLastError
-				 */
-				return (0);
+				return (_ulSeek);
 			}
 			
 					
@@ -230,12 +276,12 @@ namespace AoofWm
 			const bool				CDirectoryResource::Copy(const RsrcString& name)
 			{
 				RsrcString			newName(name);
-				bool				status			= false;
 				SHFILEOPSTRUCT		shFileOp;
-				char				pathFrom[4096];
-				char				pathTo[4096];
 				unsigned int		uiPathFromLength;
 				unsigned int		uiPathToLength;
+				char				pathFrom[4096];
+				char				pathTo[4096];
+				bool				bStatus				= false;
 
 				::ZeroMemory(&shFileOp, sizeof(shFileOp));
 				::ZeroMemory(pathFrom, 4096);
@@ -257,12 +303,12 @@ namespace AoofWm
 				shFileOp.fFlags	= FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT;
 				/*shFileOp.fFlags	|= FOF_NORECURSION;*/
 				if ((::SHFileOperation(&shFileOp)) == 0)
-					status = true;
+					bStatus = true;
 				else
 				{
 					// TODO: setLastError
 				}
-				return (status);
+				return (bStatus);
 			}
 			
 			const bool				CDirectoryResource::Move(const RsrcString& name)
@@ -307,20 +353,15 @@ namespace AoofWm
 			
 			const RsrcString*		CDirectoryResource::ReadLine(const RsrcString& delimiter)
 			{
+				std::string*	pFileName	=	NULL;
+
 				if (IsOpen())
 				{
-					DWORD	dwError;
-
-					if (_dirStatus == true)
+					if ((_bDirStatus == true) || (FindNextFile(_dirHandle, &_dirData) != 0))
 					{
-						std::string*	pFileName	= new std::string(_dirData.cFileName);
-
+						pFileName	= new std::string(_dirData.cFileName);
 						ResetDirData();
-						return (pFileName);
-					}
-					if ((FindNextFile(_dirHandle, &_dirData) != 0))
-					{
-						return (new std::string(_dirData.cFileName));
+						_ulSeek++;
 					}
 					if (GetLastError() != ERROR_NO_MORE_FILES)
 					{
@@ -330,7 +371,6 @@ namespace AoofWm
 				 		* 	-throw exception (message taken from errno)
 				 		* 	-setLastError
 				 		*/
-
 					}
 				}
 				/*
@@ -338,7 +378,7 @@ namespace AoofWm
 				 * 	-throw exception (message taken from errno)
 				 * 	-setLastError
 				 */
-				return (NULL);
+				return (pFileName);
 			}
 			
 			const RsrcString*		CDirectoryResource::ReadLine(const char delimiter)

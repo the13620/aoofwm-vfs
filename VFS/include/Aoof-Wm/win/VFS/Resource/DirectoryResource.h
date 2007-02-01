@@ -54,7 +54,8 @@ namespace	AoofWm
 
 				DirHandle				_dirHandle;
 				DirData					_dirData;
-				bool					_dirStatus;
+				bool					_bDirStatus;
+				unsigned long			_ulSeek;
 		
 			public:
 				CDirectoryResource(const std::string& uri);
@@ -91,6 +92,7 @@ namespace	AoofWm
 
 			private:
 				const void				ResetDirData(void);
+				const void				SeekForward(const unsigned long location);
 			};
 		}
 	}
