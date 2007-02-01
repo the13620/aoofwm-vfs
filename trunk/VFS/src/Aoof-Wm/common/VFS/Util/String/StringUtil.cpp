@@ -52,6 +52,18 @@ namespace AoofWm
 						}
 					}
 				}
+
+				void					CStringUtil::slashesToAntiSlashes(std::string& rStr)
+				{
+					if (rStr.empty() == false)
+					{
+						for (unsigned int uiCnt = 0; uiCnt < rStr.size(); uiCnt++)
+						{
+							if (rStr.at(uiCnt) == '/')
+								rStr.replace(uiCnt, 1, "\\");
+						}
+					}
+				}
 				
 				void					CStringUtil::antiSlashesToSlashes(char * const pStr)
 				{
@@ -63,6 +75,18 @@ namespace AoofWm
 						{
 							if (pStr[uiCnt] == '\\')
 								pStr[uiCnt] = '/';
+						}
+					}
+				}
+
+				void					CStringUtil::antiSlashesToSlashes(std::string& rStr)
+				{
+					if (rStr.empty() == false)
+					{
+						for (unsigned int uiCnt = 0; uiCnt < rStr.size(); uiCnt++)
+						{
+							if (rStr.at(uiCnt) == '\\')
+								rStr.replace(uiCnt, 1, "/");
 						}
 					}
 				}

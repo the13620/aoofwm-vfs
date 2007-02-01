@@ -46,7 +46,9 @@ namespace AoofWm
 				{
 				public:
 					static void	slashesToAntiSlashes(char * const pStr);
+					static void	slashesToAntiSlashes(std::string& rStr);
 					static void	antiSlashesToSlashes(char * const pStr);
+					static void	antiSlashesToSlashes(std::string& rStr);
 				};
 			}
 		}

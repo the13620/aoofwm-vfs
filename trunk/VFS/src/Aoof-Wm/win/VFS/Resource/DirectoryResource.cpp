@@ -205,9 +205,8 @@ namespace AoofWm
 					{
 						if (FindNextFile(_dirHandle, &_dirData) == 0)
 						{
-							DWORD	error;
+							DWORD	error	= GetLastError();
 
-							error = GetLastError();
 							if (error)
 							{
 								if (error == ERROR_NO_MORE_FILES)
@@ -259,18 +258,42 @@ namespace AoofWm
 					
 			const unsigned long		CDirectoryResource::Size(void)
 			{
-				/*DirStat	dirStat;
-				
-				if (stat(GetName()->GetPath().substr(0, GetName()->GetPath().length() - 1).c_str(), &dirStat) == 0)
+				DirHandle			dirHandle		= INVALID_HANDLE_VALUE;
+				unsigned long		ulSize			= 0;
+				unsigned int		uiPathLength	= 0;
+				char				path[4096];
+
+				::ZeroMemory(path, 4096);
+				::GetShortPathName(GetName()->GetURI().GetFullPath().c_str(), path, 4095);
+				AoofWm::VFS::Util::String::CStringUtil::slashesToAntiSlashes(path);
+				uiPathLength = ::strlen(path);
+				if ((uiPathLength > 0) && (path[uiPathLength - 1] == '\\'))
+					path[uiPathLength - 1] = '\0';
+				dirHandle = CreateFile(path, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
+				if (dirHandle != INVALID_HANDLE_VALUE)
 				{
-					return (dirStat.st_size);
-				}*/
-				/*
-				 * TODO:
-				 * 	-throw exception
-				 * 	-setLastError
-				 */ 
-				return (0);
+					BY_HANDLE_FILE_INFORMATION	fileInfo;
+
+					if (GetFileInformationByHandle(dirHandle, &fileInfo) != 0)
+					{
+						ulSize = (fileInfo.nFileSizeHigh * MAXWORD) + fileInfo.nFileSizeLow;
+						//std::cout << " *> SIZE" << " " << (fileInfo.nFileSizeLow) << ":" << (fileInfo.nFileSizeHigh) << std::endl;
+					}
+					else
+					{
+						// TODO
+					}
+					CloseHandle(dirHandle);
+				}
+				else
+				{
+					/*
+					* TODO:
+					* 	-throw exception
+					* 	-setLastError
+					*/ 
+				}
+				return (ulSize);
 			}
 
 			const bool				CDirectoryResource::Copy(const RsrcString& name)

@@ -29,6 +29,7 @@
 #include <string>
 
 #include <Aoof-Wm/VFS/Resource/DirectoryResource.h>
+#include <Aoof-Wm/VFS/Util/String/StringUtil.h>
 
 
 namespace AoofWm
@@ -191,15 +192,72 @@ namespace AoofWm
 				 */ 
 				return (0);
 			}
+			
+			
+			const bool				CDirectoryResource::CopyDir(const AoofWm::VFS::Util::CURI& uri, const std::string& pathTo) const
+			{
+				std::string	dirPath	= uri.GetFullPath();
+				DirHandle*	pDh = opendir(dirPath.c_str());
+
+				std::cout << dirPath << ":" << pathTo << std::endl;
+				if (pDh != NULL)
+				{
+					DirData		*pDd;
+					DirStat		ds;
+				
+					while ((pDd = readdir(pDh)) != NULL)
+					{
+						AoofWm::VFS::Util::CURI	entryUri(uri.GetFullPath() + pDd->d_name);
+						
+						if (stat(entryUri.GetFullPath().c_str(), &ds) == 0)
+						{
+							const std::string	pathToNext(pathTo + pDd->d_name);
+							
+							std::cout << pathToNext << ":" << ds.st_mode << std::endl;
+							if (S_ISDIR(ds.st_mode))
+							{
+								AoofWm::VFS::Util::CURI	dirUri(entryUri.GetFullPath() + "/");
+								std::cout << "never" << std::endl;
+								if ((mkdir(pathToNext.c_str()) == 0) || (errno != EEXIST))
+								{
+									
+									CopyDir(dirUri, pathToNext + "/");
+								}
+							}
+							else
+							{
+								std::fstream	oSrcStream(entryUri.GetFullPath().c_str(), std::ios::in);
+								std::fstream	oDstStream(pathToNext.c_str(), std::ios::out);
+								
+								if (oSrcStream.is_open() && oDstStream.is_open())
+									oDstStream << oSrcStream.rdbuf();
+								else
+								{
+									// TODO:
+								}
+								oDstStream.close();
+								oSrcStream.close();
+							}
+						}
+					}
+					closedir(pDh);
+					return (true);
+				}
+				return (false);
+			}
 	
 	
 			const bool				CDirectoryResource::Copy(const RsrcString& name)
 			{
-				/*
-				 * TODO:
-				 * 	Recursive directory copy
-				 */
-				return (true);
+				const std::vector<std::string>	directories = GetName()->GetURI().GetDirectories();
+				std::string						pathNext = name;
+				
+				if (directories.size() > 0)
+					pathNext.append(directories.at(directories.size() - 1) + "/");
+				std::cout << pathNext << std::endl;
+				if ((mkdir((pathNext).c_str()) == 0) || (errno != EEXIST))
+					return (CopyDir(GetName()->GetURI().GetFullPath(), pathNext));
+				return (false);
 			}
 			
 			const bool				CDirectoryResource::Move(const RsrcString& name)
