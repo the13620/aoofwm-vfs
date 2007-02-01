@@ -198,6 +198,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\Aoof-Wm\common\VFS\Util\String\StringUtil.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\Aoof-Wm\common\VFS\Util\Tokenizer.cpp"
 				>
 			</File>
@@ -228,11 +232,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\VFS\Resource\DirectoryResource.h"
+				RelativePath="..\include\Aoof-Wm\win\VFS\Resource\DirectoryResource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\Aoof-Wm\win\VFS\Resource\DirectoryResource.h"
+				RelativePath="..\include\Aoof-Wm\VFS\Resource\DirectoryResource.h"
 				>
 			</File>
 			<File
@@ -325,6 +329,10 @@
 			</File>
 			<File
 				RelativePath="..\include\Aoof-Wm\VFS\Resource\ResourceTypes.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\Aoof-Wm\VFS\Util\String\StringUtil.h"
 				>
 			</File>
 			<File
