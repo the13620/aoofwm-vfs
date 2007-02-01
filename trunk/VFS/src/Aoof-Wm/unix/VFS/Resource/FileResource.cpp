@@ -252,7 +252,10 @@ namespace AoofWm
 			{
 				if (IsOpen())
 				{
-	
+					/*
+					 * TODO: no time, later
+					 *  mostly use ReadLinr
+					 */
 				}
 				return (0);
 			}
@@ -261,7 +264,10 @@ namespace AoofWm
 			{
 				if (IsOpen())
 				{
-	
+					/*
+					 * TODO: no time, later
+					 *  mostly use ReadLinr
+					 */
 				}
 				return (0);
 			}
